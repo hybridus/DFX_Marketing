@@ -285,13 +285,42 @@
     var h = I(ox + 71, oy, z0 + 6.7);
     se('ellipse', { cx: h[0], cy: h[1], rx: 3.8 * ISO.cam.s, ry: 2.3 * ISO.cam.s, fill: '#0A0D10', stroke: '#C9D1DA', 'stroke-width': 1.2 }, undefined, U);
     // dark-red biohazard-style trefoil on the top face (flat on the iso plane)
-    var zt = z0 + 6.8, cxm = 47;
-    function disc(x, y, r, fill, st, sw) { var q = []; for (var k = 0; k < 24; k++) { var an = k / 24 * Math.PI * 2; q.push(I(ox + x + Math.cos(an) * r, oy + y + Math.sin(an) * r, zt)); } return P(q, fill, st || 'none', U, sw || 1); }
+    var zt = z0 + 6.8, cxm = 47, Ub = se('g', { 'class': 'usb-badge' }, undefined, U);
+    if (opts.badge === false) Ub.setAttribute('display', 'none');
+    function disc(x, y, r, fill, st, sw) { var q = []; for (var k = 0; k < 24; k++) { var an = k / 24 * Math.PI * 2; q.push(I(ox + x + Math.cos(an) * r, oy + y + Math.sin(an) * r, zt)); } return P(q, fill, st || 'none', Ub, sw || 1); }
     disc(cxm, 0, 9.6, '#3A0A10', '#B3121F', 1.2);
     for (var l = 0; l < 3; l++) { var ang = -Math.PI / 2 + l * Math.PI * 2 / 3; disc(cxm + Math.cos(ang) * 4.3, Math.sin(ang) * 4.3, 3.6, '#B3121F', 'none'); }
     disc(cxm, 0, 2.2, '#3A0A10', 'none');
     disc(cxm, 0, 1.0, '#B3121F', 'none');
     return { connector: I(ox + 11, oy, z0 + 2.6), band: I(ox + 45, oy, z0 + 6.6), hole: h, body: I(ox + 33, oy, z0 + 6.6) };
+  };
+
+  /* ---------------- ASSET: institution building (government / partner organisation); front faces +y, entrance centred ---------------- */
+  ISO.assets.institution = function (g, ox, oy, opts) {
+    opts = opts || {};
+    var Wd = opts.w || 200, D = opts.d || 110, H = 64, B = se('g', { filter: 'url(#sh)' }, undefined, g);
+    var T = '#2B3440', L = '#1D2530', R = '#161C24', S = '#3A4552', GOLD = '#F5A800';
+    box(-12, -4, 0, Wd + 24, D + 30, 5, S, '#222A34', '#1A2028', B, '#4A5662', ox, oy);
+    box(0, 0, 5, Wd, D, H, T, L, R, B, '#55616D', ox, oy);
+    for (var r = 0; r < 2; r++) for (var c = 0; c < 4; c++) {
+      var y0 = 14 + c * 24, z0 = 18 + r * 22;
+      P([I(ox + Wd, oy + y0, 5 + z0), I(ox + Wd, oy + y0 + 13, 5 + z0), I(ox + Wd, oy + y0 + 13, 5 + z0 + 12), I(ox + Wd, oy + y0, 5 + z0 + 12)], '#0E131A', '#55616D', B, 1);
+    }
+    var cx = Wd / 2;
+    P([I(ox + cx - 13, oy + D, 5), I(ox + cx + 13, oy + D, 5), I(ox + cx + 13, oy + D, 5 + 36), I(ox + cx - 13, oy + D, 5 + 36)], '#0A0D10', GOLD, B, 1.4);
+    var nc = 6, cw = 8;
+    for (var i = 0; i < nc; i++) {
+      var x = 18 + i * ((Wd - 36 - cw) / (nc - 1));
+      box(x, D + 2, 5, cw, cw, H - 8, '#8B96A1', '#6C7782', '#59636E', B, '#3A444F', ox, oy);
+    }
+    box(8, D - 2, 5 + H - 8, Wd - 16, 16, 7, '#3A4552', '#2A323C', '#20272F', B, '#55616D', ox, oy);
+    var yp = D + 14, zb = 5 + H - 1;
+    P([I(ox + 6, oy + yp, zb), I(ox + Wd - 6, oy + yp, zb), I(ox + Wd / 2, oy + yp, zb + 24)], '#2A323C', '#55616D', B, 1.4);
+    P([I(ox + 22, oy + yp, zb + 3), I(ox + Wd - 22, oy + yp, zb + 3), I(ox + Wd / 2, oy + yp, zb + 17)], 'none', GOLD, B, 1);
+    var fx = Wd / 2, fy = D / 2, a0 = I(ox + fx, oy + fy, 5 + H), a1 = I(ox + fx, oy + fy, 5 + H + 44);
+    se('line', { x1: a0[0], y1: a0[1], x2: a1[0], y2: a1[1], stroke: '#C9D1DA', 'stroke-width': 1.6 }, undefined, B);
+    P([I(ox + fx, oy + fy, 5 + H + 44), I(ox + fx, oy + fy + 26, 5 + H + 42), I(ox + fx, oy + fy + 26, 5 + H + 30), I(ox + fx, oy + fy, 5 + H + 32)], GOLD, 'none', B);
+    return { entrance: [ox + cx, oy + D + 24], top: I(ox + cx, oy + D / 2, 5 + H + 46) };
   };
 
   /* ---------------- ASSET 4: DFX One Platform (options A cabinet, B three racks, C open frame) ---------------- */

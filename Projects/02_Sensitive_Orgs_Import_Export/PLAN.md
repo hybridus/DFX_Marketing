@@ -74,3 +74,8 @@ Film: about 215 s, one film in two chapters ("Into Classified", "Out of Classifi
 
 ## Naming decision
 - The non-classified zone is called **Public Network** (on screen "PUBLIC NETWORK", in speech "the public network"), replacing "Corporate", which means little to government audiences. Classified zone stretched; all PCs inside it. Earlier plan text has been updated from "Corporate" to "Public".
+
+## Revision v3 (export scenes)
+- USB: red trefoil hidden from the export chapter (ISO.assets.usb opts.badge, class .usb-badge; engine fades it at t=104-105).
+- Delivery ends at an institution building (ISO.assets.institution) labelled COOPERATION PARTNER ORGANIZATION, left of the Public zone; USB lands at its entrance.
+- Classified portal: 'Identity verification' / 'Authorization credentials' (AD credentials, not a badge). Station kiosk still says 'Tap ID badge (NFC)' (Public side, unchanged, pending Burak).

@@ -14,12 +14,12 @@ Voice: **Cedric M**, ElevenLabs voice_id `VvVVKaa2nHZpbZdtSRSX`, model `eleven_v
 | s06 | 6 Seal and store | 91–96 | The approved files are sealed, tamper-evident, and stored inside DFX One. | 4.1 |
 | s07 | 7 Inbound gateway | 96–109 | They cross the DFX Unidirectional Gateway, one way only. Seal verified. Audit record logged. Hardware enforced. Physically separated. Isolation ensured. | 7.4 |
 | s08 | 8 Classified delivery | 109–116 | Inside Classified, the files arrive on the analyst's computer. Seal verified. Chain of custody intact. | 5.6 |
-| s09 | 9 Portal request | 118.5–135 | Now the other direction. Inside Classified, the analyst opens the DFX One portal, signs in, selects the files, and chooses the public network. Files meant for an external partner can be marked for encryption. | 11.9 |
+| s09 | 9 Portal request | 118.5–135 | Now the other direction. Inside Classified, the analyst opens the DFX One portal, verifies their identity with their authorization credentials, selects the files, and chooses the public network. Files meant for a cooperation partner can be marked for encryption. | 11.9 |
 | s10 | 10 Policy, inspection, DLP | 135–153 | Same policy, same engines, same sandbox, plus a content and classification check. DFX One reads the markings, not just the file type. Ten files. Two blocked for secret markings. Three classified. Five unclassified. | 12.2 |
 | s11 | 11 Approval inside Classified | 153–167 | Blocked files are quarantined. A data owner inside Classified reviews the verdict and approves. Encryption can be forced or removed. Nothing leaves before this decision. | 9.3 |
 | s12 | 12 Seal and store | 167–172 | Approved files are sealed and stored inside Classified. | 3.0 |
 | s13 | 13 Outbound gateway | 172–185 | They leave through a dedicated DFX Unidirectional Gateway, one way only. Seal verified. The three classified files are encrypted. The five unclassified go as they are. Audit record logged. | 10.7 |
 | s14 | 14 Public-side delivery | 185–199 | On the public side, the DFX Media Transfer Station writes them to USB, encrypted or plain. Or the user downloads them from the DFX One portal. | 9.6 |
-| s15 | 15 External party | 199–207 | The encrypted USB can go to an external party. Lost, stolen or intercepted, the files stay unreadable. | 6.3 |
+| s15 | 15 Cooperation partner | 199–207 | The encrypted USB goes to the cooperation partner organization. Lost, stolen or intercepted, the files stay unreadable. | 6.3 |
 | s16a | 16 Close | 207– | No transfer desk. No queue. No night shift. | 3.0 |
 | s16b | 16 Close (logo card) | after s16a | DataFlowX. Nothing crosses unseen. Nothing crosses unrecorded. | 2.6 |
