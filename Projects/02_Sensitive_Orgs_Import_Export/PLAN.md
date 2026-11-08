@@ -67,3 +67,7 @@ Film: about 215 s, one film in two chapters ("Into Classified", "Out of Classifi
 ## Decisions recorded (latest round)
 - File sets use this audience's vocabulary (my proposal approved); chapter titles are a lower-third banner over the running scene; English master first, Turkish version after approval.
 - Map built (environment.html, static): Corporate (station, DFX One + sandbox, SOC audit PC, standard user PC), larger Classified (DFX One + own sandbox, approver PC, working PC), two separate gateways (inbound lane left to right, outbound lane right to left, mirrored lid via `rev` option in Common/iso/iso-lib.js), Internet cloud and external party outside Corporate. Project 01 stills verified byte-identical after the Common change.
+
+## Map layout options (user may revert)
+- Layout A (`environment_layoutA.html/.png`): DFX One pair offset toward the front, flows enter DFX One on separate faces.
+- Layout B (`environment.html`, `environment_layoutB.png`, current): both DFX One + sandbox pairs centred between the inbound lane (y=140) and outbound lane (y=-300); external party moved out of the gap strip. To revert: copy environment_layoutA.html over environment.html.
