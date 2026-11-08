@@ -14,6 +14,14 @@ Film: about 215 s, one film in two chapters ("Into Classified", "Out of Classifi
 8. Second import source: a standard user PC in Corporate (with an Internet cloud outside the zone) downloads a file and sends it with the **DFX End-User client app** (shell integration): right-click, "Send To > Classified Network", shown as a zoom on the screen. Both sources merge in one DFX One queue. Import example set (merged): 10 files, 2 of them from the web = 2 quarantined, 6 sanitized, 2 clean. Export example set: 10 files = 2 blocked (secret markings), 3 classified so encrypted, 5 unclassified as is.
 9. Vocabulary for this audience: case files, evidence, intelligence reports, chain of custody, need-to-know; the seal also means tamper-evidence.
 
+
+## Positioning and messaging (decided)
+- Problem we solve: sensitive organizations move files by USB (unsafe) or via a Data Transfer Office (queue, hand-over, a technician scanning by hand, night-shift staff). One bad file can compromise a whole network.
+- Pillars pushed hardest: **Fluent** (no queue, no hand-over), **Safe** (every file inspected, no blind trust in a person), **Always on** (no night shift needed). Auditability must appear in the slogan.
+- Slogan base: "No transfer desk. No queue. No blind spots." plus an audit element (exact wording pending). This replaces "Control the Flow, Secure the Operation" for this project.
+- Opening keeps the zone tour with a short risk line built on the single-file risk (not the old-way montage).
+- Do not disparage customers' staff; speak about "manual, person-dependent" processes.
+
 ## Scenes (target about 215 s)
 | # | Time (s) | Content |
 |---|---|---|
