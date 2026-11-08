@@ -22,6 +22,12 @@ Film: about 215 s, one film in two chapters ("Into Classified", "Out of Classifi
 - Opening keeps the zone tour with a short risk line built on the single-file risk (not the old-way montage).
 - Do not disparage customers' staff; speak about "manual, person-dependent" processes.
 
+## Map decisions (decided)
+- Layout: Corporate left, Classified right. The two DFX Unidirectional Gateways are **not stacked**: they sit apart on separate lanes/lines so the two directions of data flow read as two different paths (inbound left to right, outbound right to left). Internet cloud and external party sit outside the Corporate zone.
+- Classified side has a full DFX One platform with its own DFX Malware Mitigation Sandbox (matching the Corporate pair).
+- One Media Transfer Station only, reused in both chapters (in Chapter 1 as the import station, in Chapter 2 as the export delivery station).
+- Audit trail ("Nothing crosses unrecorded"): the SOC PC is the audit console; its screen shows the log, and entries appear as each step happens. No separate audit asset.
+
 ## Scenes (target about 215 s)
 | # | Time (s) | Content |
 |---|---|---|
