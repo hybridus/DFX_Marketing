@@ -6,7 +6,7 @@ Voice: **Cedric M**, ElevenLabs voice_id `VvVVKaa2nHZpbZdtSRSX`, model `eleven_v
 |---|---|---|---|---|
 | s00 | 0 Opening, zone tour, risk | 0–20 | A public network. A classified network. Two networks that must stay apart, and files that have to cross between them. One bad file is enough to compromise a whole network. | 9.6 |
 | s01 | 1 Public network | 22.5–28 | On the public network, staff hold case files, evidence, intelligence reports. Analysts need them inside Classified. | 3.7 |
-| s02 | 2 Media Transfer Station | 28–48 | At the DFX Media Transfer Station, the officer inserts the USB and signs in with an ID badge. They select the files, choose Classified as the destination, and submit. Nothing has touched the network yet. | 13.0 |
+| s02 | 2 Media Transfer Station | 28–48 | At the DFX Media Transfer Station, an officer inserts a USB carrying information from third-party partners, and signs in with an ID badge. They select the files, choose Classified as the destination, and submit. Nothing has touched the network yet. | 14.8 |
 | s02b | 2b Web user | 48–63 | Or a user simply downloads a file from the internet, and needs to work on it inside Classified. A right-click, Send To, Classified Network. The DFX End-User client sends it straight to DFX One. | 12.6 |
 | s03 | 3 Policy | 63–68 | One queue. DFX One applies policy: this user, this destination, this file type. | 4.8 |
 | s04 | 4 Inspection | 68–85 | Multiple antivirus engines scan every file in parallel, while DFX TruCDR disarms and rebuilds the content. The DFX Malware Mitigation Sandbox runs each file as a real user would, and watches its behavior. Ten files in. Two quarantined. Six sanitized. Two clean. | 15.6 |
