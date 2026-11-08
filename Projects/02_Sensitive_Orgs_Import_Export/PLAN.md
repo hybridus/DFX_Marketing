@@ -18,7 +18,7 @@ Film: about 215 s, one film in two chapters ("Into Classified", "Out of Classifi
 ## Positioning and messaging (decided)
 - Problem we solve: sensitive organizations move files by USB (unsafe) or via a Data Transfer Office (queue, hand-over, a technician scanning by hand, night-shift staff). One bad file can compromise a whole network.
 - Pillars pushed hardest: **Fluent** (no queue, no hand-over), **Safe** (every file inspected, no blind trust in a person), **Always on** (no night shift needed). Auditability must appear in the slogan.
-- Slogan base: "No transfer desk. No queue. No blind spots." plus an audit element (exact wording pending). This replaces "Control the Flow, Secure the Operation" for this project.
+- **Slogan (final): "Nothing crosses unseen. Nothing crosses unrecorded."** This replaces "Control the Flow, Secure the Operation" for this project. The phrase "No transfer desk. No queue. No blind spots." stays available as a supporting voiceover line.
 - Opening keeps the zone tour with a short risk line built on the single-file risk (not the old-way montage).
 - Do not disparage customers' staff; speak about "manual, person-dependent" processes.
 
@@ -54,5 +54,6 @@ Film: about 215 s, one film in two chapters ("Into Classified", "Out of Classifi
 
 ## Open items
 - Script line for 2b: "Or a user simply downloads a file from the internet, and needs to work on it inside Classified."
-- Risk lines for scene 0 and the closing lines (draft after the map is approved).
+- Scene 0 risk line (final): "One bad file is enough to compromise a whole network."
+- Closing lines (draft after the map is approved).
 - File names for both 10-file sets in the vocabulary of this audience.
