@@ -401,8 +401,9 @@
     }
     else if (opts.lid === 'arrow') { // gateway lid: three flat chevrons pointing along +x = one-way flow
       var ac = '#F5A800';
+      var rv = opts.rev ? 1 : 0, mx = function (u) { return rv ? w - u : u; }; // opts.rev: mirrored lid, chevrons point along -x
       [28, 74, 120].forEach(function (u0) {
-        P([I(ox + u0, oy + 26, z1), I(ox + u0 + 30, oy + 26, z1), I(ox + u0 + 52, oy + d / 2, z1), I(ox + u0 + 30, oy + d - 26, z1), I(ox + u0, oy + d - 26, z1), I(ox + u0 + 22, oy + d / 2, z1)], ac, 'none', G);
+        P([I(ox + mx(u0), oy + 26, z1), I(ox + mx(u0 + 30), oy + 26, z1), I(ox + mx(u0 + 52), oy + d / 2, z1), I(ox + mx(u0 + 30), oy + d - 26, z1), I(ox + mx(u0), oy + d - 26, z1), I(ox + mx(u0 + 22), oy + d / 2, z1)], ac, 'none', G);
       });
       tops.push(I(ox + 100, oy + d / 2, z1), I(ox + 178, oy + d / 2, z1), I(ox + 18, oy + d / 2, z1));
     }
@@ -417,7 +418,7 @@
   };
   ISO.assets.gateway = function (g, ox, oy, opts) {
     opts = opts || {}; var z = opts.zone === 'ot' ? '#2CC4D9' : '#9B6FD8';
-    return ISO.assets.platformD1(g, ox, oy, { lines: ['DFX UNIDIRECTIONAL', 'GATEWAY'], fs: 10, mods: 0, lid: 'arrow', rail: z });
+    return ISO.assets.platformD1(g, ox, oy, { lines: ['DFX UNIDIRECTIONAL', 'GATEWAY'], fs: 10, mods: 0, lid: 'arrow', rail: z, rev: opts.rev });
   };
 
   /* Asset 7: desk PC (Web Portal user). opts.zone: 'corp' | 'cls' ; monitor + keyboard + tower on a desk */

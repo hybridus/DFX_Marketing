@@ -63,3 +63,7 @@ Film: about 215 s, one film in two chapters ("Into Classified", "Out of Classifi
 - Scene 0 risk line (final): "One bad file is enough to compromise a whole network."
 - Closing lines (draft after the map is approved).
 - File names for both 10-file sets in the vocabulary of this audience.
+
+## Decisions recorded (latest round)
+- File sets use this audience's vocabulary (my proposal approved); chapter titles are a lower-third banner over the running scene; English master first, Turkish version after approval.
+- Map built (environment.html, static): Corporate (station, DFX One + sandbox, SOC audit PC, standard user PC), larger Classified (DFX One + own sandbox, approver PC, working PC), two separate gateways (inbound lane left to right, outbound lane right to left, mirrored lid via `rev` option in Common/iso/iso-lib.js), Internet cloud and external party outside Corporate. Project 01 stills verified byte-identical after the Common change.
