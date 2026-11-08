@@ -5,7 +5,7 @@ Voice: **Cedric M**, ElevenLabs voice_id `VvVVKaa2nHZpbZdtSRSX`, model `eleven_v
 | File | Scene | Window (s) | Line | Est. (s) |
 |---|---|---|---|---|
 | s00 | 0 Opening, zone tour, risk | 0–20 | A public network. A classified network. Two networks that must stay apart, and files that have to cross between them. One bad file is enough to compromise a whole network. | 9.6 |
-| s01 | 1 Public network | 22.5–28 | Case files, evidence, intelligence reports. Analysts need them inside Classified. | 3.7 |
+| s01 | 1 Public network | 22.5–28 | On the public network, staff hold case files, evidence, intelligence reports. Analysts need them inside Classified. | 3.7 |
 | s02 | 2 Media Transfer Station | 28–48 | At the DFX Media Transfer Station, the officer inserts the USB and signs in with an ID badge. They select the files, choose Classified as the destination, and submit. Nothing has touched the network yet. | 13.0 |
 | s02b | 2b Web user | 48–63 | Or a user simply downloads a file from the internet, and needs to work on it inside Classified. A right-click, Send To, Classified Network. The DFX End-User client sends it straight to DFX One. | 12.6 |
 | s03 | 3 Policy | 63–68 | One queue. DFX One applies policy: this user, this destination, this file type. | 4.8 |

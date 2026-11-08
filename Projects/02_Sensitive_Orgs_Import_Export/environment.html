@@ -35,7 +35,7 @@ flow([[526,-50],[760,-50],[760,140],[976,140]],G);
 flow([[1176,140],[1400,140],[1400,-80],[1494,-80]],G);
 flow([[1598,-20],[1598,194]],G);
 flow([[1696,-80],[2040,-80]],G);
-/* EXPORT (Chapter 2): Classified DFX One -> outbound gateway -> Corporate DFX One -> station */
+/* EXPORT (Chapter 2): Classified DFX One -> outbound gateway -> Public DFX One -> station */
 flow([[1598,-142],[1598,-300],[1182,-300]],G);
 flow([[974,-300],[700,-300],[700,-110],[532,-110]],G);
 /* approval link (inside Classified), internet link */
@@ -47,7 +47,7 @@ flow([[380,-142],[380,-520],[240,-520]],GR,'12 9');
 var items=[];function add(depth,fn){items.push([depth,fn]);}
 var g=se('g',null,undefined,s);
 function sc(ox,oy,k,fn){var gg=se('g',null,undefined,g),o=I(ox,oy,0);gg.setAttribute('transform','translate('+o[0]+' '+o[1]+') scale('+k+') translate('+(-o[0])+' '+(-o[1])+')');fn(gg);}
-/* Corporate */
+/* Public */
 add(260,function(){ISO.assets.kiosk2(g,60,200);ISO.assets.usb(g,96,234,{z0:205});});
 add(335,function(){ISO.assets.person2(g,17,318,{refined:1,legs2:1});});
 add(288,function(){ISO.assets.platformD1(g,330,-136,{mods:1});});
@@ -75,7 +75,7 @@ flab(560,-440,'#E6EDF5','STANDARD USER PC',13,.85);
 flab(2040,-700,'#E6EDF5','DATA OWNER · APPROVER',13,.85);
 flab(2060,120,'#E6EDF5','CLASSIFIED USER',13,.85);
 
-/* Internet cloud (outside Corporate) */
+/* Internet cloud (outside Public) */
 (function(){var c=I(600,-1120,70),cg=se('g',{transform:'translate('+c[0]+' '+c[1]+')'},undefined,s);
  se('ellipse',{cx:0,cy:46,rx:92,ry:18,fill:'#07090B',opacity:.45},undefined,cg);
  var fill='#2A323C',st='#8FA0B3';
