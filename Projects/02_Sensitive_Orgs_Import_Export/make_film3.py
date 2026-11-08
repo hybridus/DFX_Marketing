@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Generate film3.html (the time-driven film page) from environment.html.
+"""Generate film3.html (the time-driven film page) from environment.html (project 02).
 Strips the two static caption lines, wraps the USB asset in group #usbG, removes window.__done,
 and appends the world/ui layers plus engine.js.  Run from this folder:  python3 -I make_film3.py"""
 import re, os
 H = os.path.dirname(os.path.abspath(__file__))
 s = open(os.path.join(H, 'environment.html'), encoding='utf-8').read()
-lines = [l for l in s.split('\n') if "DataFlowX environment · isometric master map" not in l and "All approved assets on one map." not in l]
+lines = [l for l in s.split('\n') if "Sensitive organizations · Import and export between" not in l and "Import runs left to right, export runs right to left." not in l]
 s = '\n'.join(lines)
 old = "ISO.assets.kiosk2(g,60,200);ISO.assets.usb(g,96,234,{z0:205});"
 new = "ISO.assets.kiosk2(g,60,200);var usbG=se('g',{id:'usbG'},undefined,g);window.usbG=usbG;ISO.assets.usb(usbG,96,234,{z0:205});"

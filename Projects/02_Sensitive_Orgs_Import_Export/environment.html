@@ -19,7 +19,7 @@ function flab(x,y,col,label,fs,op){var o=I(x,y,0),k=ISO.cam.s;se('text',{transfo
 zone(0,-800,960,640,'#4F8FC9','PUBLIC NETWORK');
 zone(1300,-900,2520,640,'#9B6FD8','CLASSIFIED (AIR-GAPPED)');
 ISO.P([I(960,-900),I(1300,-900),I(1300,560),I(960,560)],'#10151B','none',floor);
-var FL=[];function flow(pts,col,dash){FL.push(pts);var n=pts.length,e=pts[n-1],q=pts[n-2],dx=e[0]-q[0],dy=e[1]-q[1],Ln=Math.hypot(dx,dy);dx/=Ln;dy/=Ln;var A=64,W=36,bx=e[0]-dx*A,by=e[1]-dy*A,px=-dy,py=dx;
+var FL=[],FLN={};function flow(pts,col,dash,name){FL.push(pts);if(name)FLN[name]=pts;var n=pts.length,e=pts[n-1],q=pts[n-2],dx=e[0]-q[0],dy=e[1]-q[1],Ln=Math.hypot(dx,dy);dx/=Ln;dy/=Ln;var A=64,W=36,bx=e[0]-dx*A,by=e[1]-dy*A,px=-dy,py=dx;
  var line=pts.slice(0,n-1).concat([[bx+dx*4,by+dy*4]]).map(function(p){var a=I(p[0],p[1],1.2);return a[0].toFixed(1)+','+a[1].toFixed(1);}).join(' ');
  se('polyline',{points:line,fill:'none',stroke:col,'stroke-width':4,'stroke-linejoin':'round','stroke-linecap':'butt','stroke-dasharray':dash||'none'},undefined,floor);
  ISO.P([I(e[0],e[1],1.2),I(bx+px*W,by+py*W,1.2),I(bx-px*W,by-py*W,1.2)],col,'none',floor);}
@@ -28,21 +28,21 @@ var G='#F5A800',GR='#8FA0B3';
 flab(1000,236,G,'IMPORT · ONE WAY →',15,.8);
 flab(1010,-196,G,'← EXPORT · ONE WAY',15,.8);
 /* IMPORT (Chapter 1): station -> DFX One, web PC -> DFX One, DFX One <-> sandbox, DFX One -> inbound gateway -> Classified DFX One -> working PC */
-flow([[112,200],[250,200],[250,-80],[324,-80]],G);
-flow([[428,-20],[428,194]],G);
-flow([[620,-540],[620,-300],[478,-300],[478,-142]],G);
-flow([[526,-50],[760,-50],[760,140],[976,140]],G);
-flow([[1176,140],[1400,140],[1400,-80],[1494,-80]],G);
-flow([[1598,-20],[1598,194]],G);
-flow([[1696,-80],[2040,-80]],G);
+flow([[112,200],[250,200],[250,-80],[324,-80]],G,null,'st');
+flow([[428,-20],[428,194]],G,null,'sb1');
+flow([[620,-540],[620,-300],[478,-300],[478,-142]],G,null,'web');
+flow([[526,-50],[760,-50],[760,140],[976,140]],G,null,'in1');
+flow([[1176,140],[1400,140],[1400,-80],[1494,-80]],G,null,'in2');
+flow([[1598,-20],[1598,194]],G,null,'sb2');
+flow([[1696,-80],[2040,-80]],G,null,'wk');
 /* EXPORT (Chapter 2): Classified DFX One -> outbound gateway -> Public DFX One -> station */
-flow([[1598,-142],[1598,-300],[1182,-300]],G);
-flow([[974,-300],[700,-300],[700,-110],[532,-110]],G);
+flow([[1598,-142],[1598,-300],[1182,-300]],G,null,'ex1');
+flow([[974,-300],[700,-300],[700,-110],[532,-110]],G,null,'ex2');
 /* approval link (inside Classified), internet link */
-flow([[2000,-440],[1700,-440],[1700,-150]],GR,'12 9');
-flow([[600,-1060],[600,-680]],GR,"12 9");
+flow([[2000,-440],[1700,-440],[1700,-150]],GR,'12 9','apr');
+flow([[600,-1060],[600,-680]],GR,"12 9",'net');
 /* audit link */
-flow([[380,-142],[380,-520],[240,-520]],GR,'12 9');
+flow([[380,-142],[380,-520],[240,-520]],GR,'12 9','aud');
 
 var items=[];function add(depth,fn){items.push([depth,fn]);}
 var g=se('g',null,undefined,s);
