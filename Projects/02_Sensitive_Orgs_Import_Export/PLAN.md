@@ -71,3 +71,6 @@ Film: about 215 s, one film in two chapters ("Into Classified", "Out of Classifi
 ## Map layout options (user may revert)
 - Layout A (`environment_layoutA.html/.png`): DFX One pair offset toward the front, flows enter DFX One on separate faces.
 - Layout B (`environment.html`, LOCKED by user): both DFX One + sandbox pairs centred between the inbound lane (y=140) and outbound lane (y=-300), sandboxes moved further from DFX One, external party figure removed (introduced only in delivery scenes). To revert to A: copy environment_layoutA.html over environment.html.
+
+## Naming decision
+- The non-classified zone is called **Public Network** (on screen "PUBLIC NETWORK", in speech "the public network"), replacing "Corporate", which means little to government audiences. Classified zone stretched; all PCs inside it. Internal instance names in this plan still say "Corporate" and map to Public.

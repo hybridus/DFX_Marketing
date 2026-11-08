@@ -3,11 +3,11 @@
 <script src="../../Common/iso/iso-lib.js"></script>
 <script>
 var s=document.getElementById('s'),se=ISO.se,I=function(x,y,z){return ISO.I(x,y,z||0);};
-ISO.cam={cx:470,cy:372,s:.45};ISO.defs(s);
+ISO.cam={cx:470,cy:372,s:.43};ISO.defs(s);
 var d=s.querySelector('defs');
 var mk=se('marker',{id:'arg',viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:7,markerHeight:7,orient:'auto'},undefined,d);se('path',{d:'M0 0L10 5L0 10z',fill:'#F5A800'},undefined,mk);
 var mg=se('marker',{id:'arw',viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:7,markerHeight:7,orient:'auto'},undefined,d);se('path',{d:'M0 0L10 5L0 10z',fill:'#8FA0B3'},undefined,mg);
-se('text',{x:60,y:80,style:'font:600 30px Inter;fill:#F5F7FA'},'Sensitive organizations · Import and export between Corporate and Classified',s);
+se('text',{x:60,y:80,style:'font:600 30px Inter;fill:#F5F7FA'},'Sensitive organizations · Import and export between Public and Classified',s);
 se('text',{x:60,y:114,style:'font:400 18px Inter;fill:#9AA3AD'},'Import runs left to right, export runs right to left. Each direction has its own DFX Unidirectional Gateway.',s);
 var floor=se('g',null,undefined,s);
 function zone(x0,y0,x1,y1,col,label){
@@ -16,8 +16,8 @@ function zone(x0,y0,x1,y1,col,label){
  se('text',{transform:'matrix('+(0.866*k)+' '+(0.5*k)+' '+(-0.866*k)+' '+(0.5*k)+' '+o[0]+' '+o[1]+')',x:0,y:0,style:'font:700 22px Inter;fill:'+col+';letter-spacing:.14em;opacity:.9'},label,floor);}
 
 function flab(x,y,col,label,fs,op){var o=I(x,y,0),k=ISO.cam.s;se('text',{transform:'matrix('+(0.866*k)+' '+(0.5*k)+' '+(-0.866*k)+' '+(0.5*k)+' '+o[0]+' '+o[1]+')',x:0,y:0,style:'font:700 '+(fs||22)+'px Inter;fill:'+col+';letter-spacing:.14em;opacity:'+(op||.9)},label,floor);}
-zone(0,-800,960,640,'#4F8FC9','CORPORATE NETWORK');
-zone(1300,-800,2240,640,'#9B6FD8','CLASSIFIED (AIR-GAPPED)');
+zone(0,-800,960,640,'#4F8FC9','PUBLIC NETWORK');
+zone(1300,-900,2520,640,'#9B6FD8','CLASSIFIED (AIR-GAPPED)');
 ISO.P([I(960,-900),I(1300,-900),I(1300,560),I(960,560)],'#10151B','none',floor);
 var FL=[];function flow(pts,col,dash){FL.push(pts);var n=pts.length,e=pts[n-1],q=pts[n-2],dx=e[0]-q[0],dy=e[1]-q[1],Ln=Math.hypot(dx,dy);dx/=Ln;dy/=Ln;var A=64,W=36,bx=e[0]-dx*A,by=e[1]-dy*A,px=-dy,py=dx;
  var line=pts.slice(0,n-1).concat([[bx+dx*4,by+dy*4]]).map(function(p){var a=I(p[0],p[1],1.2);return a[0].toFixed(1)+','+a[1].toFixed(1);}).join(' ');
@@ -64,7 +64,7 @@ add(1462,function(){ISO.assets.platformD1(g,1500,-136,{mods:1});});
 add(1798,function(){ISO.assets.sandbox(g,1500,200);});
 add(2120,function(){sc(2060,-150,1.8,function(gg){ISO.assets.deskpc(gg,2060,-150,{zone:'cls'});});}); // working PC
 add(2180,function(){ISO.assets.person2(g,2140,40,{refined:1,legs2:1});});
-add(1360,function(){sc(2040,-680,1.8,function(gg){ISO.assets.deskpc(gg,2040,-680,{zone:'cls'});});}); // data owner / approver PC
+add(1360,function(){sc(2040,-640,1.8,function(gg){ISO.assets.deskpc(gg,2040,-640,{zone:'cls'});});}); // data owner / approver PC
 add(1560,function(){ISO.assets.person2(g,2060,-440,{refined:1,legs2:1});});
 items.sort(function(a,b){return a[0]-b[0];}).forEach(function(i){i[1]();});
 
@@ -72,7 +72,7 @@ items.sort(function(a,b){return a[0]-b[0];}).forEach(function(i){i[1]();});
 flab(70,420,'#E6EDF5','MEDIA TRANSFER STATION',13,.85);
 flab(60,-470,'#E6EDF5','SOC · AUDIT CONSOLE',13,.85);
 flab(560,-440,'#E6EDF5','STANDARD USER PC',13,.85);
-flab(2040,-740,'#E6EDF5','DATA OWNER · APPROVER',13,.85);
+flab(2040,-700,'#E6EDF5','DATA OWNER · APPROVER',13,.85);
 flab(2060,120,'#E6EDF5','CLASSIFIED USER',13,.85);
 
 /* Internet cloud (outside Corporate) */
