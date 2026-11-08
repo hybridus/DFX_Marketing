@@ -21,5 +21,5 @@ Voice: **Cedric M**, ElevenLabs voice_id `VvVVKaa2nHZpbZdtSRSX`, model `eleven_v
 | s13 | 13 Outbound gateway | 172–185 | They leave through a dedicated DFX Unidirectional Gateway, one way only. Seal verified. The three classified files are encrypted. The five unclassified go as they are. Audit record logged. | 10.7 |
 | s14 | 14 Public-side delivery | 185–199 | On the public side, the DFX Media Transfer Station writes them to USB, encrypted or plain. Or the user downloads them from the DFX One portal. | 9.6 |
 | s15 | 15 Cooperation partner | 199–207 | The encrypted USB goes to the cooperation partner organization. Lost, stolen or intercepted, the files stay unreadable. | 6.3 |
-| s16a | 16 Close | 207– | No transfer desk. No queue. No night shift. | 3.0 |
+| s16a | 16 Close | 207– | No manual transfer. No human error. No wait. Full control. | 4.0 |
 | s16b | 16 Close (logo card) | after s16a | DataFlowX. Nothing crosses unseen. Nothing crosses unrecorded. | 2.6 |
