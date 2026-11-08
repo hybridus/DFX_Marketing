@@ -29,11 +29,11 @@ flab(1000,236,G,'IMPORT · ONE WAY →',15,.8);
 flab(1010,-196,G,'← EXPORT · ONE WAY',15,.8);
 /* IMPORT (Chapter 1): station -> DFX One, web PC -> DFX One, DFX One <-> sandbox, DFX One -> inbound gateway -> Classified DFX One -> working PC */
 flow([[112,200],[250,200],[250,-80],[324,-80]],G);
-flow([[428,-20],[428,94]],G);
+flow([[428,-20],[428,194]],G);
 flow([[478,-470],[478,-142]],G);
 flow([[526,-50],[760,-50],[760,140],[976,140]],G);
 flow([[1176,140],[1400,140],[1400,-80],[1494,-80]],G);
-flow([[1598,-20],[1598,94]],G);
+flow([[1598,-20],[1598,194]],G);
 flow([[1696,-80],[2040,-80]],G);
 /* EXPORT (Chapter 2): Classified DFX One -> outbound gateway -> Corporate DFX One -> station */
 flow([[1598,-142],[1598,-300],[1182,-300]],G);
@@ -51,18 +51,17 @@ function sc(ox,oy,k,fn){var gg=se('g',null,undefined,g),o=I(ox,oy,0);gg.setAttri
 add(260,function(){ISO.assets.kiosk2(g,60,200);ISO.assets.usb(g,96,234,{z0:205});});
 add(335,function(){ISO.assets.person2(g,17,318,{refined:1,legs2:1});});
 add(288,function(){ISO.assets.platformD1(g,330,-136,{mods:1});});
-add(428,function(){ISO.assets.sandbox(g,330,100);});
+add(528,function(){ISO.assets.sandbox(g,330,200);});
 add(-600,function(){sc(100,-700,1.8,function(gg){ISO.assets.deskpc(gg,100,-700,{zone:'corp'});});}); // SOC / audit console
 add(-320,function(){ISO.assets.person2(g,200,-520,{refined:1,legs2:1});});
 add(-100,function(){sc(540,-640,1.8,function(gg){ISO.assets.deskpc(gg,540,-640,{zone:'corp'});});}); // standard user PC
 add(170,function(){ISO.assets.person2(g,640,-470,{refined:1,legs2:1});});
-add(-20,function(){ISO.assets.person2(g,1000,-1020,{refined:1,legs2:1});}); // external party
 /* gateways: inbound -> , outbound <- */
 add(1064,function(){ISO.assets.gateway(g,980,84,{zone:'cls'});});
 add(-250,function(){ISO.assets.gateway(g,980,-356,{zone:'cls',rev:1});});
 /* Classified */
 add(1462,function(){ISO.assets.platformD1(g,1500,-136,{mods:1});});
-add(1698,function(){ISO.assets.sandbox(g,1500,100);});
+add(1798,function(){ISO.assets.sandbox(g,1500,200);});
 add(2120,function(){sc(2060,-150,1.8,function(gg){ISO.assets.deskpc(gg,2060,-150,{zone:'cls'});});}); // working PC
 add(2180,function(){ISO.assets.person2(g,2140,40,{refined:1,legs2:1});});
 add(1360,function(){sc(2040,-680,1.8,function(gg){ISO.assets.deskpc(gg,2040,-680,{zone:'cls'});});}); // data owner / approver PC
@@ -75,7 +74,6 @@ flab(60,-470,'#E6EDF5','SOC · AUDIT CONSOLE',13,.85);
 flab(560,-440,'#E6EDF5','STANDARD USER PC',13,.85);
 flab(2040,-740,'#E6EDF5','DATA OWNER · APPROVER',13,.85);
 flab(2060,120,'#E6EDF5','CLASSIFIED USER',13,.85);
-flab(930,-960,'#E6EDF5','EXTERNAL PARTY',13,.85);
 
 /* Internet cloud (outside Corporate) */
 (function(){var c=I(600,-1120,70),cg=se('g',{transform:'translate('+c[0]+' '+c[1]+')'},undefined,s);
