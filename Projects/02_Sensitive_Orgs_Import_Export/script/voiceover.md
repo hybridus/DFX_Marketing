@@ -4,6 +4,7 @@ Voice: **Cedric M**, ElevenLabs voice_id `VvVVKaa2nHZpbZdtSRSX`, model `eleven_v
 
 | File | Scene | Window (s) | Line | Est. (s) |
 |---|---|---|---|---|
+| s00i | 0 Intro | 0.5–4.5 | Defense and Security Organizations have separated networks. | 4.0 |
 | s00 | 0 Opening, zone tour, risk | 0–20 | A public network. A classified network. Two networks that must stay apart, and files that have to cross between them. One bad file is enough to compromise a whole network. | 9.6 |
 | s01 | 1 Public network | 22.5–28 | On the public network, staff hold case files, evidence, intelligence reports. Analysts need them inside Classified. | 3.7 |
 | s02 | 2 Media Transfer Station | 28–48 | At the DFX Media Transfer Station, an officer inserts a USB carrying information from third-party partners, and verifies their identity with their authorization credentials. They select the files, choose Classified as the destination, and submit. Nothing has touched the network yet. | 14.8 |
