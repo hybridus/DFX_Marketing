@@ -78,4 +78,4 @@ Film: about 215 s, one film in two chapters ("Into Classified", "Out of Classifi
 ## Revision v3 (export scenes)
 - USB: red trefoil hidden from the export chapter (ISO.assets.usb opts.badge, class .usb-badge; engine fades it at t=104-105).
 - Delivery ends at an institution building (ISO.assets.institution) labelled COOPERATION PARTNER ORGANIZATION, left of the Public zone; USB lands at its entrance.
-- Classified portal: 'Identity verification' / 'Authorization credentials' (AD credentials, not a badge). Station kiosk still says 'Tap ID badge (NFC)' (Public side, unchanged, pending Burak).
+- Classified portal: 'Identity verification' / 'Authorization credentials' (AD credentials, not a badge). Station kiosk popup changed the same way in v5. Picture locked at v5.

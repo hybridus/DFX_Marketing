@@ -103,7 +103,7 @@ var EXP=[['briefing_public.pdf','PDF','#B3121F','unc'],['case_summary_TS.docx','
 function fileRow(g,bx,by,w,i,f,on,extra){var y=by+54+i*34;R(g,bx+16,y,w-32,28,8,'#171C23','#262E38',1);R(g,bx+22,y+5,30,18,5,f[2]);Tx(g,bx+37,y+18,f[1],'font:700 9px Inter;fill:#fff','middle');Tx(g,bx+62,y+19,f[0],'font:500 14px Inter;fill:#E6EDF5');
  if(extra)extra(g,bx+w-30,y);else{var cx=bx+w-30;R(g,cx-9,y+5,18,18,5,on?'#F5A800':'#0E1217',on?'none':'#4A5562',1.5);if(on)el('path',{d:'M'+(cx-5)+' '+(y+14)+'l4 4 7-8',fill:'none',stroke:'#0B0D10','stroke-width':2.4,'stroke-linecap':'round','stroke-linejoin':'round'},g);}}
 var DRAW={};
-DRAW.sign=function(g,bx,by,w,h,tt){head(g,bx,by,w,'SIGN IN','Station');row(g,bx,by,w,0,'Tap ID badge (NFC)','',tt>0.8);row(g,bx,by,w,1,'Identity and policy checked','',tt>1.9);};
+DRAW.sign=function(g,bx,by,w,h,tt){head(g,bx,by,w,'IDENTITY VERIFICATION','Station');row(g,bx,by,w,0,'Authorization credentials','',tt>0.8);row(g,bx,by,w,1,'Identity verified, policy checked','',tt>1.9);};
 DRAW.usbfiles=function(g,bx,by,w,h,tt){head(g,bx,by,w,'SELECT FILES','USB drive · 8 files');for(var i=0;i<4;i++)fileRow(g,bx,by,w,i,IMP[i],tt>i*0.45+0.3);Tx(g,bx+22,by+h-40,'+ 4 more files selected','font:500 13px Inter;fill:#8D97A3');R(g,bx+16,by+h-30,w-32,1,0,'#2A323C');Tx(g,bx+22,by+h-10,tt>2.4?'8 of 8 selected':'Selecting...','font:600 14px Inter;fill:#E6EDF5');btn(g,bx+w-110,by+h-36,90,'Next',tt>2.4);};
 DRAW.dest=function(g,bx,by,w,h,tt){head(g,bx,by,w,'SEND TO','Choose destination');var sel=tt>1.1?1:-1;[['Public network','Standard network','#4F8FC9'],['Classified network','Air-gapped','#9B6FD8']].forEach(function(d,i){var y=by+54+i*52,s=(i===sel);R(g,bx+16,y,w-32,44,10,s?'#1E2630':'#171C23',s?'#F5A800':'#262E38',s?2:1);R(g,bx+26,y+10,24,24,6,d[2]);Tx(g,bx+62,y+21,d[0],'font:600 15px Inter;fill:#E6EDF5');Tx(g,bx+62,y+37,d[1],'font:400 12px Inter;fill:#8D97A3');el('circle',{cx:bx+w-36,cy:y+22,r:9,fill:'none',stroke:s?'#F5A800':'#4A5562','stroke-width':2},g);if(s)el('circle',{cx:bx+w-36,cy:y+22,r:4.5,fill:'#F5A800'},g);});btn(g,bx+w-120,by+h-40,100,'Submit',tt>1.9);};
 DRAW.websc=function(g,bx,by,w,h,tt){head(g,bx,by,w,'STANDARD USER PC','Downloads');
@@ -170,7 +170,7 @@ DRAW.submitted=function(g,bx,by,w,h,tt){Tx(g,bx+20,by+26,'SUBMITTED','font:700 1
 /* ---------- overlays ---------- */
 var closeA=el('g',{opacity:0},ui),closeB=el('g',{opacity:0},ui);
 el('rect',{x:0,y:0,width:1920,height:1080,fill:'#0B0D10','fill-opacity':.92},closeA);
-['No Manual Transfer.','No Human Error.','No Wait.','Full Control.'].forEach(function(l,i){var g=el('g',{class:'cl'+i},closeA);el('text',{x:960,y:400+i*90,'text-anchor':'middle',style:'font:700 58px Inter;fill:#F5F7FA'},g,l);});
+['No Manual Transfer.','No Human Error.','No Wait.','Full Control.'].forEach(function(l,i){var g=el('g',{class:'cl'+i},closeA);el('text',{x:960,y:400+i*90,'text-anchor':'middle',style:'font:700 58px Inter;fill:'+(i===3?'#F5A800':'#F5F7FA')},g,l);});
 el('rect',{x:0,y:0,width:1920,height:1080,fill:'#0B0D10','fill-opacity':.94},closeB);
 el('image',{href:'../../Common/brand/logo-dark-bg.png',x:520,y:300,width:880,height:191},closeB);
 el('text',{x:960,y:590,'text-anchor':'middle',style:'font:600 40px Inter;fill:#F5F7FA'},closeB,'Nothing crosses unseen.');
