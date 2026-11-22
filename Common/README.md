@@ -6,12 +6,17 @@
 - Naming on screen: DFX Media Transfer Station, DFX One (Platform), DFX TruCDR, DFX Malware Mitigation Sandbox, DFX Unidirectional Gateway, DFX PASS. Third network = **Industrial OT** in speech, **OT** on screen.
 
 ## iso/iso-lib.js
-`ISO.I(x,y,z)` projects world coordinates to the screen; `ISO.assets.<name>(group, x, y, opts)` draws an asset: `kiosk2`, `person2`, `usb`, `platformD1`, `sandbox`, `gateway`, `deskpc`, `cnc`, `pass` (`opts.cable` = cable length, draws "DFX PASS" on its screen). Assets are resized by scaling their group about a ground anchor. Text on floors/faces uses matrix transforms. Flow arrowheads are drawn flat on the floor.
+`ISO.I(x,y,z)` projects world coordinates to the screen; `ISO.assets.<name>(group, x, y, opts)` draws an asset. Current: `kiosk2`, `person2`, `usb`, `institution`, `platformD1`, `sandbox`, `gateway`, `deskpc`, `cnc`, `pass`. Legacy (old renders only): `kiosk`, `person`, `platformA/B/C/D`. Assets are resized by scaling their group about a ground anchor. Text on floors/faces uses matrix transforms. Flow arrowheads are drawn flat on the floor.
+
+## Documentation for agents (start at `docs/README.md`)
+`docs/STYLE_GUIDE.md` (strict rules), `docs/ASSET_CATALOG.md` (exact specs of every asset), `docs/NEW_ASSET_PLAYBOOK.md` (how to add a product such as DFX SEG), `docs/SCENE_AND_UI_SPEC.md` (environments, popups, captions, timing); machine-readable `iso/tokens.json`, `iso/asset-manifest.json`, `iso/baseline-hashes.json`; previews in `iso/previews/_sheet.png`.
 
 ## tools
 - `node tools/render_range.js T0 T1 out.mp4` renders `film3.html` from the current folder for that time range (page must expose `window.setTime(t)` and `window.__ready`).
 - `node tools/stills.js 40 70 100` writes `still_<t>.png` for quick checks.
 - `node tools/shot_env.js` screenshots `environment.html`.
+- `node tools/lint_asset.js` lints every asset (tokens, NaN, shadow group, anchors); `--check-baseline` after touching `iso-lib.js`; `--write-baseline` after an approved change.
+- `node tools/preview_assets.js [id]` renders `iso/previews/` (clean | anchors | map scale) and `_sheet.png`.
 - Use `export NODE_PATH=$(npm root -g)` if playwright is installed globally. The renderers wait 1 s for images (logo) to load.
 
 ## Voice
@@ -19,4 +24,4 @@ Approved narrator: **Cedric M – Engaging Documentary Narrator**, ElevenLabs `V
 Voices tried and rejected: Odom, Daniel, Martin (good fallback), Sarah, George, Natraj (right style, accent too far), Timothy.
 
 ## Audio
-Ambient bed (55 / 82.5 / 110 Hz drone + soft noise, ducked under the voice by sidechain), UI cues synthesized with numpy (click, chime, tick, confirm, blip, thud, stamp, whoosh, sweep, hum, swell), final loudness -16 LUFS, true peak <= -1.5 dBTP target. See `Projects/01_Portfolio_DataStationX/mkaudio.py` and `mix.sh`.
+No synthetic ambient bed (it was audible as noise and was removed). Project 01 mixes the narration with synthesized UI cues only (click, chime, tick, confirm, blip, thud, stamp, whoosh, sweep), final loudness -16 LUFS, true peak <= -1.5 dBTP. See `Projects/01_Portfolio_DataStationX/mkaudio.py` and `mix.sh`. Project 02 is voice only (`mix_vo.sh`, `starts.json`).

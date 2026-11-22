@@ -1,0 +1,29 @@
+{
+  "$schema_note": "Machine-readable registry of every ISO asset. Single source of truth for Common/tools/preview_assets.js and Common/tools/lint_asset.js. Add one entry per new asset or variant. Geometry facts here were measured from iso-lib.js, not estimated.",
+  "preview_defaults": { "s": 1.5, "map_s": 0.5 },
+  "assets": [
+    { "id": "kiosk2", "fn": "kiosk2", "status": "current", "product": "DFX Media Transfer Station", "opts": {}, "s": 1.1, "anchors_returned": ["screen","nfc","port","keyboard"], "anchor_space": "screen" },
+    { "id": "person2", "fn": "person2", "status": "current", "product": "Employee / operator figure", "opts": {"refined":1,"legs2":1}, "s": 1.3, "anchors_returned": ["badge","head","hand"], "anchor_space": "screen" },
+    { "id": "usb", "fn": "usb", "status": "current", "product": "USB memory stick", "opts": {"z0":6.5}, "s": 5, "anchors_returned": ["connector","band","hole","body"], "anchor_space": "screen" },
+    { "id": "usb.nobadge", "fn": "usb", "status": "current", "product": "USB memory stick (badge hidden)", "opts": {"z0":6.5,"badge":false}, "s": 5, "anchors_returned": ["connector","band","hole","body"], "anchor_space": "screen" },
+    { "id": "institution", "fn": "institution", "status": "current", "product": "Government / partner institution building", "opts": {}, "s": 1.5, "anchors_returned": ["entrance","top"], "anchor_space": "MIXED: entrance is WORLD [x,y]; top is screen" },
+    { "id": "platformD1", "fn": "platformD1", "status": "current", "product": "DFX One Platform (name plate + 8 modules)", "opts": {"mods":1}, "s": 2, "anchors_returned": ["tops","front","center"], "anchor_space": "screen" },
+    { "id": "platformD1.plain", "fn": "platformD1", "status": "current", "product": "Generic rack appliance, glass-chamber lid (base of sandbox)", "opts": {}, "s": 2, "anchors_returned": ["tops","front","center"], "anchor_space": "screen" },
+    { "id": "sandbox", "fn": "sandbox", "status": "current", "product": "DFX Malware Mitigation Sandbox", "opts": {}, "s": 2, "anchors_returned": ["tops","front","center"], "anchor_space": "screen" },
+    { "id": "gateway.cls", "fn": "gateway", "status": "current", "product": "DFX Unidirectional Gateway (Classified, violet rail)", "opts": {"zone":"cls"}, "s": 2, "anchors_returned": ["tops","front","center"], "anchor_space": "screen" },
+    { "id": "gateway.ot", "fn": "gateway", "status": "current", "product": "DFX Unidirectional Gateway (OT, cyan rail)", "opts": {"zone":"ot"}, "s": 2, "anchors_returned": ["tops","front","center"], "anchor_space": "screen" },
+    { "id": "gateway.rev", "fn": "gateway", "status": "current", "product": "DFX Unidirectional Gateway (reversed flow, chevrons along -x)", "opts": {"zone":"cls","rev":true}, "s": 2, "anchors_returned": ["tops","front","center"], "anchor_space": "screen" },
+    { "id": "deskpc.corp", "fn": "deskpc", "status": "current", "product": "Desk PC, Corporate zone (blue)", "opts": {"zone":"corp"}, "s": 3, "anchors_returned": ["screen","tops"], "anchor_space": "screen" },
+    { "id": "deskpc.cls", "fn": "deskpc", "status": "current", "product": "Desk PC, Classified zone (violet)", "opts": {"zone":"cls"}, "s": 3, "anchors_returned": ["screen","tops"], "anchor_space": "screen" },
+    { "id": "deskpc.ot", "fn": "deskpc", "status": "current", "product": "Desk PC, OT zone (cyan)", "opts": {"zone":"ot"}, "s": 3, "anchors_returned": ["screen","tops"], "anchor_space": "screen" },
+    { "id": "cnc.ot", "fn": "cnc", "status": "current", "product": "CNC machine + console, connected OT (cyan)", "opts": {"zone":"ot"}, "s": 1.2, "anchors_returned": ["top","screen"], "anchor_space": "screen" },
+    { "id": "cnc.iso", "fn": "cnc", "status": "current", "product": "CNC machine + console, isolated OT (gray)", "opts": {"zone":"iso"}, "s": 1.2, "anchors_returned": ["top","screen"], "anchor_space": "screen" },
+    { "id": "pass", "fn": "pass", "status": "current", "product": "DFX PASS handheld", "opts": {"cable":16}, "s": 9, "anchors_returned": ["screen","plug","top"], "anchor_space": "screen" },
+    { "id": "kiosk", "fn": "kiosk", "status": "legacy", "product": "Kiosk v1 (rounded slab). Do not use in new work.", "opts": {}, "s": 1.1, "anchors_returned": ["screen","nfc","port"], "anchor_space": "screen" },
+    { "id": "person", "fn": "person", "status": "legacy", "product": "Employee v1 (front view). Do not use in new work.", "opts": {}, "s": 1.3, "anchors_returned": ["badge","head","hand"], "anchor_space": "screen" },
+    { "id": "platformA", "fn": "platformA", "status": "legacy", "product": "DFX One option A: tall cabinet", "opts": {"labels":1}, "s": 1.3, "anchors_returned": ["front","top"], "anchor_space": "screen" },
+    { "id": "platformB", "fn": "platformB", "status": "legacy", "product": "DFX One option B: three racks", "opts": {}, "s": 1.3, "anchors_returned": ["front"], "anchor_space": "screen" },
+    { "id": "platformC", "fn": "platformC", "status": "legacy", "product": "DFX One option C: open frame", "opts": {}, "s": 1.3, "anchors_returned": ["front"], "anchor_space": "screen" },
+    { "id": "platformD", "fn": "platformD", "status": "legacy", "product": "DFX One option D: single rack (engines on top)", "opts": {"top":1}, "s": 2, "anchors_returned": ["front"], "anchor_space": "screen" }
+  ]
+}
