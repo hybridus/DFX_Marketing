@@ -1,0 +1,35 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:transparent}svg{display:block;width:1600px;height:900px}</style></head><body><svg id="s" viewBox="0 0 1600 900"></svg>
+<script src="../../Common/iso/iso-lib.js"></script><script>
+var LAY=new URLSearchParams(location.search).get('l'); // core | estate | log | all
+var s=document.getElementById('s'),se=ISO.se,I=ISO.I;ISO.cam={cx:0,cy:0,s:1.0};ISO.defs(s);
+function on(t){return LAY==='all'||LAY===t;}
+var floor=se('g',null,undefined,s),g=se('g',null,undefined,s);
+function fl(x0,y0,x1,y1,col){ISO.P([I(x0,y0,0),I(x1,y0,0),I(x1,y1,0),I(x0,y1,0)],'url(#fl)',col,floor,2.2);}
+function label(x,y,z,txt,col,size,f){var o=I(x,y,z),k=ISO.cam.s;se('text',{transform:'matrix('+(0.866*k)+' '+(0.5*k)+' 0 '+k+' '+o[0]+' '+o[1]+')',x:0,y:0,'text-anchor':'middle',style:'font:700 '+(size||11)+'px Inter;fill:'+(col||'#F5F7FA')+';letter-spacing:.06em'},txt,f||g);}
+var G='#F5A800';
+function flow(pts,col,w){if(col!=='#F5A800'){se('polyline',{points:pts.map(function(p){var a=I(p[0],p[1],1.2);return a[0].toFixed(1)+','+a[1].toFixed(1);}).join(' '),fill:'none',stroke:col,'stroke-width':w||3,'stroke-linejoin':'round'},undefined,floor);var e=pts[pts.length-1],a=I(e[0],e[1],1.2);se('circle',{cx:a[0],cy:a[1],r:4.5,fill:col},undefined,floor);return;}var n=pts.length,e=pts[n-1],q=pts[n-2],dx=e[0]-q[0],dy=e[1]-q[1],L=Math.hypot(dx,dy);dx/=L;dy/=L;var A=26,W=13,bx=e[0]-dx*A,by=e[1]-dy*A,px=-dy,py=dx;
+ var line=pts.slice(0,n-1).concat([[bx+dx*2,by+dy*2]]).map(function(p){var a=I(p[0],p[1],1.2);return a[0].toFixed(1)+','+a[1].toFixed(1);}).join(' ');
+ se('polyline',{points:line,fill:'none',stroke:col,'stroke-width':w||3.4,'stroke-linejoin':'round'},undefined,floor);
+ ISO.P([I(e[0],e[1],1.2),I(bx+px*W,by+py*W,1.2),I(bx-px*W,by-py*W,1.2)],col,'none',floor);}
+var X0=-200,Y0=-130,X1=800,Y1=580;
+var FULL=true;function draw(){
+ if(FULL||LAY==='core'||LAY==='all')fl(X0,Y0,X1,Y1,'#8FA0B3');
+ function block(x,y,w,d,h,txt,sub){ISO.box(x,y,0,w,d,h,'#3A444F','#222A32','#161C22',g,'#4A5560',0,0);label(x+w/2,y+d,h/2+3,txt,'#F5F7FA',13);if(sub)label(x+w/2,y+d,h/2-11,sub,'#9AA3AD',10);}
+ var est=[[-120,-60,'ACTIVE DIRECTORY','logins and groups'],[200,-60,'RADIUS + NTP','access and time'],[520,-60,'SIEM + SYSLOG','events and logs'],[-120,400,'THIRD-PARTY SANDBOX','your own engines'],[200,400,'CDR ENGINE','optional'],[520,400,'HA PARTNER','active / passive']];
+ if(FULL||LAY==='estate'||LAY==='all'){
+  flow([[200,176],[200,100],[-35,100],[-35,36]],'#8FA0B3',2.6);
+  flow([[290,176],[290,36]],'#8FA0B3',2.6);
+  flow([[200,276],[200,340],[-35,340],[-35,394]],'#8FA0B3',2.6);
+  flow([[290,276],[290,394]],'#8FA0B3',2.6);
+  flow([[380,276],[380,340],[605,340],[605,394]],'#8FA0B3',2.6);
+  est.forEach(function(e){block(e[0],e[1],170,90,46,e[2],e[3]);});
+ }
+ if(FULL||LAY==='log'||LAY==='all'){flow([[380,176],[380,100],[605,100],[605,36]],G,4);}
+ if(FULL||LAY==='core'||LAY==='all'){ISO.assets.platformD1(g,190,170,{lines:['DFX ONE PLATFORM'],fs:11,mods:0});}
+}
+draw();window.__BB=g.getBBox();var fb=floor.getBBox();
+FULL=false;floor.innerHTML='';g.innerHTML='';draw();
+var gx=800-(fb.x+fb.width/2),gy=450-(fb.y+fb.height/2);
+floor.setAttribute('transform','translate('+gx+' '+gy+')');g.setAttribute('transform','translate('+gx+' '+gy+')');
+window.__ok=1;
+</script></body></html>
