@@ -4,7 +4,7 @@ DataFlowX marketing production kit: reusable assets and one folder per video/pro
 
 ```
 Common/                          shared by every project
-  iso/iso-lib.js                 isometric SVG asset library (kiosk2, person2, USB, institution, DFX One platform, sandbox, gateway, desk PC, CNC, PASS, Secure Email Gateway, TruCDR)
+  iso/iso-lib.js                 isometric SVG asset library (kiosk2, person2, USB, institution, DFX One platform, sandbox, gateway, desk PC, CNC, PASS, Secure Email Gateway, TruCDR, DDX Guard)
   iso/tokens.json                design tokens (colours, face groups, strokes, type); iso/asset-manifest.json asset registry; iso/baseline-hashes.json regression hashes
   iso/previews/                  _sheet.png (all current assets) + one PNG per asset (clean | anchors | map scale)
   iso/templates/                 worked example for a new product asset (proposal)

@@ -21,6 +21,7 @@
     { "id": "pass", "fn": "pass", "status": "current", "product": "DFX PASS handheld", "opts": {"cable":16}, "s": 9, "anchors_returned": ["screen","plug","top"], "anchor_space": "screen" },
     { "id": "emailGateway", "fn": "emailGateway", "status": "current", "product": "DFX Secure Email Gateway", "opts": {}, "s": 2, "anchors_returned": ["tops","front","center","glyph"], "anchor_space": "screen" },
     { "id": "trucdr", "fn": "trucdr", "status": "current", "product": "DFX TruCDR", "opts": {}, "s": 2, "anchors_returned": ["tops","front","center","glyph"], "anchor_space": "screen" },
+    { "id": "guard", "fn": "guard", "status": "current", "product": "DFX DDX Guard", "opts": {}, "s": 2, "anchors_returned": ["tops","front","center","glyph"], "anchor_space": "screen" },
     { "id": "kiosk", "fn": "kiosk", "status": "legacy", "product": "Kiosk v1 (rounded slab). Do not use in new work.", "opts": {}, "s": 1.1, "anchors_returned": ["screen","nfc","port"], "anchor_space": "screen" },
     { "id": "person", "fn": "person", "status": "legacy", "product": "Employee v1 (front view). Do not use in new work.", "opts": {}, "s": 1.3, "anchors_returned": ["badge","head","hand"], "anchor_space": "screen" },
     { "id": "platformA", "fn": "platformA", "status": "legacy", "product": "DFX One option A: tall cabinet", "opts": {"labels":1}, "s": 1.3, "anchors_returned": ["front","top"], "anchor_space": "screen" },

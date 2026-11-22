@@ -48,7 +48,7 @@ Tokens live in `tokens.json`. Quick map:
 - Block faces (top/left/right/edge): default `#3A444F / #222A32 / #161C22 / #4A5560`; lids/modules `#46515E / #2A323C / #1D232A`; base plates `#2E3741 / #171C22 / #10141A`. Pick a group, do not mix faces of different groups on one block.
 - Screens: glass `#0E131A` panel, `#0A0F15` outer, border `#0B0D10` 2 px, content rows `#1A2027`/`#161D25` with 1 px `#3A444F` stroke; ON row stroke `#E6EDF5`, OFF `#33404C`. Status square `#3DDC84` (ok) or `#F5A800` (current/attention).
 - Metal highlights: `#C9D1DA` strips (module slots), `#8FA0B3` bay slots, `steel` gradient for plugs/connectors only.
-- Zone colours (`#4F8FC9` Corporate, `#9B6FD8` Classified, `#2CC4D9` OT, `#8FA0B3` Isolated): used on (a) a 2-3 unit rail along the top edge of the front face (platform/gateway/CNC base), (b) a 2 unit bezel stripe under a monitor, (c) the screen header bar (0.05 height), (d) a CNC lamp. Nothing else.
+- Zone colours (`#4F8FC9` Corporate, `#9B6FD8` Classified, `#2CC4D9` OT, `#8FA0B3` Isolated): used on (a) a 2-3 unit rail along the top edge of the front face (platform/gateway/CNC base), (b) a 2 unit bezel stripe under a monitor, (c) the screen header bar (0.05 height), (d) a CNC lamp. Nothing else, with one exception: the `guard` lid carries two 24 x 24 zone-colour squares (one per system, `opts.zoneA/zoneB`; right default is `#C8505A` = untrusted side, not malware).
 - Threat `#B3121F` only for malware/threat (USB trefoil). Clean `#3DDC84` only for ok/LED/tick.
 - Never: pure black fills, pure white (except 3.5-6 % glare), saturated colours on bodies, new greys. Greys differ by <= 0x10 per step; use the ramps.
 

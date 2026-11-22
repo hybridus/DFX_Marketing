@@ -583,4 +583,33 @@
     r.glyph = I(ox + xm, oy + ym, zt);
     return r;
   };
+
+  /* DFX DDX Guard (marketing: DFX Guard): platformD1 body, plate DFX DDX GUARD, two System panes on the lid, a zone-colour square on each,
+     one gold chevron each way. An LED stack on BOTH ends of the front face = two separate motherboard systems in one box.
+     opts: zoneA (left, default 'corp'), zoneB (right, default 'red'); keys: corp | cls | ot | red (red = untrusted side, NOT malware). */
+  ISO.assets.guard = function (g, ox, oy, opts) {
+    opts = opts || {};
+    var Z = { corp: '#4F8FC9', cls: '#9B6FD8', ot: '#2CC4D9', red: '#C8505A' };
+    var cA = Z[opts.zoneA] || Z.corp, cB = Z[opts.zoneB] || Z.red;
+    var r = ISO.assets.platformD1(g, ox, oy, { lines: opts.lines || ['DFX DDX GUARD'], fs: opts.fs || 11, mods: 0, rail: opts.rail });
+    var w = 196, d = 112, zt = 6 + 48 + 12 + 0.2, host = g.lastChild, xm = w / 2, ym = d / 2, gh = 14, outer = 54, y0 = 29, y1 = 83;
+    function q(x, y) { return I(ox + x, oy + y, zt); }
+    function poly(pts, fill, stroke, sw) { P(pts.map(function (p) { return q(p[0], p[1]); }), fill, stroke, host, sw); }
+    function sq(cx, s) { var h = s / 2; return [[cx - h, ym - h], [cx + h, ym - h], [cx + h, ym + h], [cx - h, ym + h]]; }
+    [['#3DDC84', 0], ['#F5A800', 1], ['#E6EDF5', 2]].forEach(function (L) {   // left LED stack (platformD1 draws the right one)
+      var zz = 14 + L[1] * 11, lx = 26;
+      P([I(ox + lx, oy + d, zz + 5), I(ox + lx + 7, oy + d, zz + 5), I(ox + lx + 7, oy + d, zz), I(ox + lx, oy + d, zz)], L[0], 'none', host);
+    });
+    poly([[xm - outer, y0], [xm - gh, y0], [xm - gh, y1], [xm - outer, y1]], '#0E131A', '#C9D1DA', 1);   // System A pane
+    poly([[xm + gh, y0], [xm + outer, y0], [xm + outer, y1], [xm + gh, y1]], '#0E131A', '#C9D1DA', 1);   // System B pane
+    poly(sq(xm - (outer + gh) / 2, 24), cA, 'none', 0);
+    poly(sq(xm + (outer + gh) / 2, 24), cB, 'none', 0);
+    function chev(a, y, dir) {
+      var len = 20, hh = 7;
+      poly([[0, -hh], [len / 2, -hh], [len, 0], [len / 2, hh], [0, hh], [len / 2, 0]].map(function (p) { return [dir > 0 ? a + p[0] : a + len - p[0], y + p[1]]; }), '#F5A800', 'none', 0);
+    }
+    chev(xm - 10, ym - 13, +1); chev(xm - 10, ym + 13, -1);
+    r.glyph = I(ox + xm, oy + ym, zt);
+    return r;
+  };
 })(window);

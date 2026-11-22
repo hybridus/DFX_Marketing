@@ -19,6 +19,7 @@ Call: `ISO.assets.<fn>(g, ox, oy, opts)`; scale a whole asset with a wrapper gro
 | pass | DFX PASS handheld | current | 32·16·1.9 (+cable) | 9 |
 | emailGateway | DFX Secure Email Gateway | current | 196·112·54 (+12 chamber) | 2 |
 | trucdr | DFX TruCDR | current | 196·112·54 (+12 chamber) | 2 |
+| guard | DFX DDX Guard (marketing: DFX Guard) | current | 196·112·54 (+12 chamber) | 2 |
 | kiosk, person, platformA/B/C/D | superseded | legacy | | |
 
 Legacy assets stay for old renders. NEVER use them in new work and never change them.
@@ -114,3 +115,15 @@ kiosk (v1 rounded slab 140·120·330), person (front view, scale .8), platformA 
 - Core: `platformD1(330,40,{mods:1})`, `sandbox(330,330)`.
 - Gateways: `gateway(980,84,{zone:'cls'})` inbound to Classified, `gateway(980,-626,{zone:'ot'})` to OT.
 - Endpoints at k=1.8: `deskpc(250,-560,{zone:'corp'})`, `deskpc(1380,100,{zone:'cls'})`; `cnc` at k=1.5: `(1330,-700,{zone:'ot'})` and `(1030,-1620,{zone:'iso'})`; PASS on a stand beside the isolated CNC.
+
+## guard : DFX DDX Guard
+- **Route**: composition on `platformD1`, like `trucdr`. Full product name "DFX DataDiodeX Guard"; marketing name "DFX Guard". There is no "DFX Fusion Guard". Plate text, glyph and colours chosen by Burak on 2026-11-22.
+- **Name plate**: `['DFX DDX GUARD']`, one line, Inter 700, fs 11, UPPERCASE (`opts.lines`, `opts.fs`).
+- **Rail**: gold `#F5A800` by default; `opts.rail` for a zone colour per scene.
+- **Two systems**: an extra LED stack (white, gold, green, same size and spacing as the right one) sits on the left end next to the bays, so BOTH ends carry LEDs = two separate motherboard systems in one box (System A left, System B right).
+- **Lid**: default glass chamber (top at z 66), glyph at z 66.2: two System panes (x 44..84 and 112..152, y 29..83, `#0E131A` fill, 1 px `#C9D1DA` outline, 28 gap) each with a centred 24 x 24 filled square in a zone colour, and in the gap one gold chevron each way (20 long, at y = centre -/+ 13).
+- **opts**: `zoneA` (left, default `corp` `#4F8FC9`), `zoneB` (right, default `red` `#C8505A`), keys `corp | cls | ot | red`; `lines`, `fs`, `rail`. `red` = untrusted side, NOT malware (threat red `#B3121F` stays malware-only).
+- **Returns** (screen): `tops`, `front`, `center`, `glyph` (middle of the gap).
+- **Colours**: tokens only. The `#C8505A` quarantine token gets a second role; zone-colour squares on the lid are a new, deliberate use (STYLE_GUIDE section 4).
+- **Placement**: same footprint as the other appliances; scale with `sc()`.
+- **Preview**: `iso/previews/guard.png`.
