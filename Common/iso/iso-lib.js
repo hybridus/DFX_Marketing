@@ -546,4 +546,20 @@
     P([u(0.05, 0.84), u(0.95, 0.84), u(0.95, 0.9), u(0.05, 0.9)], '#2A323C', 'none', G);
     return { screen: I(ox + 16, oy + 8, 2.15), plug: I(ox - 40, oy + 8, 2.6), top: I(ox + 16, oy + 8, 2.15) };
   };
+
+  /* Asset 10: DFX Secure Email Gateway. Rack appliance composed on platformD1 (same plate, bays, LEDs, name plate, rail); only the text and one lid glyph differ.
+     Glyph: flat gold-outlined envelope on the glass-chamber lid (chamber top = z 6+48+12). opts.rail overrides the gold rail (zone colour per scene). */
+  ISO.assets.emailGateway = function (g, ox, oy, opts) {
+    opts = opts || {};
+    var r = ISO.assets.platformD1(g, ox, oy, { lines: opts.lines || ['DFX SECURE EMAIL', 'GATEWAY'], fs: opts.fs || 10, mods: 0, rail: opts.rail });
+    var w = 196, d = 112, zt = 6 + 48 + 12 + 0.2, host = g.lastChild;           // host = the asset's own shadow group
+    var xm = w / 2, ym = d / 2, x0 = xm - 40, x1 = xm + 40, y0 = ym - 25, y1 = ym + 25;   // envelope 80 x 50 (about 1.6 : 1)
+    function q(x, y) { return I(ox + x, oy + y, zt); }
+    P([q(x0, y0), q(x1, y0), q(x1, y1), q(x0, y1)], '#0E131A', '#F5A800', host, 1.4);                                          // envelope body
+    se('polyline', { points: ISO.pts([q(x0, y0), q(xm, ym + 4), q(x1, y0)]), fill: 'none', stroke: '#F5A800', 'stroke-width': 1.4, 'stroke-linejoin': 'round' }, undefined, host); // flap
+    se('polyline', { points: ISO.pts([q(x0, y1), q(xm - 16, ym + 3)]), fill: 'none', stroke: '#46515E', 'stroke-width': 1 }, undefined, host);   // fold lines
+    se('polyline', { points: ISO.pts([q(x1, y1), q(xm + 16, ym + 3)]), fill: 'none', stroke: '#46515E', 'stroke-width': 1 }, undefined, host);
+    r.glyph = I(ox + xm, oy + ym, zt);
+    return r;
+  };
 })(window);

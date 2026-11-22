@@ -6,7 +6,7 @@
 - Naming on screen: DFX Media Transfer Station, DFX One (Platform), DFX TruCDR, DFX Malware Mitigation Sandbox, DFX Unidirectional Gateway, DFX PASS. Third network = **Industrial OT** in speech, **OT** on screen.
 
 ## iso/iso-lib.js
-`ISO.I(x,y,z)` projects world coordinates to the screen; `ISO.assets.<name>(group, x, y, opts)` draws an asset. Current: `kiosk2`, `person2`, `usb`, `institution`, `platformD1`, `sandbox`, `gateway`, `deskpc`, `cnc`, `pass`. Legacy (old renders only): `kiosk`, `person`, `platformA/B/C/D`. Assets are resized by scaling their group about a ground anchor. Text on floors/faces uses matrix transforms. Flow arrowheads are drawn flat on the floor.
+`ISO.I(x,y,z)` projects world coordinates to the screen; `ISO.assets.<name>(group, x, y, opts)` draws an asset. Current: `kiosk2`, `person2`, `usb`, `institution`, `platformD1`, `sandbox`, `gateway`, `deskpc`, `cnc`, `pass`, `emailGateway`. Legacy (old renders only): `kiosk`, `person`, `platformA/B/C/D`. Assets are resized by scaling their group about a ground anchor. Text on floors/faces uses matrix transforms. Flow arrowheads are drawn flat on the floor.
 
 ## Documentation for agents (start at `docs/README.md`)
 `docs/STYLE_GUIDE.md` (strict rules), `docs/ASSET_CATALOG.md` (exact specs of every asset), `docs/NEW_ASSET_PLAYBOOK.md` (how to add a product such as DFX SEG), `docs/SCENE_AND_UI_SPEC.md` (environments, popups, captions, timing); machine-readable `iso/tokens.json`, `iso/asset-manifest.json`, `iso/baseline-hashes.json`; previews in `iso/previews/_sheet.png`.

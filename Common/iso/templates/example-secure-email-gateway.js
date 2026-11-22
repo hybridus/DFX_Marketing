@@ -1,4 +1,5 @@
-/* WORKED EXAMPLE / PROPOSAL, NOT part of iso-lib.js and NOT approved artwork.
+/* PROMOTED 2026-11-22: this proposal is now ISO.assets.emailGateway in iso-lib.js (envelope resized to 80 x 50). Kept as a worked example only; do not load it next to iso-lib.js.
+   Original note: WORKED EXAMPLE / PROPOSAL, NOT part of iso-lib.js and NOT approved artwork.
    Shows how a new rack-appliance product (here: "DFX Secure Email Gateway", official name still to be confirmed by Burak) is made
    by COMPOSITION on platformD1: same plate, bays, LEDs, name plate, rail. Only the text and one lid glyph differ.
    To promote: confirm the name, copy this function into iso-lib.js after ISO.assets.gateway, add the manifest entry

@@ -17,6 +17,7 @@ Call: `ISO.assets.<fn>(g, ox, oy, opts)`; scale a whole asset with a wrapper gro
 | deskpc(.corp/.cls/.ot) | Desk PC (portal / standard user / admin) | current | 150·80·~138 | 3 |
 | cnc(.ot/.iso) | CNC machine + console | current | ~396·170·~214 | 1.2 |
 | pass | DFX PASS handheld | current | 32·16·1.9 (+cable) | 9 |
+| emailGateway | DFX Secure Email Gateway | current | 196·112·54 (+12 chamber) | 2 |
 | kiosk, person, platformA/B/C/D | superseded | legacy | | |
 
 Legacy assets stay for old renders. NEVER use them in new work and never change them.
@@ -77,6 +78,18 @@ Legacy assets stay for old renders. NEVER use them in new work and never change 
 - 32x16x1.9 slab `rr` r2.6 with a 1.2 px gold `#F5A800` edge ring, glass screen inset 1.2, title text `DFX PASS` Inter 800 3.6 gold on the screen, badge row, 4 PIN dots `#E6EDF5`, status row with green square, status line; USB cable (`opts.cable`, default 34, 3.6 wide) with steel plug 10x5.6 leaving toward -x.
 - Environment usage: scaled x1.8 and lifted 72*s so it sits above the isolated CNC bench; cable 16.
 - **Returns** `screen`, `plug`, `top`.
+
+## emailGateway : DFX Secure Email Gateway
+- **Route**: composition on `platformD1` (rack-appliance family). Same plate, left bays, right LEDs, centred name plate and rail as the Gateway and Sandbox. Only the text and one lid glyph differ. Official name confirmed by Burak on 2026-11-22.
+- **Name plate**: `['DFX SECURE EMAIL','GATEWAY']`, Inter 700, fs 10, UPPERCASE (override with `opts.lines`, `opts.fs`).
+- **Rail**: gold `#F5A800` by default; `opts.rail` passes a zone colour per scene (no zone variants are registered).
+- **Lid**: default glass chamber (top at z 66) with a flat envelope at z 66.2: 80 x 50 units (about 1.6 : 1), centred on the chamber, `#0E131A` fill, 1.4 px `#F5A800` outline, flap polyline (1.4 px gold) from the two back corners to a point 4 units behind the centre, two 1 px `#46515E` fold lines from the front corners.
+- **Signature details**: (1) gold-outlined envelope, (2) the standard gold rail + LEDs.
+- **opts**: `lines`, `fs`, `rail`.
+- **Returns** (screen): `tops` (chamber top), `front`, `center`, `glyph` (envelope centre).
+- **Colours**: tokens only (`#0E131A`, `#F5A800`, `#46515E` plus the platformD1 set).
+- **Placement**: same footprint as the Gateway; e.g. `emailGateway(g, x, y)`; scale with `sc()` like the other appliances.
+- **Preview**: `iso/previews/emailGateway.png`. Template that produced it: `iso/templates/example-secure-email-gateway.js` (now promoted; keep as worked example).
 
 ---
 ## Legacy (do not use)
