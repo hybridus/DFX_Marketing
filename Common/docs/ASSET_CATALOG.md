@@ -18,6 +18,7 @@ Call: `ISO.assets.<fn>(g, ox, oy, opts)`; scale a whole asset with a wrapper gro
 | cnc(.ot/.iso) | CNC machine + console | current | ~396·170·~214 | 1.2 |
 | pass | DFX PASS handheld | current | 32·16·1.9 (+cable) | 9 |
 | emailGateway | DFX Secure Email Gateway | current | 196·112·54 (+12 chamber) | 2 |
+| trucdr | DFX TruCDR | current | 196·112·54 (+12 chamber) | 2 |
 | kiosk, person, platformA/B/C/D | superseded | legacy | | |
 
 Legacy assets stay for old renders. NEVER use them in new work and never change them.
@@ -90,6 +91,18 @@ Legacy assets stay for old renders. NEVER use them in new work and never change 
 - **Colours**: tokens only (`#0E131A`, `#F5A800`, `#46515E` plus the platformD1 set).
 - **Placement**: same footprint as the Gateway; e.g. `emailGateway(g, x, y)`; scale with `sc()` like the other appliances.
 - **Preview**: `iso/previews/emailGateway.png`. Template that produced it: `iso/templates/example-secure-email-gateway.js` (now promoted; keep as worked example).
+
+## trucdr : DFX TruCDR
+- **Route**: composition on `platformD1` (rack-appliance family), like `emailGateway`. Same plate, left bays, right LEDs, centred name plate and rail; only the text and one lid glyph differ. Single appliance. Plate text and glyph chosen by Burak on 2026-11-22.
+- **Name plate**: `['DFX TRUCDR']`, one line, Inter 700, fs 11, UPPERCASE (override with `opts.lines`, `opts.fs`). On-screen product name elsewhere stays `DFX TruCDR`.
+- **Rail**: gold `#F5A800` by default; `opts.rail` for a zone colour per scene.
+- **Lid**: default glass chamber (top at z 66) with a flat glyph at z 66.2, left to right along +x: original sheet (28 x 40, `#C9D1DA` outline, two `#46515E` lines) -> gold outlined arrow (`#0E131A` fill, 1.4 px gold) -> rebuilt sheet (28 x 40, gold outline, two `#C9D1DA` lines). Sheets have a folded top-right corner; "up" = -y.
+- **Signature details**: (1) original-to-rebuilt sheet pair, (2) the standard gold rail + LEDs.
+- **opts**: `lines`, `fs`, `rail`.
+- **Returns** (screen): `tops` (chamber top), `front`, `center`, `glyph` (arrow centre).
+- **Colours**: tokens only (`#0E131A`, `#F5A800`, `#C9D1DA`, `#46515E` plus the platformD1 set).
+- **Placement**: same footprint as the Gateway; scale with `sc()` like the other appliances.
+- **Preview**: `iso/previews/trucdr.png`.
 
 ---
 ## Legacy (do not use)

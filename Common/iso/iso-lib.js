@@ -562,4 +562,25 @@
     r.glyph = I(ox + xm, oy + ym, zt);
     return r;
   };
+
+  /* Asset 11: DFX TruCDR. Rack appliance composed on platformD1 (same plate, bays, LEDs, name plate, rail); only the text and one lid glyph differ.
+     Glyph: original sheet (light steel) -> gold outlined arrow -> rebuilt sheet (gold), flat on the glass-chamber lid. opts.rail overrides the gold rail. */
+  ISO.assets.trucdr = function (g, ox, oy, opts) {
+    opts = opts || {};
+    var r = ISO.assets.platformD1(g, ox, oy, { lines: opts.lines || ['DFX TRUCDR'], fs: opts.fs || 11, mods: 0, rail: opts.rail });
+    var w = 196, d = 112, zt = 6 + 48 + 12 + 0.2, host = g.lastChild, xm = w / 2, ym = d / 2;
+    function q(x, y) { return I(ox + x, oy + y, zt); }
+    function line(pts, col, sw) { se('polyline', { points: ISO.pts(pts.map(function (p) { return q(p[0], p[1]); })), fill: 'none', stroke: col, 'stroke-width': sw, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, undefined, host); }
+    function sheet(cx, cy, sw, sh, col, lineCol, n) {                       // portrait sheet, folded corner top-right
+      var x0 = cx - sw / 2, x1 = cx + sw / 2, y0 = cy - sh / 2, y1 = cy + sh / 2, f = 8;
+      P([q(x0, y0), q(x1 - f, y0), q(x1, y0 + f), q(x1, y1), q(x0, y1)], '#0E131A', col, host, 1.4);
+      line([[x1 - f, y0], [x1 - f, y0 + f], [x1, y0 + f]], col, 1);
+      for (var i = 0; i < n; i++) { var yy = y0 + f + 6 + i * 7; line([[x0 + 5, yy], [x1 - 5 - (i === n - 1 ? 8 : 0), yy]], lineCol, 1); }
+    }
+    sheet(xm - 38, ym, 28, 40, '#C9D1DA', '#46515E', 2);                    // original file
+    P([q(xm - 16, ym - 3.6), q(xm + 7, ym - 3.6), q(xm + 7, ym - 8), q(xm + 16, ym), q(xm + 7, ym + 8), q(xm + 7, ym + 3.6), q(xm - 16, ym + 3.6)], '#0E131A', '#F5A800', host, 1.4); // arrow along +x
+    sheet(xm + 38, ym, 28, 40, '#F5A800', '#C9D1DA', 2);                    // rebuilt file
+    r.glyph = I(ox + xm, oy + ym, zt);
+    return r;
+  };
 })(window);
