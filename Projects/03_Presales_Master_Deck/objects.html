@@ -1,0 +1,8 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:transparent}svg{display:block;width:1200px;height:900px}</style></head><body><svg id="s" viewBox="0 0 1200 900"></svg>
+<script src="../../Common/iso/iso-lib.js"></script><script>
+var q=new URLSearchParams(location.search),a=q.get('a'),sc=parseFloat(q.get('s')||'2');
+var s=document.getElementById('s');ISO.cam={cx:0,cy:0,s:sc};ISO.defs(s);var g=ISO.se('g',null,undefined,s);
+var o={};if(a==='usb')o={z0:6.5};if(a==='gateway')o={zone:'cls'};
+ISO.assets[a](g,0,0,o);var bb=g.getBBox();g.setAttribute('transform','translate('+(600-(bb.x+bb.width/2))+' '+(450-(bb.y+bb.height/2))+')');
+window.__bb=[600-bb.width/2,450-bb.height/2,bb.width,bb.height];window.__ok=1;
+</script></body></html>

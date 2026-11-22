@@ -1,0 +1,22 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:transparent}svg{display:block;width:1600px;height:900px}</style></head><body><svg id="s" viewBox="0 0 1600 900"></svg>
+<script src="../../Common/iso/iso-lib.js"></script><script>
+var L=new URLSearchParams(location.search).get('l'); // base | out | in | all
+var s=document.getElementById('s');ISO.cam={cx:0,cy:0,s:0.9};ISO.defs(s);
+var orig=ISO.assets.platformD1;var FULL=true;
+ISO.assets.platformD1=function(g,ox,oy,o){var kind=o.lid==='arrow'?(o.rev?'in':'out'):'base';
+  if(FULL||L==='all'||L===kind){return orig(g,ox,oy,o);}
+  return {front:ISO.I(ox,oy,0)};};
+var g0=ISO.se('g',null,undefined,s);ISO.assets.sra(g0,0,0,{zoneA:'corp',zoneB:'cls'});var BB=g0.getBBox();s.removeChild(g0);FULL=false;
+var g=ISO.se('g',null,undefined,s);ISO.assets.sra(g,0,0,{zoneA:'corp',zoneB:'cls'});
+var fl=g.firstChild,ch=[].slice.call(fl.childNodes);
+ch.forEach(function(n,i){var keep=false;
+ if(L==='all')keep=true;
+ else if(i<2)keep=(L==='base');
+ else{var k=Math.floor((i-2)/2);keep=(L==='out'&&k<3)||(L==='in'&&k>=3);}
+ if(!keep)fl.removeChild(n);});
+// fixed bbox from the full asset so all layers align
+var bb={x:0,y:0,width:0,height:0};
+var t=document.createElementNS('http://www.w3.org/2000/svg','svg');
+g.setAttribute('transform','translate('+(800-(BB.x+BB.width/2))+' '+(450-(BB.y+BB.height/2))+')');
+window.__ok=1;
+</script></body></html>
