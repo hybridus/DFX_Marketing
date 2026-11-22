@@ -14,3 +14,9 @@ Native PowerPoint (.pptx, native animated builds only, no MP4) plus PDF. English
 2. Render stills per slide scene from the map and the asset library (Common/iso).
 3. Build the 22 slides from the artifact notes (headline, message, talk track, proof, visual brief, objection).
 4. Export pptx and PDF; review on the board checklist (one gold focal element, red only for malware, at most 8 builds).
+
+## v3 structure (38 slides)
+Framing 1-5 (cover, four ways, two guards, one topology). Product blocks, each: what/why (problem, what it does, why it matters, killer feature), how, what you get.
+Gateway 6 (hero slide 7: scene with five numbered proofs), Sandbox 3, TruCDR 3, Email Gateway 3, Secure Remote Access 4 plus appendix, One Platform 4 (platform, Media Transfer Station, PASS, policy). Then portfolio table, follow one file, integration, failures, attacker table, assurance, where to start, first project, boundary map.
+Voice: buyer (problem, outcome, proof). Partner angle lives in speaker notes (FOR THE PARTNER).
+Open: Gateway scene shows OT as sending side (matches OPC pull); sandbox third-party names kept out of slides until test status is confirmed.

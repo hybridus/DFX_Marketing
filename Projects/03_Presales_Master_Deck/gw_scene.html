@@ -1,0 +1,38 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:transparent}svg{display:block;width:1600px;height:900px}</style></head><body><svg id="s" viewBox="0 0 1600 900"></svg>
+<script src="../../Common/iso/iso-lib.js"></script><script>
+var s=document.getElementById('s'),se=ISO.se,I=ISO.I;ISO.cam={cx:0,cy:0,s:0.72};ISO.defs(s);
+var floor=se('g',null,undefined,s),g=se('g',null,undefined,s),A={};
+var G='#F5A800';
+function fl(x0,y0,x1,y1,col){ISO.P([I(x0,y0,0),I(x1,y0,0),I(x1,y1,0),I(x0,y1,0)],'url(#fl)',col,floor,2.2);}
+function label(x,y,z,txt,col,size){var o=I(x,y,z),k=ISO.cam.s;se('text',{transform:'matrix('+(0.866*k)+' '+(0.5*k)+' 0 '+k+' '+o[0]+' '+o[1]+')',x:0,y:0,'text-anchor':'middle',style:'font:700 '+(size||12)+'px Inter,Arial;fill:'+(col||'#F5F7FA')+';letter-spacing:.06em'},txt,g);}
+function zlab(x,y,txt,col){var o=I(x,y,0),k=ISO.cam.s;se('text',{transform:'matrix('+(0.866*k)+' '+(-0.5*k)+' 0 '+k+' '+o[0]+' '+o[1]+') rotate(0)',x:0,y:0,'text-anchor':'start',style:'font:700 13px Inter,Arial;fill:'+col+';letter-spacing:.14em'},txt,floor);}
+function line(pts,col,w){se('polyline',{points:pts.map(function(p){var a=I(p[0],p[1],1.2);return a[0].toFixed(1)+','+a[1].toFixed(1);}).join(' '),fill:'none',stroke:col,'stroke-width':w||3,'stroke-linejoin':'round'},undefined,floor);}
+function head(pts,col){var n=pts.length,e=pts[n-1],q=pts[n-2],dx=e[0]-q[0],dy=e[1]-q[1],L=Math.hypot(dx,dy);dx/=L;dy/=L;var A2=26,W=13,bx=e[0]-dx*A2,by=e[1]-dy*A2,px=-dy,py=dx;ISO.P([I(e[0],e[1],1.2),I(bx+px*W,by+py*W,1.2),I(bx-px*W,by-py*W,1.2)],col,'none',floor);}
+function gold(pts){line(pts,G,4.2);head(pts,G);}
+function grey(pts){line(pts,'#8FA0B3',2.6);var e=pts[pts.length-1],a=I(e[0],e[1],1.2);se('circle',{cx:a[0],cy:a[1],r:4.5,fill:'#8FA0B3'},undefined,floor);}
+function block(x,y,w,d,h,txt,sub){ISO.box(x,y,0,w,d,h,'#3A444F','#222A32','#161C22',g,'#4A5560',0,0);label(x+w/2,y+d,h/2+3,txt,'#F5F7FA',12.5);if(sub)label(x+w/2,y+d,h/2-12,sub,'#9AA3AD',9.5);}
+function anch(n,x,y,z){var a=I(x,y,z);A[n]=[a[0],a[1]];}
+// floors
+fl(-300,-60,60,330,'#2CC4D9');   // OT: sending
+fl(560,-60,1040,330,'#4F8FC9');    // corporate: receiving
+fl(-20,-350,880,-150,'#8FA0B3');    // your systems
+gold([[-145,60],[-145,100],[225,100]]);
+gold([[-150,215],[-150,150],[225,150]]);
+gold([[375,125],[728,125]]);
+grey([[245,50],[245,-190],[95,-190],[95,-212]]);
+grey([[275,50],[275,-120],[330,-120]]);
+grey([[300,50],[300,-190],[690,-190],[690,-212]]);
+block(-220,-30,120,70,40,'OPC SERVER','tags and values');
+block(30,-300,130,76,42,'ACTIVE DIRECTORY','your logins');
+block(625,-300,130,76,42,'SIEM','your log system');
+ISO.assets.sandbox(g,360,-250);
+ISO.assets.gateway(g,270,125,{zone:'cls'});
+ISO.assets.deskpc(g,-170,240,{zone:'ot'});
+block(740,80,170,84,38,'DESTINATION','dashboard or file share');
+label(-170,320,10,'FILE SOURCE','#F5F7FA',12.5);
+anch('ad',95,-262,64);anch('file',-170,240,110);anch('sbx',360,-250,100);anch('siem',690,-262,64);anch('opc',-160,5,64);anch('gw',270,125,110);anch('dest',825,122,54);
+anch('zot',-300,330,0);anch('zcorp',1040,330,0);anch('zsys',-20,-350,0);
+var bb=floor.getBBox(),bb2=g.getBBox();var x0=Math.min(bb.x,bb2.x),y0=Math.min(bb.y,bb2.y),x1=Math.max(bb.x+bb.width,bb2.x+bb2.width),y1=Math.max(bb.y+bb.height,bb2.y+bb2.height);
+var gx=800-(x0+x1)/2,gy=450-(y0+y1)/2;floor.setAttribute('transform','translate('+gx+' '+gy+')');g.setAttribute('transform','translate('+gx+' '+gy+')');
+for(var k in A){A[k]=[A[k][0]+gx,A[k][1]+gy];}window.__A=A;window.__ok=1;
+</script></body></html>
