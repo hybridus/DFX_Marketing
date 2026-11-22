@@ -612,4 +612,44 @@
     r.glyph = I(ox + xm, oy + ym, zt);
     return r;
   };
+
+  /* DFX Secure Remote Access: six rack appliances composed on platformD1 (2 modules + 4 one-way units) on two network floors.
+     Link map (confirmed by Burak 2026-11-23): outbound DFX UDG = SM -> TX (network A) -> one fibre -> RX (network B) -> CM;
+     inbound DFX UDG = CM -> TX (network B) -> one fibre -> RX (network A) -> SM. Each module has one one-way send link to its TX unit and one
+     one-way receive link from its RX unit on its own network. No chain, no Ethernet. Flow along +x; inbound units are mirrored (rev).
+     opts: zoneA (default 'corp'), zoneB (default 'cls'); keys corp | cls | ot | iso; rev is not supported. */
+  ISO.assets.sra = function (g, ox, oy, opts) {
+    opts = opts || {};
+    var Z = { corp: '#4F8FC9', cls: '#9B6FD8', ot: '#2CC4D9', iso: '#8FA0B3' }, cA = Z[opts.zoneA] || Z.corp, cB = Z[opts.zoneB] || Z.cls;
+    var floor = se('g', null, undefined, g), GOLD = '#F5A800', WHITE = '#E6EDF5';
+    function fl(x0, y0, x1, y1, col) { P([I(ox + x0, oy + y0, 0), I(ox + x1, oy + y0, 0), I(ox + x1, oy + y1, 0), I(ox + x0, oy + y1, 0)], 'url(#fl)', col, floor, 2.2); }
+    fl(-34, -34, 496, 400, cA); fl(586, -34, 1116, 400, cB);
+    function link(pts, col) {                                               // flat one-way link with a triangular head at the last point
+      var n = pts.length, e = pts[n - 1], q = pts[n - 2], dx = e[0] - q[0], dy = e[1] - q[1], L = Math.hypot(dx, dy); dx /= L; dy /= L;
+      var A = 22, W = 10, bx = e[0] - dx * A, by = e[1] - dy * A, px = -dy, py = dx;
+      var line = pts.slice(0, n - 1).concat([[bx + dx * 2, by + dy * 2]]).map(function (p) { var a = I(ox + p[0], oy + p[1], 1.2); return a[0].toFixed(1) + ',' + a[1].toFixed(1); }).join(' ');
+      se('polyline', { points: line, fill: 'none', stroke: col, 'stroke-width': 3.6, 'stroke-linejoin': 'round' }, undefined, floor);
+      P([I(ox + e[0], oy + e[1], 1.2), I(ox + bx + px * W, oy + by + py * W, 1.2), I(ox + bx - px * W, oy + by - py * W, 1.2)], col, 'none', floor);
+    }
+    link([[203, 168], [236, 168], [236, 56], [263, 56]], GOLD);               // SM -> TX (A)
+    link([[477, 56], [609, 56]], GOLD);                                       // outbound fibre
+    link([[823, 56], [850, 56], [850, 168], [879, 168]], GOLD);               // RX (B) -> CM
+    link([[879, 204], [850, 204], [850, 316], [823, 316]], WHITE);            // CM -> TX (B)
+    link([[609, 316], [477, 316]], WHITE);                                    // inbound fibre
+    link([[263, 316], [236, 316], [236, 204], [203, 204]], WHITE);            // RX (A) -> SM
+    var M = [
+      { id: 'sm',     x: 0,   y: 130, lines: ['SM', 'SERVER MODULE'], rail: cA },
+      { id: 'txOut',  x: 270, y: 0,   lines: ['DFX UDG', 'TX'], lid: 'arrow', rail: cA },
+      { id: 'rxIn',   x: 270, y: 260, lines: ['DFX UDG', 'RX'], lid: 'arrow', rev: true, rail: cA },
+      { id: 'rxOut',  x: 616, y: 0,   lines: ['DFX UDG', 'RX'], lid: 'arrow', rail: cB },
+      { id: 'txIn',   x: 616, y: 260, lines: ['DFX UDG', 'TX'], lid: 'arrow', rev: true, rail: cB },
+      { id: 'cm',     x: 886, y: 130, lines: ['CM', 'CLIENT MODULE'], rail: cB }
+    ], out = {};
+    M.sort(function (a, b) { return (a.x + a.y) - (b.x + b.y); }).forEach(function (m) {   // far -> near
+      var r = ISO.assets.platformD1(g, ox + m.x, oy + m.y, { lines: m.lines, fs: 10, mods: 0, lid: m.lid, rev: m.rev, rail: m.rail });
+      out[m.id] = r.front;
+    });
+    out.outbound = I(ox + 543, oy + 56, 2); out.inbound = I(ox + 543, oy + 316, 2); out.center = I(ox + 543, oy + 186, 0); out.front = I(ox + 543, oy + 400, 0);
+    return out;
+  };
 })(window);

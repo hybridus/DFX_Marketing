@@ -20,6 +20,7 @@ Call: `ISO.assets.<fn>(g, ox, oy, opts)`; scale a whole asset with a wrapper gro
 | emailGateway | DFX Secure Email Gateway | current | 196·112·54 (+12 chamber) | 2 |
 | trucdr | DFX TruCDR | current | 196·112·54 (+12 chamber) | 2 |
 | guard | DFX DDX Guard (marketing: DFX Guard) | current | 196·112·54 (+12 chamber) | 2 |
+| sra | DFX Secure Remote Access (2 modules + 4 one-way units) | current | 1082·400 floor footprint, boxes 196·112·54 | 0.9 |
 | kiosk, person, platformA/B/C/D | superseded | legacy | | |
 
 Legacy assets stay for old renders. NEVER use them in new work and never change them.
@@ -127,3 +128,14 @@ kiosk (v1 rounded slab 140·120·330), person (front view, scale .8), platformA 
 - **Colours**: tokens only. The `#C8505A` quarantine token gets a second role; zone-colour squares on the lid are a new, deliberate use (STYLE_GUIDE section 4).
 - **Placement**: same footprint as the other appliances; scale with `sc()`.
 - **Preview**: `iso/previews/guard.png`.
+
+## sra : DFX Secure Remote Access
+- **Route**: composition of six `platformD1` appliances (rack-appliance family) on two zone floors. No new body geometry, no new colours. Link map confirmed by Burak on 2026-11-23.
+- **Boxes**: Server Module (plate `SM` / `SERVER MODULE`) and Client Module (`CM` / `CLIENT MODULE`); four one-way units with plate `DFX UDG` / `TX` or `RX` and the gold chevron lid. Outbound units point along +x, inbound units are mirrored (`rev`).
+- **Link map**: outbound DFX UDG = SM -> TX (network A) -> one fibre -> RX (network B) -> CM. Inbound DFX UDG = CM -> TX (network B) -> one fibre -> RX (network A) -> SM. Each module has one one-way send link to its TX and one one-way receive link from its RX. No chain, no Ethernet, nothing else joins the networks.
+- **Links**: flat 3.6 px polylines with a triangular head on the floor; gold for the outbound path, `#E6EDF5` for the inbound path.
+- **Floors**: two outlined floor plates (`fl` gradient) with a visible gap; outline colour = zone.
+- **opts**: `zoneA` (default `corp`), `zoneB` (default `cls`); keys corp | cls | ot | iso.
+- **Returns** (screen): `sm`, `cm`, `txOut`, `rxOut`, `txIn`, `rxIn`, `outbound`, `inbound`, `center`, `front`.
+- **Placement**: footprint about 1082 x 400 world units at s 0.9 design scale; scale with `sc()` for maps. Use `sc()` so the six plates stay readable (check s = 0.5).
+- **Preview**: `iso/previews/sra.png`. Plan: `docs/SRA_ASSET_PLAN.md`.
