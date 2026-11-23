@@ -5,18 +5,19 @@ const BG='0B0D10',TX='F5F7FA',MU='9AA3AD',GOLD='F5A800',F='Arial',CARD='171A1F',
 const BL={Corp:'4F8FC9',Cls:'9B6FD8',OT:'2CC4D9'};
 const LOGO=path.join(__dirname,'..','..','..','Common','brand','logo-dark-bg.png');
 pres.defineSlideMaster({title:'MASTER',background:{color:BG},objects:[{image:{path:LOGO,x:11.55,y:7.02,w:1.25,h:0.272}}],slideNumber:{x:0.5,y:7.02,w:0.6,h:0.3,color:MU,fontSize:10,fontFace:F}});
-const builds={};let N=0;
+const builds={};let N=0;const KC={8:'F5F7FA',9:'F5F7FA',10:'F5F7FA',11:'F5F7FA',12:'F5F7FA',13:'F5F7FA',14:'F5F7FA',15:'F5F7FA',16:'F5F7FA',17:'F5F7FA',18:'2CC4D9',19:'4F8FC9',20:'2CC4D9',21:'F5F7FA'};
 function png(n){const b=fs.readFileSync(path.join(ST,n+'.png'));return [b.readUInt32BE(16),b.readUInt32BE(20)];}
 function img(s,n,x,y,w,h,name){const [pw,ph]=png(n),r=pw/ph;let W=w,H=w/r;if(H>h){H=h;W=h*r;}
  s.addImage({path:path.join(ST,n+'.png'),x:x+(w-W)/2,y:y+(h-H)/2,w:W,h:H,objectName:name||n,altText:n});}
 function T(s,t,o){s.addText(t,Object.assign({fontFace:F,color:TX,margin:0,isTextBox:true},o));}
 const NOTE=(talk,proof,obj)=>'TALK TRACK: '+talk+'\nPROOF: '+proof+(obj?'\nOBJECTION: '+obj:'');
 function ns(kick,title,msg,note,o){o=o||{};N++;const s=pres.addSlide({masterName:'MASTER'});s.background={color:BG};
- T(s,kick,{x:0.7,y:0.22,w:11.9,h:0.3,fontSize:12,bold:true,color:GOLD,charSpacing:3,objectName:'Kicker'});
+ T(s,kick,{x:0.7,y:0.22,w:11.9,h:0.3,fontSize:12,bold:true,color:KC[N]||GOLD,charSpacing:3,objectName:'Kicker'});
  T(s,title,{x:0.7,y:0.55,w:11.9,h:o.th||0.85,fontSize:o.fs||28,bold:true,valign:'top',objectName:'Title'});
  T(s,msg,{x:0.7,y:o.my||1.42,w:11.9,h:0.5,fontSize:16,color:MU,valign:'top',objectName:'Message'});
  s.addNotes(note);return s;}
 const cl=(n,list)=>{builds[n]=list;};
+const CARDS_LINK={};
 function lab(s,x,y,w,t,nm){T(s,t,{x,y,w,h:0.28,fontSize:12,bold:true,color:GOLD,charSpacing:3,valign:'top',objectName:nm});}
 function rowsR(s,rows,x,y,w,pitch,p,fs){const out=[];rows.forEach((r,i)=>{const yy=y+i*pitch;
  s.addShape(pres.ShapeType.line,{x,y:yy-0.06,w:0.0001,h:pitch-0.2,line:{color:GOLD,width:2.5},objectName:p+'bar'+i});
@@ -25,7 +26,7 @@ function killer(s,txt,x,y,w,p,h){h=h||0.8;s.addShape(pres.ShapeType.roundRect,{x
  T(s,[{text:'THE KEY CAPABILITY   ',options:{bold:true,fontSize:12,color:GOLD,charSpacing:2}},{text:txt,options:{bold:true,fontSize:16}}],{x:x+0.25,y,w:w-0.5,h,valign:'middle',objectName:p+'kt'});return [p+'k',p+'kt'];}
 function cards(s,items,o){const n=items.length,cols=o.cols||n,rowsN=Math.ceil(n/cols),gap=o.gap||0.25,w=(o.w-(cols-1)*gap)/cols,h=(o.h-(rowsN-1)*gap)/rowsN,out=[];
  items.forEach((it,i)=>{const cx=o.x+(i%cols)*(w+gap),cy=o.y+Math.floor(i/cols)*(h+gap),p=o.p+i;
-  s.addShape(pres.ShapeType.roundRect,{x:cx,y:cy,w,h,fill:{color:CARD},line:{color:it.hi?GOLD:'2A2F36',width:it.hi?1.75:1},rectRadius:0.1,objectName:p+'c'});
+  s.addShape(pres.ShapeType.roundRect,Object.assign({x:cx,y:cy,w,h,fill:{color:CARD},line:{color:it.hi?GOLD:'2A2F36',width:it.hi?1.75:1},rectRadius:0.1,objectName:p+'c'},it.link?{hyperlink:{slide:it.link,tooltip:'Go to slide '+it.link}}:{}));
   const tfz=o.tf||19,cap=Math.floor((w-0.5)/(tfz*0.0078)),two=it.t.length>cap,dy=two?0.95:0.68;
   T(s,it.t,{x:cx+0.25,y:cy+0.18,w:w-0.5,h:two?0.75:0.45,fontSize:tfz,bold:true,color:it.hi?GOLD:TX,valign:'top',objectName:p+'t'});
   T(s,it.d,{x:cx+0.25,y:cy+dy,w:w-0.5,h:h-dy-0.12,fontSize:o.df||16,color:STEEL,valign:'top',objectName:p+'d'});out.push([p+'c',p+'t',p+'d']);});return out;}

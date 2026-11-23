@@ -5,18 +5,19 @@ const BG='0B0D10',TX='F5F7FA',MU='9AA3AD',GOLD='F5A800',F='Arial',CARD='171A1F',
 const BL={Corp:'4F8FC9',Cls:'9B6FD8',OT:'2CC4D9'};
 const LOGO=path.join(__dirname,'..','..','..','Common','brand','logo-dark-bg.png');
 pres.defineSlideMaster({title:'MASTER',background:{color:BG},objects:[{image:{path:LOGO,x:11.55,y:7.02,w:1.25,h:0.272}}],slideNumber:{x:0.5,y:7.02,w:0.6,h:0.3,color:MU,fontSize:10,fontFace:F}});
-const builds={};let N=0;
+const builds={};let N=0;const KC={8:'F5F7FA',9:'F5F7FA',10:'F5F7FA',11:'F5F7FA',12:'F5F7FA',13:'F5F7FA',14:'F5F7FA',15:'F5F7FA',16:'F5F7FA',17:'F5F7FA',18:'2CC4D9',19:'4F8FC9',20:'2CC4D9',21:'F5F7FA'};
 function png(n){const b=fs.readFileSync(path.join(ST,n+'.png'));return [b.readUInt32BE(16),b.readUInt32BE(20)];}
 function img(s,n,x,y,w,h,name){const [pw,ph]=png(n),r=pw/ph;let W=w,H=w/r;if(H>h){H=h;W=h*r;}
  s.addImage({path:path.join(ST,n+'.png'),x:x+(w-W)/2,y:y+(h-H)/2,w:W,h:H,objectName:name||n,altText:n});}
 function T(s,t,o){s.addText(t,Object.assign({fontFace:F,color:TX,margin:0,isTextBox:true},o));}
 const NOTE=(talk,proof,obj)=>'TALK TRACK: '+talk+'\nPROOF: '+proof+(obj?'\nOBJECTION: '+obj:'');
 function ns(kick,title,msg,note,o){o=o||{};N++;const s=pres.addSlide({masterName:'MASTER'});s.background={color:BG};
- T(s,kick,{x:0.7,y:0.22,w:11.9,h:0.3,fontSize:12,bold:true,color:GOLD,charSpacing:3,objectName:'Kicker'});
+ T(s,kick,{x:0.7,y:0.22,w:11.9,h:0.3,fontSize:12,bold:true,color:KC[N]||GOLD,charSpacing:3,objectName:'Kicker'});
  T(s,title,{x:0.7,y:0.55,w:11.9,h:o.th||0.85,fontSize:o.fs||28,bold:true,valign:'top',objectName:'Title'});
  T(s,msg,{x:0.7,y:o.my||1.42,w:11.9,h:0.5,fontSize:16,color:MU,valign:'top',objectName:'Message'});
  s.addNotes(note);return s;}
 const cl=(n,list)=>{builds[n]=list;};
+const CARDS_LINK={};
 function lab(s,x,y,w,t,nm){T(s,t,{x,y,w,h:0.28,fontSize:12,bold:true,color:GOLD,charSpacing:3,valign:'top',objectName:nm});}
 function rowsR(s,rows,x,y,w,pitch,p,fs){const out=[];rows.forEach((r,i)=>{const yy=y+i*pitch;
  s.addShape(pres.ShapeType.line,{x,y:yy-0.06,w:0.0001,h:pitch-0.2,line:{color:GOLD,width:2.5},objectName:p+'bar'+i});
@@ -25,7 +26,7 @@ function killer(s,txt,x,y,w,p,h){h=h||0.8;s.addShape(pres.ShapeType.roundRect,{x
  T(s,[{text:'THE KEY CAPABILITY   ',options:{bold:true,fontSize:12,color:GOLD,charSpacing:2}},{text:txt,options:{bold:true,fontSize:16}}],{x:x+0.25,y,w:w-0.5,h,valign:'middle',objectName:p+'kt'});return [p+'k',p+'kt'];}
 function cards(s,items,o){const n=items.length,cols=o.cols||n,rowsN=Math.ceil(n/cols),gap=o.gap||0.25,w=(o.w-(cols-1)*gap)/cols,h=(o.h-(rowsN-1)*gap)/rowsN,out=[];
  items.forEach((it,i)=>{const cx=o.x+(i%cols)*(w+gap),cy=o.y+Math.floor(i/cols)*(h+gap),p=o.p+i;
-  s.addShape(pres.ShapeType.roundRect,{x:cx,y:cy,w,h,fill:{color:CARD},line:{color:it.hi?GOLD:'2A2F36',width:it.hi?1.75:1},rectRadius:0.1,objectName:p+'c'});
+  s.addShape(pres.ShapeType.roundRect,Object.assign({x:cx,y:cy,w,h,fill:{color:CARD},line:{color:it.hi?GOLD:'2A2F36',width:it.hi?1.75:1},rectRadius:0.1,objectName:p+'c'},it.link?{hyperlink:{slide:it.link,tooltip:'Go to slide '+it.link}}:{}));
   const tfz=o.tf||19,cap=Math.floor((w-0.5)/(tfz*0.0078)),two=it.t.length>cap,dy=two?0.95:0.68;
   T(s,it.t,{x:cx+0.25,y:cy+0.18,w:w-0.5,h:two?0.75:0.45,fontSize:tfz,bold:true,color:it.hi?GOLD:TX,valign:'top',objectName:p+'t'});
   T(s,it.d,{x:cx+0.25,y:cy+dy,w:w-0.5,h:h-dy-0.12,fontSize:o.df||16,color:STEEL,valign:'top',objectName:p+'d'});out.push([p+'c',p+'t',p+'d']);});return out;}
@@ -89,7 +90,7 @@ const K='DFX UNIDIRECTIONAL GATEWAY  |  ';
 
 // ---- 4 Certified
 {const s=ns(K+'INDEPENDENT ASSURANCE','One fibre, one direction, certified','The isolation is physical, and independent bodies have looked at it.',
- NOTE('Walk the diagram left to right: transmit unit, one fibre, receive unit, and the dotted line that is not there. Then the two assurance points. Common Criteria EAL4+ is a certification of the products; read the certificate numbers if asked. Say the Gartner wording as written and no more: it is a listing, not an endorsement.','Common Criteria EAL4+ certificates 21.0.03.0.00.0/TSE-CCCS-103 and TSE-CCCS-86. Gartner Cyber Physical Security Hype Cycle, 2024 to 2026, Sample Vendor.','Which product holds which certificate? -> The certificate documents can be shared on request.'));
+ NOTE('Walk the diagram left to right: transmit unit, one fibre, receive unit, and the dotted line that is not there. Then the two assurance points. The fibre appears once, then nothing moves: the certificate card stays on screen so the number can be read. Common Criteria EAL4+ is a certification of the products; read the certificate numbers if asked. Say the Gartner wording as written and no more: it is a listing, not an endorsement.','Common Criteria EAL4+ certificates 21.0.03.0.00.0/TSE-CCCS-103 and TSE-CCCS-86. Gartner Cyber Physical Security Hype Cycle, 2024 to 2026, Sample Vendor.','Which product holds which certificate? -> The certificate documents can be shared on request.'));
  const names=[];
  names.push(box(s,0.9,2.1,2.9,1.4,'Transmit unit','sending network','tx',{line:BL.OT}));
  arrow(s,3.95,2.55,2.9,'fib');names.push(['fib','fibT']);T(s,'one fibre, one direction',{x:3.95,y:2.15,w:2.9,h:0.3,fontSize:12,bold:true,color:GOLD,align:'center',objectName:'fibT'});
@@ -98,7 +99,7 @@ const K='DFX UNIDIRECTIONAL GATEWAY  |  ';
  s.addShape(pres.ShapeType.roundRect,{x:10.25,y:2.1,w:2.35,h:1.4,fill:{color:'1A1608'},line:{color:GOLD,width:1.5},rectRadius:0.1,objectName:'chk'});
  T(s,[{text:'You can check it',options:{bold:true,fontSize:15,color:GOLD,breakLine:true}},{text:'One fibre goes out. No fibre comes back.',options:{fontSize:13,color:STEEL}}],{x:10.4,y:2.1,w:2.1,h:1.4,valign:'middle',objectName:'chkT'});names.push(['chk','chkT']);
  const C=cards(s,[{t:'Hardware isolation',d:'The receiving side has no transmitter, so it cannot be reversed in software.'},{t:'Common Criteria EAL4+',d:'Certificates 21.0.03.0.00.0 / TSE-CCCS-103 and TSE-CCCS-86.',hi:true},{t:'Gartner listing',d:'Named as a Sample Vendor in the Cyber Physical Security Hype Cycle, 2024 to 2026. This is not an endorsement.'}],{x:0.7,y:3.9,w:11.9,h:2.75,cols:3,p:'k',tf:19,df:15});
- cl(N,[...names,...C]);}
+ cl(N,[names.flat()]);}
 
 // ---- 5 Two directions
 {const s=ns(K+'TWO DIRECTIONS','Two directions, two gateways','Each path stays one way. A second gateway carries the other direction.',
@@ -123,9 +124,8 @@ const K='DFX UNIDIRECTIONAL GATEWAY  |  ';
 
 // ---- 7 Capability map
 {const s=ns(K+'THE CAPABILITY MAP','What the Gateway does, in one view','One device, one policy. Each capability has its own slide next.',
- NOTE('Use this as the contents slide. Read the card titles left to right, top to bottom, and say which ones the audience cares about most. Then jump to those. Everything on this page is shown later with a picture or a working example.','Each card maps to a later slide in this deck.'));
- const C=cards(s,[{t:'One-way transfer',d:'Hardware decides the direction. Nothing returns.',hi:true},{t:'FlowRule policy',d:'One policy inspects, repairs and routes every file.',hi:true},{t:'Many ways in',d:'SFTP, HTTP/S API and a web portal.'},{t:'Your tools',d:'Your sandbox and your CDR engine, or ours.'},{t:'Approvals',d:'Follow your Active Directory groups.'},{t:'OT and IT protocols',d:'OPC UA, DNP3, ICCP, Syslog, SMTP and more.'},{t:'Evidence',d:'Every transfer logged, events to your SIEM.'},{t:'Operations',d:'High availability and central management.'}],{x:0.7,y:2.05,w:11.9,h:4.6,cols:4,p:'k',tf:19,df:15});
- cl(N,C);}
+ NOTE('Use this as the contents slide. Read the card titles left to right, top to bottom, and say which ones the audience cares about most. Then jump to those. Every tile links to its slide: click it to jump. The slide has no builds, so it also prints as a one-page agenda. Everything on this page is shown later with a picture or a working example.','Each card maps to a later slide in this deck.'));
+ const C=cards(s,[{t:'One-way transfer',d:'Hardware decides the direction. Nothing returns.',hi:true,link:3},{t:'FlowRule policy',d:'One policy inspects, repairs and routes every file.',hi:true,link:9},{t:'Many ways in',d:'SFTP, HTTP/S API and a web portal.',link:8},{t:'Your tools',d:'Your sandbox and your CDR engine, or ours.',link:14},{t:'Approvals',d:'Follow your Active Directory groups.',link:13},{t:'OT and IT protocols',d:'OPC UA, DNP3, ICCP, Syslog, SMTP and more.',link:18},{t:'Evidence',d:'Every transfer logged, events to your SIEM.',link:21},{t:'Operations',d:'High availability and central management.',link:22}],{x:0.7,y:2.05,w:11.9,h:4.6,cols:4,p:'k',tf:19,df:15});}
 // ---- 8 Many ways in
 {const s=ns(K+'MANY WAYS IN, ONE POLICY','Many ways in, one policy','Every entry point ends in the same FlowRule, so a file is judged the same way however it arrives.',
  NOTE('People and systems send files in different ways. Show the entries, then point at the bar below: they all lead to one policy. This is the point for the security team: it does not matter how the file arrived, the same checks apply. Ask which entries the customer uses today.','Each entry is shown in the working session.','Do we have to change our applications? -> No. They keep using SFTP or HTTP/S, and the gateway sits behind them.'));
@@ -235,15 +235,14 @@ const K='DFX UNIDIRECTIONAL GATEWAY  |  ';
 
 // ---- 18 OT protocols
 {const s=ns(K+'PROTOCOLS: OT','The industrial protocols your plant already speaks','Data leaves the plant in the protocol it already uses, one way.',
- NOTE('Read the names, not the descriptions. The audience will find their own protocol. If it is not here, say it is assessed in the design workshop; do not promise it. ICCP is the one utilities ask about first: control-centre to control-centre exchange. The direction is always the same: from the plant to the network that needs the data.','Protocol list from the product documentation.','Our protocol is not on the list. -> We assess it in the design workshop before you decide anything.'));
+ NOTE('Read the names, not the descriptions. The audience will find their own protocol. If it is not here, say it is assessed in the design workshop; do not promise it. ICCP is the one utilities ask about first: control-centre to control-centre exchange. The direction is always the same: from the plant to the network that needs the data. This slide has no builds, so the audience can copy the list.','Protocol list from the product documentation.','Our protocol is not on the list. -> We assess it in the design workshop before you decide anything.'));
  const C=cards(s,[{t:'OPC UA and DA',d:'Plant data and tags from OPC servers.',hi:true},{t:'DNP3',d:'Telemetry from utility systems.'},{t:'ICCP',d:'Data exchange between control centres.',hi:true},{t:'AVEVA PI',d:'Historian data from AVEVA PI.'},{t:'IEC 104',d:'Telecontrol in power systems.'},{t:'AMQP',d:'Message queues between systems.'},{t:'MQTT',d:'Telemetry from devices and sensors.'},{t:'Another protocol?',d:'We assess it in the design workshop.'}],{x:0.7,y:2.05,w:11.9,h:3.75,cols:4,p:'k',tf:18,df:14});
- const names=[...C];names.push(strip(s,'Data crosses one way, from the plant to the network that needs it.',6.05,'q'));cl(N,names);}
+ const names=[...C];names.push(strip(s,'Data crosses one way, from the plant to the network that needs it.',6.05,'q'));}
 
 // ---- 19 IT protocols
 {const s=ns(K+'PROTOCOLS: IT','The IT protocols behind everyday transfers','Files, mail, logs, time, streams and databases cross in their own formats.',
- NOTE('Same as the OT slide: read the names. Syslog is the quiet one that sells itself, because every customer has logs they would like in one place. Oracle and Microsoft SQL replication is the one for backup and reporting copies. RDP streaming sends the screen of a session one way.','Protocol list from the product documentation.','Our protocol is not on the list. -> We assess it in the design workshop before you decide anything.'));
- const C=cards(s,[{t:'SMTP',d:'Mail and alerts'},{t:'SFTP',d:'Secure file transfer'},{t:'HTTP',d:'Web and API traffic'},{t:'UDP',d:'Streams and datagrams'},{t:'SNMP',d:'Device status'},{t:'NTP',d:'Time from your server'},{t:'Syslog',d:'Logs from devices',hi:true},{t:'Kafka',d:'Event streams'},{t:'RDP streaming',d:'Remote session view'},{t:'Oracle replication',d:'Database copy, one way',hi:true},{t:'Microsoft SQL replication',d:'Database copy, one way',hi:true},{t:'Another protocol?',d:'Ask us about others'}],{x:0.7,y:2.05,w:11.9,h:4.6,cols:4,p:'k',tf:17,df:13,gap:0.2});
- cl(N,C);}
+ NOTE('Same as the OT slide: read the names. Syslog is the quiet one that sells itself, because every customer has logs they would like in one place. Oracle and Microsoft SQL replication is the one for backup and reporting copies. This slide has no builds, so the audience can copy the list. RDP streaming sends the screen of a session one way.','Protocol list from the product documentation.','Our protocol is not on the list. -> We assess it in the design workshop before you decide anything.'));
+ const C=cards(s,[{t:'SMTP',d:'Mail and alerts'},{t:'SFTP',d:'Secure file transfer'},{t:'HTTP',d:'Web and API traffic'},{t:'UDP',d:'Streams and datagrams'},{t:'SNMP',d:'Device status'},{t:'NTP',d:'Time from your server'},{t:'Syslog',d:'Logs from devices',hi:true},{t:'Kafka',d:'Event streams'},{t:'RDP streaming',d:'Remote session view'},{t:'Oracle replication',d:'Database copy, one way',hi:true},{t:'Microsoft SQL replication',d:'Database copy, one way',hi:true},{t:'Another protocol?',d:'Ask us about others'}],{x:0.7,y:2.05,w:11.9,h:4.6,cols:4,p:'k',tf:17,df:13,gap:0.2});}
 
 // ---- 20 Pull from OPC
 {const s=ns(K+'PROTOCOLS: OPC','Pull from OPC: nothing on the other side can query the plant','The gateway reads the values. The corporate side only receives them.',
@@ -308,7 +307,7 @@ const K='DFX UNIDIRECTIONAL GATEWAY  |  ';
  names.push(...rowsR(s,[['One place','Central management for every gateway in your estate.'],['Pairs stay up','Active and passive high availability.'],['Same feeds','Time from NTP, events to your SIEM.']],9.0,2.0,3.8,1.3,'q',14));
  cl(N,names);}
 // ---- scenarios
-function scen(c){const s=ns('SCENARIO  |  '+c.kick,c.title,c.msg,NOTE(c.talk,c.proof,c.obj),{fs:c.fs||28});const names=[];
+function scen(c){const s=ns('SCENARIO  |  '+c.kick,c.title,c.msg,NOTE(c.talk+' Buyer: '+c.buyer+'. Typical effort: sized in the design workshop.',c.proof,c.obj),{fs:c.fs||28});const names=[];
  const P=scene(s,c.scene,3.5,2.0,6.3,3.75);
  const card=(x,lbl,txt,col,k)=>{s.addShape(pres.ShapeType.roundRect,{x,y:2.15,w:2.9,h:3.6,fill:{color:CARD},line:{color:col,width:1.5},rectRadius:0.12,objectName:k+'c'});
   T(s,lbl,{x:x+0.22,y:2.32,w:2.5,h:0.3,fontSize:12,bold:true,color:col,charSpacing:3,objectName:k+'l'});T(s,txt,{x:x+0.22,y:2.75,w:2.5,h:2.9,fontSize:15,valign:'top',objectName:k+'t'});return [k+'c',k+'l',k+'t'];};
@@ -319,31 +318,31 @@ function scen(c){const s=ns('SCENARIO  |  '+c.kick,c.title,c.msg,NOTE(c.talk,c.p
  names.push(strip(s,c.cross,6.05,'q'));
  cl(N,names);}
 const SC=[
-{kick:'SOFTWARE UPDATES FOR OT',title:'Bring software updates into OT without a USB stick',msg:'Patches reach the plant through a checked, logged and one-way path.',scene:'gw_s25',
+{buyer:'OT operations manager, with the security team',kick:'SOFTWARE UPDATES FOR OT',title:'Bring software updates into OT without a USB stick',msg:'Patches reach the plant through a checked, logged and one-way path.',scene:'gw_s25',
  before:'Updates travel on USB sticks and laptops. Each one is a way in, and nobody can prove what was on it.',after:'The update server sends the pack through the gateway. Your sandbox checks it, an approver releases it, and the log records it.',cross:'Typical policy: File Type, Sandbox Scan, Archive Depth, then suspend for approval.',
  caps:[['src','CORPORATE NETWORK',BL.Corp,-1.3,-0.55,3.0],['dst','OT NETWORK',BL.OT,-0.3,0.9,2.4]],
  talk:'Updates are the one thing OT must receive, so it is where USB sticks and laptops creep in. Show the path instead: the update server sends the pack, your sandbox checks it, a person from the approver group releases it, and the plant receives it. The way back does not exist.',proof:'The same path is shown in the working session with one of your update packs.',obj:'Vendors insist on their own tools. -> The pack still arrives as a file through the gateway; the policy decides whether it may enter.'},
-{kick:'OT, IOT, IIOT AND XIOT VISIBILITY',title:'See your OT, IoT, IIoT and xIoT estate without opening it',msg:'Visibility needs data from the plant. It does not need a way in.',scene:'gw_s26',
+{buyer:'OT operations manager and the head of digital or analytics',kick:'OT, IOT, IIOT AND XIOT VISIBILITY',title:'See your OT, IoT, IIoT and xIoT estate without opening it',msg:'Visibility needs data from the plant. It does not need a way in.',scene:'gw_s26',
  before:'A monitoring connection into the plant is also a connection for an attacker.',after:'Sensor and system data leaves one way. Analytics, dashboards and AI work on what arrives. Nothing can send back.',cross:'Typical policy: OPC UA, MQTT or Syslog out of the plant, no inbound traffic at all.',
  caps:[['src','OT NETWORK',BL.OT,-1.3,-0.55,3.0],['dst','CORPORATE NETWORK',BL.Corp,-0.5,0.9,3.2]],
  talk:'Customers want to see all their devices. The usual way is a connection into the plant, which is a way in. Here the data leaves through one gateway and the analytics sit on the other side. They can look as much as they like; they cannot reach back.',proof:'The working session pulls a value from an OPC server and shows it arriving on the other side.',obj:'Our tool needs to poll the devices. -> It polls a copy on the receiving side. It never talks to the plant.'},
-{kick:'MANAGED FILE TRANSFER',title:'Managed file transfer between isolated networks',msg:'Files move both ways, and each way has its own gateway and its own policy.',scene:'gw_s27',
+{buyer:'Head of IT or OT infrastructure, with security',kick:'MANAGED FILE TRANSFER',title:'Managed file transfer between isolated networks',msg:'Files move both ways, and each way has its own gateway and its own policy.',scene:'gw_s27',
  before:'Files move on removable media or through a shared jump host that touches both networks.',after:'Two gateways, one per direction. Every file is inspected, approved by group and logged.',cross:'Typical policy: File Type, AV Scan, Sandbox Scan, then approval by Active Directory group.',
  caps:[['src','NETWORK A',BL.Corp,-1.3,-0.55,3.0],['dst','NETWORK B',BL.OT,-0.3,0.9,2.4]],
  talk:'This is the plain file-exchange case between two networks that must stay apart. Say two gateways, one per direction. A file from A to B passes one policy, a file from B to A passes another, and both are logged. Nobody carries media across.',proof:'The working session sends a file in each direction and shows both entries in the log.',obj:'Do we need two policies? -> You can use the same one. Each gateway applies the policy you choose.'},
-{kick:'DATA EXCHANGE WITH THIRD PARTIES',title:'Exchange data with third parties without giving them a path in',msg:'Partners deliver files. They never get a connection into your network.',scene:'gw_s28',
+{buyer:'Business owner who receives files, with the security team',kick:'DATA EXCHANGE WITH THIRD PARTIES',title:'Exchange data with third parties without giving them a path in',msg:'Partners deliver files. They never get a connection into your network.',scene:'gw_s28',
  before:'Partners send files by mail or get a remote path into your network.',after:'Partners upload through your portal. Files are checked, disarmed and delivered one way. Only clean files reach your teams.',cross:'Typical policy: File Type, Sandbox Scan, File Disarm with DFX TruCDR.',
  caps:[['src','EXTERNAL PARTNER',GREY,-1.5,-0.55,3.2],['dst','YOUR NETWORK',BL.Corp,-0.3,0.9,2.4]],
  talk:'Every company receives files from people it does not control. Show the portal, then the path: the partner uploads, the policy checks, DFX TruCDR rebuilds the file without active content, and only the clean file reaches your teams. The partner never sees your network.',proof:'The portal and the rebuilt file are shown in the working session.',obj:'Partners will not change how they work. -> They use a web page with a file drop. That is all they need.'},
-{kick:'LOG CONSOLIDATION',title:'Consolidate logs from separated networks',msg:'Logs from every network end up in one place, and nothing can travel back.',scene:'gw_s29',
+{buyer:'Security operations manager',kick:'LOG CONSOLIDATION',title:'Consolidate logs from separated networks',msg:'Logs from every network end up in one place, and nothing can travel back.',scene:'gw_s29',
  before:'Logs from separated networks are collected by hand, or not at all.',after:'Syslog from each network crosses one way into one collector and your SIEM.',cross:'Typical policy: Syslog in, CEF out to your SIEM.',
  caps:[['src','SEPARATED NETWORKS',BL.OT,-1.5,-0.55,3.4],['dst','YOUR LOG SYSTEM',BL.Corp,-0.4,0.9,3.0]],
  talk:'Security teams want every log in one place, and separated networks are exactly where logs go missing. Syslog crosses one way. The collector and the SIEM get everything; the networks keep their isolation.',proof:'A Syslog event arriving at the SIEM is shown in the working session.',obj:'Will the SIEM parse it? -> Events leave in CEF and Syslog, which SIEMs read.'},
-{kick:'BACKUP INTO A PROTECTED NETWORK',title:'Back up into a network the attacker cannot reach',msg:'The copy that saves you must sit where the attack cannot go.',scene:'gw_s30',
+{buyer:'Head of IT infrastructure or the backup owner, with security',kick:'BACKUP INTO A PROTECTED NETWORK',title:'Back up into a network the attacker cannot reach',msg:'The copy that saves you must sit where the attack cannot go.',scene:'gw_s30',
  before:'Backups sit on a network the attacker can reach, so they can be encrypted or deleted with everything else.',after:'Backups cross one way into a vault network. Nothing travels back from the vault.',cross:'Typical policy: File Type, AV Scan, encryption for the vault.',
  caps:[['src','PRODUCTION NETWORK',BL.Corp,-1.5,-0.55,3.4],['dst','BACKUP VAULT NETWORK',GREY,-0.9,0.9,3.4]],
  talk:'After an attack, the question is whether the backup survived. If the backup network can be reached from production, the answer is often no. One-way transfer puts the copy where nothing can come back from. Say what is true and nothing more: the path is one way.',proof:'The one-way path is shown by eye in the working session.',obj:'How do we restore? -> The restore path is designed in the workshop, with its own controlled route.'},
-{kick:'ONE-WAY DATABASE REPLICATION',title:'Replicate databases one way',msg:'Reporting and analytics read a replica. The production database stays out of reach.',scene:'gw_s31',
+{buyer:'Database owner or the reporting and analytics lead',kick:'ONE-WAY DATABASE REPLICATION',title:'Replicate databases one way',msg:'Reporting and analytics read a replica. The production database stays out of reach.',scene:'gw_s31',
  before:'Replication needs a two-way link to the database, which is an open path to it.',after:'Oracle and Microsoft SQL replication cross one way. The replica can be read. Nothing can write back.',cross:'Typical policy: replication in one direction, events logged, time from your NTP.',
  caps:[['src','SOURCE NETWORK',BL.Corp,-1.3,-0.55,3.0],['dst','REPLICA NETWORK',BL.OT,-0.5,0.9,3.0]],
  talk:'Many teams need a copy of production data for reports. Normal replication needs a path to the primary. Here the replica receives changes one way, so reporting users can read as much as they like and cannot touch the primary.',proof:'Oracle and Microsoft SQL replication are on the protocol list. The design workshop tests your version.',obj:'Does it work with our version? -> The design workshop checks the exact version before anything is decided.'}];

@@ -45,7 +45,7 @@
 
 // ---- 4 Certified
 {const s=ns(K+'INDEPENDENT ASSURANCE','One fibre, one direction, certified','The isolation is physical, and independent bodies have looked at it.',
- NOTE('Walk the diagram left to right: transmit unit, one fibre, receive unit, and the dotted line that is not there. Then the two assurance points. Common Criteria EAL4+ is a certification of the products; read the certificate numbers if asked. Say the Gartner wording as written and no more: it is a listing, not an endorsement.','Common Criteria EAL4+ certificates 21.0.03.0.00.0/TSE-CCCS-103 and TSE-CCCS-86. Gartner Cyber Physical Security Hype Cycle, 2024 to 2026, Sample Vendor.','Which product holds which certificate? -> The certificate documents can be shared on request.'));
+ NOTE('Walk the diagram left to right: transmit unit, one fibre, receive unit, and the dotted line that is not there. Then the two assurance points. The fibre appears once, then nothing moves: the certificate card stays on screen so the number can be read. Common Criteria EAL4+ is a certification of the products; read the certificate numbers if asked. Say the Gartner wording as written and no more: it is a listing, not an endorsement.','Common Criteria EAL4+ certificates 21.0.03.0.00.0/TSE-CCCS-103 and TSE-CCCS-86. Gartner Cyber Physical Security Hype Cycle, 2024 to 2026, Sample Vendor.','Which product holds which certificate? -> The certificate documents can be shared on request.'));
  const names=[];
  names.push(box(s,0.9,2.1,2.9,1.4,'Transmit unit','sending network','tx',{line:BL.OT}));
  arrow(s,3.95,2.55,2.9,'fib');names.push(['fib','fibT']);T(s,'one fibre, one direction',{x:3.95,y:2.15,w:2.9,h:0.3,fontSize:12,bold:true,color:GOLD,align:'center',objectName:'fibT'});
@@ -54,7 +54,7 @@
  s.addShape(pres.ShapeType.roundRect,{x:10.25,y:2.1,w:2.35,h:1.4,fill:{color:'1A1608'},line:{color:GOLD,width:1.5},rectRadius:0.1,objectName:'chk'});
  T(s,[{text:'You can check it',options:{bold:true,fontSize:15,color:GOLD,breakLine:true}},{text:'One fibre goes out. No fibre comes back.',options:{fontSize:13,color:STEEL}}],{x:10.4,y:2.1,w:2.1,h:1.4,valign:'middle',objectName:'chkT'});names.push(['chk','chkT']);
  const C=cards(s,[{t:'Hardware isolation',d:'The receiving side has no transmitter, so it cannot be reversed in software.'},{t:'Common Criteria EAL4+',d:'Certificates 21.0.03.0.00.0 / TSE-CCCS-103 and TSE-CCCS-86.',hi:true},{t:'Gartner listing',d:'Named as a Sample Vendor in the Cyber Physical Security Hype Cycle, 2024 to 2026. This is not an endorsement.'}],{x:0.7,y:3.9,w:11.9,h:2.75,cols:3,p:'k',tf:19,df:15});
- cl(N,[...names,...C]);}
+ cl(N,[names.flat()]);}
 
 // ---- 5 Two directions
 {const s=ns(K+'TWO DIRECTIONS','Two directions, two gateways','Each path stays one way. A second gateway carries the other direction.',
@@ -79,6 +79,5 @@
 
 // ---- 7 Capability map
 {const s=ns(K+'THE CAPABILITY MAP','What the Gateway does, in one view','One device, one policy. Each capability has its own slide next.',
- NOTE('Use this as the contents slide. Read the card titles left to right, top to bottom, and say which ones the audience cares about most. Then jump to those. Everything on this page is shown later with a picture or a working example.','Each card maps to a later slide in this deck.'));
- const C=cards(s,[{t:'One-way transfer',d:'Hardware decides the direction. Nothing returns.',hi:true},{t:'FlowRule policy',d:'One policy inspects, repairs and routes every file.',hi:true},{t:'Many ways in',d:'SFTP, HTTP/S API and a web portal.'},{t:'Your tools',d:'Your sandbox and your CDR engine, or ours.'},{t:'Approvals',d:'Follow your Active Directory groups.'},{t:'OT and IT protocols',d:'OPC UA, DNP3, ICCP, Syslog, SMTP and more.'},{t:'Evidence',d:'Every transfer logged, events to your SIEM.'},{t:'Operations',d:'High availability and central management.'}],{x:0.7,y:2.05,w:11.9,h:4.6,cols:4,p:'k',tf:19,df:15});
- cl(N,C);}
+ NOTE('Use this as the contents slide. Read the card titles left to right, top to bottom, and say which ones the audience cares about most. Then jump to those. Every tile links to its slide: click it to jump. The slide has no builds, so it also prints as a one-page agenda. Everything on this page is shown later with a picture or a working example.','Each card maps to a later slide in this deck.'));
+ const C=cards(s,[{t:'One-way transfer',d:'Hardware decides the direction. Nothing returns.',hi:true,link:3},{t:'FlowRule policy',d:'One policy inspects, repairs and routes every file.',hi:true,link:9},{t:'Many ways in',d:'SFTP, HTTP/S API and a web portal.',link:8},{t:'Your tools',d:'Your sandbox and your CDR engine, or ours.',link:14},{t:'Approvals',d:'Follow your Active Directory groups.',link:13},{t:'OT and IT protocols',d:'OPC UA, DNP3, ICCP, Syslog, SMTP and more.',link:18},{t:'Evidence',d:'Every transfer logged, events to your SIEM.',link:21},{t:'Operations',d:'High availability and central management.',link:22}],{x:0.7,y:2.05,w:11.9,h:4.6,cols:4,p:'k',tf:19,df:15});}
