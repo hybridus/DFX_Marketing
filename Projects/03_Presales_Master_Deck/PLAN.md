@@ -20,3 +20,8 @@ Framing 1-5 (cover, four ways, two guards, one topology). Product blocks, each: 
 Gateway 6 (hero slide 7: scene with five numbered proofs), Sandbox 3, TruCDR 3, Email Gateway 3, Secure Remote Access 4 plus appendix, One Platform 4 (platform, Media Transfer Station, PASS, policy). Then portfolio table, follow one file, integration, failures, attacker table, assurance, where to start, first project, boundary map.
 Voice: buyer (problem, outcome, proof). Partner angle lives in speaker notes (FOR THE PARTNER).
 Open: Gateway scene shows OT as sending side (matches OPC pull); sandbox third-party names kept out of slides until test status is confirmed.
+
+## v3.2 (2026-11-23)
+- build_master3.js is now the source of truth; the _head/_prod/_prod2/_prod3/_tail fragments are no longer in sync.
+- Founder review applied: two-gateway slide 7, KEY CAPABILITY label, counts removed, prospect-facing close (slides 36-38), firewall answer on slide 4, partner and internal notes removed, TruScope Anti Malware Engine name, kickers and 12 pt floor on all slides.
+- Open: product-to-certificate mapping, throughput per model, failure behaviours, third-party integration test status, SRA and failure wording left as is (Q10).
