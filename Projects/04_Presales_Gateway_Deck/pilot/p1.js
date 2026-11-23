@@ -12,7 +12,7 @@
 // ---- 2 Hero
 {const A=JSON.parse(fs.readFileSync(path.join(ST,'gw_scene.json'),'utf8'));
  const s=ns(K+'IN YOUR ENVIRONMENT','It works in your environment from day one','Proof on your own systems, in one session. Nothing is rebuilt around it.',
- NOTE('Open on the working system, not on the diode. Say what you are about to do: sign in with a company account, send a file, watch your sandbox return a verdict, open the transfer log, pull a value from an OPC server. Then do it, one step per click, and say only what is on screen. The diode comes after the proof. There are two gateways, one per direction: one carries data out of OT, the other carries updates in.','A working session on your own systems. We need an Active Directory service account, the address of your sandbox, a syslog target and the address of an OPC server.','We already have a sandbox. -> Keep it. The Gateway calls it.'),{th:0.85});
+ NOTE('Open on the working system, not on the diode. Say what you are about to do: sign in with a company account, send a file, watch your sandbox return a verdict, open the transfer log, pull a value from an OPC server. Then do it, one step per click, and say only what is on screen. The diode comes after the proof. There are two gateways, one per direction: one carries data out of OT, the other carries data in.','A working session on your own systems. We need an Active Directory service account, the address of your sandbox, a syslog target and the address of an OPC server.','We already have a sandbox. -> Keep it. The Gateway calls it.'),{th:0.85});
  const SX=0.3,SY=1.9,SW=9.0,SH=5.0;img(s,'gw_scene',SX,SY,SW,SH,'scene');
  const [px,py]=png('gw_scene'),k=Math.min(SW/px,SH/py),ox=SX+(SW-px*k)/2,oy=SY+(SH-py*k)/2,P=(n,dx,dy)=>[ox+A[n][0]*k+(dx||0),oy+A[n][1]*k+(dy||0)];
  {const [a1,b1]=P('zot');T(s,'OT NETWORK',{x:0.35,y:b1+0.5,w:3.2,h:0.3,fontSize:13,bold:true,color:BL.OT,charSpacing:2,objectName:'zOT'});
@@ -28,7 +28,7 @@
   const cap={ad:'Active Directory',file:'File source',sbx:'Your sandbox',siem:'SIEM',opc:'OPC server'}[st[3]];
   T(s,cap,{x:mx+0.25,y:my-0.14,w:1.6,h:0.28,fontSize:13,bold:true,color:STEEL,valign:'middle',objectName:'cap'+i});
   names.push(['sc'+i,'sn'+i,'snt'+i,'stt'+i,'mk'+i,'mkt'+i,'cap'+i]);});
- [['A','gw','OT to corporate',5.75],['B','gw2','corporate to OT, for updates',6.2]].forEach((q,i)=>{const [mx,my]=P(q[1],0.1,0.3);s.addShape(pres.ShapeType.ellipse,{x:mx-0.2,y:my-0.2,w:0.4,h:0.4,fill:{color:'F5F7FA'},line:{color:'0B0D10',width:1.5},objectName:'gm'+i});T(s,q[0],{x:mx-0.2,y:my-0.2,w:0.4,h:0.4,fontSize:13,bold:true,color:'0B0D10',align:'center',valign:'middle',objectName:'gmt'+i});
+ [['A','gw','OT to corporate',5.75],['B','gw2','corporate to OT',6.2]].forEach((q,i)=>{const [mx,my]=P(q[1],0.1,0.3);s.addShape(pres.ShapeType.ellipse,{x:mx-0.2,y:my-0.2,w:0.4,h:0.4,fill:{color:'F5F7FA'},line:{color:'0B0D10',width:1.5},objectName:'gm'+i});T(s,q[0],{x:mx-0.2,y:my-0.2,w:0.4,h:0.4,fontSize:13,bold:true,color:'0B0D10',align:'center',valign:'middle',objectName:'gmt'+i});
   s.addShape(pres.ShapeType.roundRect,{x:0.4,y:q[3],w:3.6,h:0.36,fill:{color:'1A1608'},line:{color:GOLD,width:1.25},rectRadius:0.08,objectName:'gp'+i});T(s,[{text:q[0]+'  ',options:{bold:true,color:'F5F7FA'}},{text:'Gateway: '+q[2],options:{bold:true,color:GOLD}}],{x:0.55,y:q[3],w:3.4,h:0.36,fontSize:12,valign:'middle',objectName:'gpt'+i});names.push(['gm'+i,'gmt'+i,'gp'+i,'gpt'+i]);});
  cl(N,names);}
 
@@ -37,8 +37,8 @@
  NOTE('Start with the problem: every normal connection can be used in both directions, including by an attacker. Then the product: a transmit unit on one side, a receive unit on the other, one fibre between them. There is no return path to attack. Say what disappears: command and control, data theft over a return channel, remote exploits of the protected side. Keep it under two minutes.','The absence of a return fibre can be checked by eye.','Can it be reversed in software? -> No. There is no transmitter on the receiving side to reverse.'));
  const P=scene(s,'gw_diode',0.4,1.95,7.7,4.0);
  const names=[];
- names.push(zlab(s,P,'tx','TRANSMIT UNIT',BL.OT,'t1',-1.0,1.05,2.6));
- names.push(zlab(s,P,'rx','RECEIVE UNIT',BL.Cls,'t2',-3.4,0.3,2.6,'right'));
+ names.push(zlab(s,P,'tx','TRANSMIT UNIT',GOLD,'t1',0,-0.85,2.4,'center'));
+ names.push(zlab(s,P,'rx','RECEIVE UNIT',GOLD,'t2',0.5,-0.85,2.4,'center'));
  names.push(...rowsR(s,[['The problem','Every network link carries traffic both ways. An attacker uses the return path to give commands and to take data out.'],['What it does','A transmit unit on one network, a receive unit on the other, one fibre between them. Nothing is built to send back.'],['What disappears','Command and control, data theft over a return channel and remote attacks on the protected side have no path to travel.']],8.4,2.0,4.4,1.3,'r',14));
  names.push(killer(s,'You can see it. One fibre, one direction.',0.7,6.05,11.9,'k'));
  cl(N,[['scene'],...names]);}
@@ -47,13 +47,13 @@
 {const s=ns(K+'INDEPENDENT ASSURANCE','One fibre, one direction, certified','The isolation is physical, and independent bodies have looked at it.',
  NOTE('Walk the diagram left to right: transmit unit, one fibre, receive unit, and the dotted line that is not there. Then the two assurance points. Common Criteria EAL4+ is a certification of the products; read the certificate numbers if asked. Say the Gartner wording as written and no more: it is a listing, not an endorsement.','Common Criteria EAL4+ certificates 21.0.03.0.00.0/TSE-CCCS-103 and TSE-CCCS-86. Gartner Cyber Physical Security Hype Cycle, 2024 to 2026, Sample Vendor.','Which product holds which certificate? -> The certificate documents can be shared on request.'));
  const names=[];
- names.push(box(s,0.9,2.1,2.9,1.1,'Transmit unit','sending network','tx',{line:BL.OT}));
- arrow(s,3.95,2.65,2.9,'fib');names.push(['fib','fibT']);T(s,'one fibre, one direction',{x:3.95,y:2.2,w:2.9,h:0.3,fontSize:12,bold:true,color:GOLD,align:'center',objectName:'fibT'});
- names.push(box(s,7.0,2.1,2.9,1.1,'Receive unit','receiving network','rx',{line:BL.Cls}));
- s.addShape(pres.ShapeType.line,{x:4.1,y:3.55,w:2.9,h:0,line:{color:GREY,width:1.75,dashType:'dash'},objectName:'noret'});T(s,'no return fibre',{x:4.1,y:3.65,w:2.9,h:0.3,fontSize:12,bold:true,color:GREY,align:'center',objectName:'noretT'});names.push(['noret','noretT']);
- s.addShape(pres.ShapeType.roundRect,{x:10.25,y:2.1,w:2.35,h:1.85,fill:{color:'1A1608'},line:{color:GOLD,width:1.5},rectRadius:0.1,objectName:'chk'});
- T(s,[{text:'You can check it',options:{bold:true,fontSize:15,color:GOLD,breakLine:true}},{text:'One fibre goes out. No fibre comes back.',options:{fontSize:13,color:STEEL}}],{x:10.4,y:2.1,w:2.1,h:1.85,valign:'middle',objectName:'chkT'});names.push(['chk','chkT']);
- const C=cards(s,[{t:'Hardware isolation',d:'The receiving side has no transmitter, so it cannot be reversed in software.'},{t:'Common Criteria EAL4+',d:'Certificates 21.0.03.0.00.0 / TSE-CCCS-103 and TSE-CCCS-86.',hi:true},{t:'Gartner listing',d:'Named as a Sample Vendor in the Cyber Physical Security Hype Cycle, 2024 to 2026. This is not an endorsement.'}],{x:0.7,y:4.3,w:11.9,h:2.35,cols:3,p:'k',tf:19,df:14});
+ names.push(box(s,0.9,2.1,2.9,1.4,'Transmit unit','sending network','tx',{line:BL.OT}));
+ arrow(s,3.95,2.55,2.9,'fib');names.push(['fib','fibT']);T(s,'one fibre, one direction',{x:3.95,y:2.15,w:2.9,h:0.3,fontSize:12,bold:true,color:GOLD,align:'center',objectName:'fibT'});
+ names.push(box(s,7.0,2.1,2.9,1.4,'Receive unit','receiving network','rx',{line:BL.Cls}));
+ s.addShape(pres.ShapeType.line,{x:3.95,y:3.0,w:2.9,h:0,line:{color:GREY,width:2,dashType:'dash',beginArrowType:'triangle'},objectName:'noret'});T(s,'X',{x:5.2,y:2.82,w:0.4,h:0.36,fontSize:20,bold:true,color:RED,align:'center',valign:'middle',objectName:'noretX'});T(s,'no return fibre',{x:3.95,y:3.15,w:2.9,h:0.3,fontSize:12,bold:true,color:GREY,align:'center',objectName:'noretT'});names.push(['noret','noretX','noretT']);
+ s.addShape(pres.ShapeType.roundRect,{x:10.25,y:2.1,w:2.35,h:1.4,fill:{color:'1A1608'},line:{color:GOLD,width:1.5},rectRadius:0.1,objectName:'chk'});
+ T(s,[{text:'You can check it',options:{bold:true,fontSize:15,color:GOLD,breakLine:true}},{text:'One fibre goes out. No fibre comes back.',options:{fontSize:13,color:STEEL}}],{x:10.4,y:2.1,w:2.1,h:1.4,valign:'middle',objectName:'chkT'});names.push(['chk','chkT']);
+ const C=cards(s,[{t:'Hardware isolation',d:'The receiving side has no transmitter, so it cannot be reversed in software.'},{t:'Common Criteria EAL4+',d:'Certificates 21.0.03.0.00.0 / TSE-CCCS-103 and TSE-CCCS-86.',hi:true},{t:'Gartner listing',d:'Named as a Sample Vendor in the Cyber Physical Security Hype Cycle, 2024 to 2026. This is not an endorsement.'}],{x:0.7,y:3.9,w:11.9,h:2.75,cols:3,p:'k',tf:19,df:15});
  cl(N,[...names,...C]);}
 
 // ---- 5 Two directions
@@ -61,8 +61,8 @@
  NOTE('Real work needs data in both directions: readings out of OT, updates and files into OT. Do not make one device carry both. One gateway per direction, each one way, each with its own policy. Point at A and B on the picture and say which way each one carries data.','The two units are separate and each one has one direction. The picture matches the working session setup.','Why not one device for both? -> Then it would carry both directions, and the one-way guarantee would be gone.'));
  const P=scene(s,'gw_twoway',0.3,1.95,7.9,4.0);const names=[];
  names.push(dot(s,P,'a','A','a',0.1,0.4));names.push(dot(s,P,'b','B','b',0.1,0.4));
- names.push(zlab(s,P,'lt','OT NETWORK',BL.OT,'zo',-1.4,-0.9,2.5));names.push(zlab(s,P,'rt','CORPORATE NETWORK',BL.Corp,'zc',-1.6,1.35,3.4));
- names.push(...rowsR(s,[['A: out of OT','Gateway A carries readings, files and logs from OT to the corporate network.'],['B: into OT','Gateway B carries updates and files into OT. It is a separate unit.'],['Why two','No single device carries both directions, so each path keeps its one-way guarantee.']],8.5,2.0,4.3,1.3,'r',14));
+ names.push(bcap(s,P,'b'));
+ names.push(...rowsR(s,[['A: out of OT','Gateway A carries readings, files and logs from OT to the corporate network.'],['B: into OT','Gateway B carries files and data from the corporate network into OT. It is a separate unit.'],['Why two','No single device carries both directions, so each path keeps its one-way guarantee.']],8.5,2.0,4.3,1.3,'r',14));
  names.push(killer(s,'One gateway per direction. Each path is physically one way.',0.7,6.05,11.9,'k'));
  cl(N,[['scene'],...names]);}
 
@@ -70,6 +70,7 @@
 {const s=ns(K+'A MODEL FOR EVERY SITE','A model for every site','From the server room to a plant cabinet. You pick the model that fits the site.',
  NOTE('Name the family and stop: Enterprise, Small, Mini, Fusion Core and Guard. Do not give throughput numbers; they are confirmed per model, and the selection table for the customer site is shared after the design workshop. The picture shows the Gateway and the Guard.','Model names as listed. Throughput is confirmed per model before it is quoted.','How fast is it? -> It depends on the model. We confirm it for your site in the design workshop.'));
  const P=scene(s,'gw_family',0.4,2.4,6.9,2.7);const names=[];
+ names.push(zlab(s,P,'gw','DFX UNIDIRECTIONAL GATEWAY',GOLD,'zg',0,-0.75,3.4,'center'));names.push(zlab(s,P,'guard','DFX DDX GUARD',GOLD,'zd',0.9,0.0,2.2));
  names.push(...rowsR(s,[['Sized to the site','From the server room to a plant cabinet or a small site.'],['The Gateway','Moves data one way and applies the policy. Pairs of gateways carry both directions.'],['The Guard','A 1U chassis that holds two systems, with dual power supplies.']],7.7,2.0,5.1,1.1,'r',13));
  const chips=['Enterprise','Small','Mini','Fusion Core','Guard'];
  chips.forEach((c,i)=>{names.push(pill(s,0.7+i*1.4,5.25,1.3,c,'m'+i,i===0?GOLD:STEEL));});

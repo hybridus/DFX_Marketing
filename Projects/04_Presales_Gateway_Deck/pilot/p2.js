@@ -47,7 +47,7 @@
 {const s=ns(K+'APPROVALS','Approvals follow your org chart','The people who approve a file are the people your Active Directory says should.',
  NOTE('Show the approver group in the directory, then a file waiting, then the approval. The point is that nobody maintains a second list of approvers: the gateway reads the groups you already manage. When someone changes role in the directory, the approval right changes with them.','Approver groups are read from Active Directory. The approval and the approver are in the transfer log.','Can one person approve their own file? -> Your policy decides; the design workshop sets it with you.'));
  const P=scene(s,'gw_approval',0.3,1.95,7.9,4.0);const names=[];
- names.push(dot(s,P,'req','1','m1',0,-0.3));names.push(dot(s,P,'ad','2','m2',0,-0.3));names.push(dot(s,P,'appr','3','m3',0,-0.3));
+ names.push(bcap(s,P,'b',['ACTIVE DIRECTORY']));names.push(dot(s,P,'req','1','m1',0,-0.3));names.push(dot(s,P,'ad','2','m2',0,-0.3));names.push(dot(s,P,'appr','3','m3',0,-0.3));
  names.push(...rowsR(s,[['1  The requester','Sends a file that needs a decision. It is suspended before it crosses.'],['2  Active Directory','Approver groups come from the directory. Nothing new to maintain.'],['3  The approver','The decision and the person are written to the transfer log.']],8.5,2.0,4.3,1.3,'r',14));
  names.push(killer(s,'Your org chart decides who approves.',0.7,6.05,11.9,'k'));
  cl(N,[['scene'],...names]);}
@@ -56,17 +56,18 @@
 {const s=ns(K+'YOUR TOOLS','Bring your own sandbox and CDR engine','Keep what you run today. The gateway calls it and waits for the verdict.',
  NOTE('This answers the first objection in every IT meeting: we already have a sandbox. Keep it. The gateway sends the file to it and waits. Our own DFX Malware Mitigation Sandbox and DFX TruCDR are there if you want them. Do not say which is better; say that the policy is the same either way.','Third-party sandboxes and disarm engines are called through their interfaces; the working session shows it with your tool.','We already have a sandbox. -> Keep it. The Gateway calls it.'));
  const P=scene(s,'gw_docks',0.3,1.95,7.9,4.0);const names=[];
- names.push(dot(s,P,'s1','1','m1',0,-0.3));names.push(dot(s,P,'s2','2','m2',0,-0.3)); names.push(...rowsR(s,[['1  Your sandbox','The gateway calls the sandbox you already run, or ours: DFX Malware Mitigation Sandbox.'],['2  Your CDR engine','The gateway calls your CDR engine, or ours: DFX TruCDR.'],['Verdict first','A file crosses only after the verdict comes back clean.']],8.5,2.0,4.3,1.3,'r',14));
+ names.push(bcap(s,P,'b'));names.push(dot(s,P,'s3','1','m1',-1.0,-0.3));names.push(dot(s,P,'s4','2','m2',-1.0,-0.3));names.push(zlab(s,P,'s1','DFX MALWARE MITIGATION SANDBOX',GOLD,'z1',0.3,-0.5,4.2));names.push(zlab(s,P,'s2','DFX TRUCDR',GOLD,'z2',0.4,-0.4,2.4)); names.push(...rowsR(s,[['1  Your sandbox','The gateway calls the sandbox you already run, or ours: DFX Malware Mitigation Sandbox.'],['2  Your CDR engine','The gateway calls your CDR engine, or ours: DFX TruCDR.'],['Verdict first','A file crosses only after the verdict comes back clean.']],8.5,2.0,4.3,1.3,'r',14));
  names.push(killer(s,'Your sandbox, your CDR engine. We fit in.',0.7,6.05,11.9,'k'));
  cl(N,[['scene'],...names]);}
 
 // ---- 15 TruScope
-{const s=ns(K+'OUR OWN ENGINE','Our own detection engine: TruScope Anti Malware Engine','Built by DataFlowX for the formats people exchange every day: Office files, PDF and images.',
- NOTE('Say it simply: this is our own engine, and it is focused on the formats that cross most often. It is one control among others in FlowRule; you can use it alone or with your engines. Do not compare detection rates; say that the working session runs it on the customer files.','TruScope Anti Malware Engine, developed by DataFlowX.','How does it compare to our antivirus? -> Use both. FlowRule can run several controls on the same file.'),{fs:26});
+{const s=ns(K+'OUR OWN ENGINE','Our own detection engine: TruScope Anti Malware Engine','Made for the formats people exchange every day: Office files, PDF and images.',
+ NOTE('Say it simply: this is our own engine, and it is focused on Office files, PDF and images. It is one control among others in FlowRule; you can use it alone or with your engines. Do not compare detection rates; say that the working session runs it on the customer files.','TruScope Anti Malware Engine, part of the DataFlowX product line.','How does it compare to our antivirus? -> Use both. FlowRule can run several controls on the same file.'),{fs:26});
  const names=[];
- [['Office','DOCX XLSX PPTX'],['PDF','PDF files'],['Image','JPG PNG']].forEach((f,k)=>{const y=2.2+k*1.15;names.push(box(s,0.7,y,2.4,0.95,f[0],f[1],'f'+k,{line:GREY}));arrow(s,3.2,y+0.47,0.9,'fa'+k,GREY);names[names.length-1].push('fa'+k);});
- names.push(box(s,4.2,2.2,3.0,3.25,'TruScope','Anti Malware Engine, developed by DataFlowX','e',{line:GOLD,fill:'1A1608',col:GOLD,fs:24,scol:STEEL}));
- arrow(s,7.3,3.8,1.2,'ev');names.push(['ev']);
- names.push(box(s,8.6,2.2,3.6,1.35,'Clean','the file continues to the next step','v1',{line:GRN,col:GRN}));names.push(box(s,8.6,4.1,3.6,1.35,'Blocked','the file is held and the reason is logged','v2',{line:RED,col:RED}));
- names.push(strip(s,'One control among others: FlowRule can run TruScope, your antivirus and your sandbox on the same file.',5.85,'q'));
+ [['Office','DOCX XLSX PPTX'],['PDF','PDF files'],['Image','JPG PNG']].forEach((f,k)=>{const y=2.1+k*1.0;names.push(box(s,0.7,y,2.4,0.85,f[0],f[1],'f'+k,{line:GREY}));arrow(s,3.2,y+0.42,0.9,'fa'+k,GREY);names[names.length-1].push('fa'+k);});
+ names.push(box(s,4.2,2.1,3.0,2.85,'TruScope','Anti Malware Engine','e',{line:GOLD,fill:'1A1608',col:GOLD,fs:24,scol:STEEL}));
+ arrow(s,7.3,3.5,1.2,'ev');names.push(['ev']);
+ names.push(box(s,8.6,2.1,3.6,1.2,'Clean','the file continues to the next step','v1',{line:GRN,col:GRN}));names.push(box(s,8.6,3.75,3.6,1.2,'Blocked','the file is held and the reason is logged','v2',{line:RED,col:RED}));
+ [['Office, PDF and images',0.7],['Verdict goes to FlowRule',4.75],['Runs beside your antivirus and sandbox',8.8]].forEach((q,i)=>{names.push(pill(s,q[1],5.2,3.8,q[0],'i'+i,STEEL));});
+ names.push(strip(s,'One control among others: FlowRule can run TruScope, your antivirus and your sandbox on the same file.',5.95,'q'));
  cl(N,names);}

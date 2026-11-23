@@ -1,15 +1,13 @@
 // ---- scenarios
 function scen(c){const s=ns('SCENARIO  |  '+c.kick,c.title,c.msg,NOTE(c.talk,c.proof,c.obj),{fs:c.fs||28});const names=[];
- scene(s,c.scene,3.5,2.0,6.3,3.75);
- const card=(x,lbl,txt,col,k)=>{s.addShape(pres.ShapeType.roundRect,{x,y:2.15,w:2.9,h:3.4,fill:{color:CARD},line:{color:col,width:1.5},rectRadius:0.12,objectName:k+'c'});
-  T(s,lbl,{x:x+0.22,y:2.32,w:2.5,h:0.3,fontSize:12,bold:true,color:col,charSpacing:3,objectName:k+'l'});T(s,txt,{x:x+0.22,y:2.75,w:2.5,h:2.7,fontSize:15,valign:'top',objectName:k+'t'});return [k+'c',k+'l',k+'t'];};
+ const P=scene(s,c.scene,3.5,2.0,6.3,3.75);
+ const card=(x,lbl,txt,col,k)=>{s.addShape(pres.ShapeType.roundRect,{x,y:2.15,w:2.9,h:3.6,fill:{color:CARD},line:{color:col,width:1.5},rectRadius:0.12,objectName:k+'c'});
+  T(s,lbl,{x:x+0.22,y:2.32,w:2.5,h:0.3,fontSize:12,bold:true,color:col,charSpacing:3,objectName:k+'l'});T(s,txt,{x:x+0.22,y:2.75,w:2.5,h:2.9,fontSize:15,valign:'top',objectName:k+'t'});return [k+'c',k+'l',k+'t'];};
  names.push(card(0.5,'TODAY',c.before,GREY,'b'));
- const sc=['scene'];
- T(s,c.caps[0][1],{x:3.5,y:5.8,w:3.1,h:0.3,fontSize:13,bold:true,color:c.caps[0][2],charSpacing:2,objectName:'zs'});sc.push('zs');
- T(s,c.caps[1][1],{x:6.4,y:5.8,w:3.4,h:0.3,fontSize:13,bold:true,color:c.caps[1][2],charSpacing:2,align:'right',objectName:'zd'});sc.push('zd');
+ const sc=['scene',...bcap(s,P,'b')];
  names.push(sc);
  names.push(card(9.93,'WITH THE GATEWAY',c.after,GOLD,'a'));
- names.push(strip(s,c.cross,6.3,'q'));
+ names.push(strip(s,c.cross,6.05,'q'));
  cl(N,names);}
 const SC=[
 {kick:'SOFTWARE UPDATES FOR OT',title:'Bring software updates into OT without a USB stick',msg:'Patches reach the plant through a checked, logged and one-way path.',scene:'gw_s25',

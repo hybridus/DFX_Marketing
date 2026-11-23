@@ -32,7 +32,9 @@ function cards(s,items,o){const n=items.length,cols=o.cols||n,rowsN=Math.ceil(n/
 function strip(s,txt,y,p,col){s.addShape(pres.ShapeType.roundRect,{x:0.7,y,w:11.9,h:0.6,fill:{color:'10141A'},line:{color:col||'2A2F36',width:1},rectRadius:0.08,objectName:p+'s'});
  T(s,txt,{x:0.95,y,w:11.4,h:0.6,fontSize:14,color:STEEL,valign:'middle',objectName:p+'st'});return [p+'s',p+'st'];}
 // scene placement: returns P(anchor,dx,dy) in slide inches
-function scene(s,name,x,y,w,h){const A=JSON.parse(fs.readFileSync(path.join(ST,name+'.json'),'utf8'));img(s,name,x,y,w,h,'scene');const [px,py]=png(name),k=Math.min(w/px,h/py),ox=x+(w-px*k)/2,oy=y+(h-py*k)/2;return (n,dx,dy)=>[ox+A[n][0]*k+(dx||0),oy+A[n][1]*k+(dy||0)];}
+function scene(s,name,x,y,w,h){const A=JSON.parse(fs.readFileSync(path.join(ST,name+'.json'),'utf8'));img(s,name,x,y,w,h,'scene');const [px,py]=png(name),k=Math.min(w/px,h/py),ox=x+(w-px*k)/2,oy=y+(h-py*k)/2;
+ const P=(n,dx,dy)=>[ox+A[n][0]*k+(dx||0),oy+A[n][1]*k+(dy||0)];P.blocks=(A._blocks||[]).map(b=>[ox+b[0]*k,oy+b[1]*k,b[2]]);return P;}
+function bcap(s,P,p,skip){const out=[];P.blocks.forEach((b,i)=>{if(skip&&skip.includes(b[2]))return;const w=Math.max(1.0,b[2].length*0.105+0.3);T(s,b[2],{x:b[0]-w/2,y:b[1]-0.36,w,h:0.28,fontSize:12,bold:true,color:STEEL,align:'center',valign:'middle',fill:{color:'0B0D10',transparency:25},objectName:p+'bc'+i});out.push(p+'bc'+i);});return out;}
 function dot(s,P,anchor,num,p,dx,dy){const [mx,my]=P(anchor,dx||0,dy||0);s.addShape(pres.ShapeType.ellipse,{x:mx-0.2,y:my-0.2,w:0.4,h:0.4,fill:{color:GOLD},line:{color:'0B0D10',width:1.5},objectName:p+'m'});T(s,num,{x:mx-0.2,y:my-0.2,w:0.4,h:0.4,fontSize:13,bold:true,color:'0B0D10',align:'center',valign:'middle',objectName:p+'mt'});return [p+'m',p+'mt'];}
 function zlab(s,P,anchor,txt,col,p,dx,dy,w,al){const [x,y]=P(anchor,dx||0,dy||0);T(s,txt,{x:al==='right'?x-w:(al==='center'?x-w/2:x),y,w,h:0.3,fontSize:13,bold:true,color:col,charSpacing:2,align:al||'left',valign:'middle',objectName:p});return [p];}
 function pill(s,x,y,w,txt,p,col){s.addShape(pres.ShapeType.roundRect,{x,y,w,h:0.4,fill:{color:'10141A'},line:{color:col||GOLD,width:1.25},rectRadius:0.08,objectName:p+'p'});T(s,txt,{x,y,w,h:0.4,fontSize:13,bold:true,color:col||GOLD,align:'center',valign:'middle',objectName:p+'pt'});return [p+'p',p+'pt'];}
@@ -54,7 +56,7 @@ const K='DFX UNIDIRECTIONAL GATEWAY  |  ';
 // ---- 2 Hero
 {const A=JSON.parse(fs.readFileSync(path.join(ST,'gw_scene.json'),'utf8'));
  const s=ns(K+'IN YOUR ENVIRONMENT','It works in your environment from day one','Proof on your own systems, in one session. Nothing is rebuilt around it.',
- NOTE('Open on the working system, not on the diode. Say what you are about to do: sign in with a company account, send a file, watch your sandbox return a verdict, open the transfer log, pull a value from an OPC server. Then do it, one step per click, and say only what is on screen. The diode comes after the proof. There are two gateways, one per direction: one carries data out of OT, the other carries updates in.','A working session on your own systems. We need an Active Directory service account, the address of your sandbox, a syslog target and the address of an OPC server.','We already have a sandbox. -> Keep it. The Gateway calls it.'),{th:0.85});
+ NOTE('Open on the working system, not on the diode. Say what you are about to do: sign in with a company account, send a file, watch your sandbox return a verdict, open the transfer log, pull a value from an OPC server. Then do it, one step per click, and say only what is on screen. The diode comes after the proof. There are two gateways, one per direction: one carries data out of OT, the other carries data in.','A working session on your own systems. We need an Active Directory service account, the address of your sandbox, a syslog target and the address of an OPC server.','We already have a sandbox. -> Keep it. The Gateway calls it.'),{th:0.85});
  const SX=0.3,SY=1.9,SW=9.0,SH=5.0;img(s,'gw_scene',SX,SY,SW,SH,'scene');
  const [px,py]=png('gw_scene'),k=Math.min(SW/px,SH/py),ox=SX+(SW-px*k)/2,oy=SY+(SH-py*k)/2,P=(n,dx,dy)=>[ox+A[n][0]*k+(dx||0),oy+A[n][1]*k+(dy||0)];
  {const [a1,b1]=P('zot');T(s,'OT NETWORK',{x:0.35,y:b1+0.5,w:3.2,h:0.3,fontSize:13,bold:true,color:BL.OT,charSpacing:2,objectName:'zOT'});
@@ -70,7 +72,7 @@ const K='DFX UNIDIRECTIONAL GATEWAY  |  ';
   const cap={ad:'Active Directory',file:'File source',sbx:'Your sandbox',siem:'SIEM',opc:'OPC server'}[st[3]];
   T(s,cap,{x:mx+0.25,y:my-0.14,w:1.6,h:0.28,fontSize:13,bold:true,color:STEEL,valign:'middle',objectName:'cap'+i});
   names.push(['sc'+i,'sn'+i,'snt'+i,'stt'+i,'mk'+i,'mkt'+i,'cap'+i]);});
- [['A','gw','OT to corporate',5.75],['B','gw2','corporate to OT, for updates',6.2]].forEach((q,i)=>{const [mx,my]=P(q[1],0.1,0.3);s.addShape(pres.ShapeType.ellipse,{x:mx-0.2,y:my-0.2,w:0.4,h:0.4,fill:{color:'F5F7FA'},line:{color:'0B0D10',width:1.5},objectName:'gm'+i});T(s,q[0],{x:mx-0.2,y:my-0.2,w:0.4,h:0.4,fontSize:13,bold:true,color:'0B0D10',align:'center',valign:'middle',objectName:'gmt'+i});
+ [['A','gw','OT to corporate',5.75],['B','gw2','corporate to OT',6.2]].forEach((q,i)=>{const [mx,my]=P(q[1],0.1,0.3);s.addShape(pres.ShapeType.ellipse,{x:mx-0.2,y:my-0.2,w:0.4,h:0.4,fill:{color:'F5F7FA'},line:{color:'0B0D10',width:1.5},objectName:'gm'+i});T(s,q[0],{x:mx-0.2,y:my-0.2,w:0.4,h:0.4,fontSize:13,bold:true,color:'0B0D10',align:'center',valign:'middle',objectName:'gmt'+i});
   s.addShape(pres.ShapeType.roundRect,{x:0.4,y:q[3],w:3.6,h:0.36,fill:{color:'1A1608'},line:{color:GOLD,width:1.25},rectRadius:0.08,objectName:'gp'+i});T(s,[{text:q[0]+'  ',options:{bold:true,color:'F5F7FA'}},{text:'Gateway: '+q[2],options:{bold:true,color:GOLD}}],{x:0.55,y:q[3],w:3.4,h:0.36,fontSize:12,valign:'middle',objectName:'gpt'+i});names.push(['gm'+i,'gmt'+i,'gp'+i,'gpt'+i]);});
  cl(N,names);}
 
@@ -79,8 +81,8 @@ const K='DFX UNIDIRECTIONAL GATEWAY  |  ';
  NOTE('Start with the problem: every normal connection can be used in both directions, including by an attacker. Then the product: a transmit unit on one side, a receive unit on the other, one fibre between them. There is no return path to attack. Say what disappears: command and control, data theft over a return channel, remote exploits of the protected side. Keep it under two minutes.','The absence of a return fibre can be checked by eye.','Can it be reversed in software? -> No. There is no transmitter on the receiving side to reverse.'));
  const P=scene(s,'gw_diode',0.4,1.95,7.7,4.0);
  const names=[];
- names.push(zlab(s,P,'tx','TRANSMIT UNIT',BL.OT,'t1',-1.0,1.05,2.6));
- names.push(zlab(s,P,'rx','RECEIVE UNIT',BL.Cls,'t2',-3.4,0.3,2.6,'right'));
+ names.push(zlab(s,P,'tx','TRANSMIT UNIT',GOLD,'t1',0,-0.85,2.4,'center'));
+ names.push(zlab(s,P,'rx','RECEIVE UNIT',GOLD,'t2',0.5,-0.85,2.4,'center'));
  names.push(...rowsR(s,[['The problem','Every network link carries traffic both ways. An attacker uses the return path to give commands and to take data out.'],['What it does','A transmit unit on one network, a receive unit on the other, one fibre between them. Nothing is built to send back.'],['What disappears','Command and control, data theft over a return channel and remote attacks on the protected side have no path to travel.']],8.4,2.0,4.4,1.3,'r',14));
  names.push(killer(s,'You can see it. One fibre, one direction.',0.7,6.05,11.9,'k'));
  cl(N,[['scene'],...names]);}
@@ -89,13 +91,13 @@ const K='DFX UNIDIRECTIONAL GATEWAY  |  ';
 {const s=ns(K+'INDEPENDENT ASSURANCE','One fibre, one direction, certified','The isolation is physical, and independent bodies have looked at it.',
  NOTE('Walk the diagram left to right: transmit unit, one fibre, receive unit, and the dotted line that is not there. Then the two assurance points. Common Criteria EAL4+ is a certification of the products; read the certificate numbers if asked. Say the Gartner wording as written and no more: it is a listing, not an endorsement.','Common Criteria EAL4+ certificates 21.0.03.0.00.0/TSE-CCCS-103 and TSE-CCCS-86. Gartner Cyber Physical Security Hype Cycle, 2024 to 2026, Sample Vendor.','Which product holds which certificate? -> The certificate documents can be shared on request.'));
  const names=[];
- names.push(box(s,0.9,2.1,2.9,1.1,'Transmit unit','sending network','tx',{line:BL.OT}));
- arrow(s,3.95,2.65,2.9,'fib');names.push(['fib','fibT']);T(s,'one fibre, one direction',{x:3.95,y:2.2,w:2.9,h:0.3,fontSize:12,bold:true,color:GOLD,align:'center',objectName:'fibT'});
- names.push(box(s,7.0,2.1,2.9,1.1,'Receive unit','receiving network','rx',{line:BL.Cls}));
- s.addShape(pres.ShapeType.line,{x:4.1,y:3.55,w:2.9,h:0,line:{color:GREY,width:1.75,dashType:'dash'},objectName:'noret'});T(s,'no return fibre',{x:4.1,y:3.65,w:2.9,h:0.3,fontSize:12,bold:true,color:GREY,align:'center',objectName:'noretT'});names.push(['noret','noretT']);
- s.addShape(pres.ShapeType.roundRect,{x:10.25,y:2.1,w:2.35,h:1.85,fill:{color:'1A1608'},line:{color:GOLD,width:1.5},rectRadius:0.1,objectName:'chk'});
- T(s,[{text:'You can check it',options:{bold:true,fontSize:15,color:GOLD,breakLine:true}},{text:'One fibre goes out. No fibre comes back.',options:{fontSize:13,color:STEEL}}],{x:10.4,y:2.1,w:2.1,h:1.85,valign:'middle',objectName:'chkT'});names.push(['chk','chkT']);
- const C=cards(s,[{t:'Hardware isolation',d:'The receiving side has no transmitter, so it cannot be reversed in software.'},{t:'Common Criteria EAL4+',d:'Certificates 21.0.03.0.00.0 / TSE-CCCS-103 and TSE-CCCS-86.',hi:true},{t:'Gartner listing',d:'Named as a Sample Vendor in the Cyber Physical Security Hype Cycle, 2024 to 2026. This is not an endorsement.'}],{x:0.7,y:4.3,w:11.9,h:2.35,cols:3,p:'k',tf:19,df:14});
+ names.push(box(s,0.9,2.1,2.9,1.4,'Transmit unit','sending network','tx',{line:BL.OT}));
+ arrow(s,3.95,2.55,2.9,'fib');names.push(['fib','fibT']);T(s,'one fibre, one direction',{x:3.95,y:2.15,w:2.9,h:0.3,fontSize:12,bold:true,color:GOLD,align:'center',objectName:'fibT'});
+ names.push(box(s,7.0,2.1,2.9,1.4,'Receive unit','receiving network','rx',{line:BL.Cls}));
+ s.addShape(pres.ShapeType.line,{x:3.95,y:3.0,w:2.9,h:0,line:{color:GREY,width:2,dashType:'dash',beginArrowType:'triangle'},objectName:'noret'});T(s,'X',{x:5.2,y:2.82,w:0.4,h:0.36,fontSize:20,bold:true,color:RED,align:'center',valign:'middle',objectName:'noretX'});T(s,'no return fibre',{x:3.95,y:3.15,w:2.9,h:0.3,fontSize:12,bold:true,color:GREY,align:'center',objectName:'noretT'});names.push(['noret','noretX','noretT']);
+ s.addShape(pres.ShapeType.roundRect,{x:10.25,y:2.1,w:2.35,h:1.4,fill:{color:'1A1608'},line:{color:GOLD,width:1.5},rectRadius:0.1,objectName:'chk'});
+ T(s,[{text:'You can check it',options:{bold:true,fontSize:15,color:GOLD,breakLine:true}},{text:'One fibre goes out. No fibre comes back.',options:{fontSize:13,color:STEEL}}],{x:10.4,y:2.1,w:2.1,h:1.4,valign:'middle',objectName:'chkT'});names.push(['chk','chkT']);
+ const C=cards(s,[{t:'Hardware isolation',d:'The receiving side has no transmitter, so it cannot be reversed in software.'},{t:'Common Criteria EAL4+',d:'Certificates 21.0.03.0.00.0 / TSE-CCCS-103 and TSE-CCCS-86.',hi:true},{t:'Gartner listing',d:'Named as a Sample Vendor in the Cyber Physical Security Hype Cycle, 2024 to 2026. This is not an endorsement.'}],{x:0.7,y:3.9,w:11.9,h:2.75,cols:3,p:'k',tf:19,df:15});
  cl(N,[...names,...C]);}
 
 // ---- 5 Two directions
@@ -103,8 +105,8 @@ const K='DFX UNIDIRECTIONAL GATEWAY  |  ';
  NOTE('Real work needs data in both directions: readings out of OT, updates and files into OT. Do not make one device carry both. One gateway per direction, each one way, each with its own policy. Point at A and B on the picture and say which way each one carries data.','The two units are separate and each one has one direction. The picture matches the working session setup.','Why not one device for both? -> Then it would carry both directions, and the one-way guarantee would be gone.'));
  const P=scene(s,'gw_twoway',0.3,1.95,7.9,4.0);const names=[];
  names.push(dot(s,P,'a','A','a',0.1,0.4));names.push(dot(s,P,'b','B','b',0.1,0.4));
- names.push(zlab(s,P,'lt','OT NETWORK',BL.OT,'zo',-1.4,-0.9,2.5));names.push(zlab(s,P,'rt','CORPORATE NETWORK',BL.Corp,'zc',-1.6,1.35,3.4));
- names.push(...rowsR(s,[['A: out of OT','Gateway A carries readings, files and logs from OT to the corporate network.'],['B: into OT','Gateway B carries updates and files into OT. It is a separate unit.'],['Why two','No single device carries both directions, so each path keeps its one-way guarantee.']],8.5,2.0,4.3,1.3,'r',14));
+ names.push(bcap(s,P,'b'));
+ names.push(...rowsR(s,[['A: out of OT','Gateway A carries readings, files and logs from OT to the corporate network.'],['B: into OT','Gateway B carries files and data from the corporate network into OT. It is a separate unit.'],['Why two','No single device carries both directions, so each path keeps its one-way guarantee.']],8.5,2.0,4.3,1.3,'r',14));
  names.push(killer(s,'One gateway per direction. Each path is physically one way.',0.7,6.05,11.9,'k'));
  cl(N,[['scene'],...names]);}
 
@@ -112,6 +114,7 @@ const K='DFX UNIDIRECTIONAL GATEWAY  |  ';
 {const s=ns(K+'A MODEL FOR EVERY SITE','A model for every site','From the server room to a plant cabinet. You pick the model that fits the site.',
  NOTE('Name the family and stop: Enterprise, Small, Mini, Fusion Core and Guard. Do not give throughput numbers; they are confirmed per model, and the selection table for the customer site is shared after the design workshop. The picture shows the Gateway and the Guard.','Model names as listed. Throughput is confirmed per model before it is quoted.','How fast is it? -> It depends on the model. We confirm it for your site in the design workshop.'));
  const P=scene(s,'gw_family',0.4,2.4,6.9,2.7);const names=[];
+ names.push(zlab(s,P,'gw','DFX UNIDIRECTIONAL GATEWAY',GOLD,'zg',0,-0.75,3.4,'center'));names.push(zlab(s,P,'guard','DFX DDX GUARD',GOLD,'zd',0.9,0.0,2.2));
  names.push(...rowsR(s,[['Sized to the site','From the server room to a plant cabinet or a small site.'],['The Gateway','Moves data one way and applies the policy. Pairs of gateways carry both directions.'],['The Guard','A 1U chassis that holds two systems, with dual power supplies.']],7.7,2.0,5.1,1.1,'r',13));
  const chips=['Enterprise','Small','Mini','Fusion Core','Guard'];
  chips.forEach((c,i)=>{names.push(pill(s,0.7+i*1.4,5.25,1.3,c,'m'+i,i===0?GOLD:STEEL));});
@@ -172,7 +175,7 @@ const K='DFX UNIDIRECTIONAL GATEWAY  |  ';
 {const s=ns(K+'APPROVALS','Approvals follow your org chart','The people who approve a file are the people your Active Directory says should.',
  NOTE('Show the approver group in the directory, then a file waiting, then the approval. The point is that nobody maintains a second list of approvers: the gateway reads the groups you already manage. When someone changes role in the directory, the approval right changes with them.','Approver groups are read from Active Directory. The approval and the approver are in the transfer log.','Can one person approve their own file? -> Your policy decides; the design workshop sets it with you.'));
  const P=scene(s,'gw_approval',0.3,1.95,7.9,4.0);const names=[];
- names.push(dot(s,P,'req','1','m1',0,-0.3));names.push(dot(s,P,'ad','2','m2',0,-0.3));names.push(dot(s,P,'appr','3','m3',0,-0.3));
+ names.push(bcap(s,P,'b',['ACTIVE DIRECTORY']));names.push(dot(s,P,'req','1','m1',0,-0.3));names.push(dot(s,P,'ad','2','m2',0,-0.3));names.push(dot(s,P,'appr','3','m3',0,-0.3));
  names.push(...rowsR(s,[['1  The requester','Sends a file that needs a decision. It is suspended before it crosses.'],['2  Active Directory','Approver groups come from the directory. Nothing new to maintain.'],['3  The approver','The decision and the person are written to the transfer log.']],8.5,2.0,4.3,1.3,'r',14));
  names.push(killer(s,'Your org chart decides who approves.',0.7,6.05,11.9,'k'));
  cl(N,[['scene'],...names]);}
@@ -181,29 +184,31 @@ const K='DFX UNIDIRECTIONAL GATEWAY  |  ';
 {const s=ns(K+'YOUR TOOLS','Bring your own sandbox and CDR engine','Keep what you run today. The gateway calls it and waits for the verdict.',
  NOTE('This answers the first objection in every IT meeting: we already have a sandbox. Keep it. The gateway sends the file to it and waits. Our own DFX Malware Mitigation Sandbox and DFX TruCDR are there if you want them. Do not say which is better; say that the policy is the same either way.','Third-party sandboxes and disarm engines are called through their interfaces; the working session shows it with your tool.','We already have a sandbox. -> Keep it. The Gateway calls it.'));
  const P=scene(s,'gw_docks',0.3,1.95,7.9,4.0);const names=[];
- names.push(dot(s,P,'s1','1','m1',0,-0.3));names.push(dot(s,P,'s2','2','m2',0,-0.3)); names.push(...rowsR(s,[['1  Your sandbox','The gateway calls the sandbox you already run, or ours: DFX Malware Mitigation Sandbox.'],['2  Your CDR engine','The gateway calls your CDR engine, or ours: DFX TruCDR.'],['Verdict first','A file crosses only after the verdict comes back clean.']],8.5,2.0,4.3,1.3,'r',14));
+ names.push(bcap(s,P,'b'));names.push(dot(s,P,'s3','1','m1',-1.0,-0.3));names.push(dot(s,P,'s4','2','m2',-1.0,-0.3));names.push(zlab(s,P,'s1','DFX MALWARE MITIGATION SANDBOX',GOLD,'z1',0.3,-0.5,4.2));names.push(zlab(s,P,'s2','DFX TRUCDR',GOLD,'z2',0.4,-0.4,2.4)); names.push(...rowsR(s,[['1  Your sandbox','The gateway calls the sandbox you already run, or ours: DFX Malware Mitigation Sandbox.'],['2  Your CDR engine','The gateway calls your CDR engine, or ours: DFX TruCDR.'],['Verdict first','A file crosses only after the verdict comes back clean.']],8.5,2.0,4.3,1.3,'r',14));
  names.push(killer(s,'Your sandbox, your CDR engine. We fit in.',0.7,6.05,11.9,'k'));
  cl(N,[['scene'],...names]);}
 
 // ---- 15 TruScope
-{const s=ns(K+'OUR OWN ENGINE','Our own detection engine: TruScope Anti Malware Engine','Built by DataFlowX for the formats people exchange every day: Office files, PDF and images.',
- NOTE('Say it simply: this is our own engine, and it is focused on the formats that cross most often. It is one control among others in FlowRule; you can use it alone or with your engines. Do not compare detection rates; say that the working session runs it on the customer files.','TruScope Anti Malware Engine, developed by DataFlowX.','How does it compare to our antivirus? -> Use both. FlowRule can run several controls on the same file.'),{fs:26});
+{const s=ns(K+'OUR OWN ENGINE','Our own detection engine: TruScope Anti Malware Engine','Made for the formats people exchange every day: Office files, PDF and images.',
+ NOTE('Say it simply: this is our own engine, and it is focused on Office files, PDF and images. It is one control among others in FlowRule; you can use it alone or with your engines. Do not compare detection rates; say that the working session runs it on the customer files.','TruScope Anti Malware Engine, part of the DataFlowX product line.','How does it compare to our antivirus? -> Use both. FlowRule can run several controls on the same file.'),{fs:26});
  const names=[];
- [['Office','DOCX XLSX PPTX'],['PDF','PDF files'],['Image','JPG PNG']].forEach((f,k)=>{const y=2.2+k*1.15;names.push(box(s,0.7,y,2.4,0.95,f[0],f[1],'f'+k,{line:GREY}));arrow(s,3.2,y+0.47,0.9,'fa'+k,GREY);names[names.length-1].push('fa'+k);});
- names.push(box(s,4.2,2.2,3.0,3.25,'TruScope','Anti Malware Engine, developed by DataFlowX','e',{line:GOLD,fill:'1A1608',col:GOLD,fs:24,scol:STEEL}));
- arrow(s,7.3,3.8,1.2,'ev');names.push(['ev']);
- names.push(box(s,8.6,2.2,3.6,1.35,'Clean','the file continues to the next step','v1',{line:GRN,col:GRN}));names.push(box(s,8.6,4.1,3.6,1.35,'Blocked','the file is held and the reason is logged','v2',{line:RED,col:RED}));
- names.push(strip(s,'One control among others: FlowRule can run TruScope, your antivirus and your sandbox on the same file.',5.85,'q'));
+ [['Office','DOCX XLSX PPTX'],['PDF','PDF files'],['Image','JPG PNG']].forEach((f,k)=>{const y=2.1+k*1.0;names.push(box(s,0.7,y,2.4,0.85,f[0],f[1],'f'+k,{line:GREY}));arrow(s,3.2,y+0.42,0.9,'fa'+k,GREY);names[names.length-1].push('fa'+k);});
+ names.push(box(s,4.2,2.1,3.0,2.85,'TruScope','Anti Malware Engine','e',{line:GOLD,fill:'1A1608',col:GOLD,fs:24,scol:STEEL}));
+ arrow(s,7.3,3.5,1.2,'ev');names.push(['ev']);
+ names.push(box(s,8.6,2.1,3.6,1.2,'Clean','the file continues to the next step','v1',{line:GRN,col:GRN}));names.push(box(s,8.6,3.75,3.6,1.2,'Blocked','the file is held and the reason is logged','v2',{line:RED,col:RED}));
+ [['Office, PDF and images',0.7],['Verdict goes to FlowRule',4.75],['Runs beside your antivirus and sandbox',8.8]].forEach((q,i)=>{names.push(pill(s,q[1],5.2,3.8,q[0],'i'+i,STEEL));});
+ names.push(strip(s,'One control among others: FlowRule can run TruScope, your antivirus and your sandbox on the same file.',5.95,'q'));
  cl(N,names);}
 // ---- 16 Archive and quarantine
 {const s=ns(K+'ARCHIVE AND QUARANTINE','Held files and archives stay in your hands','A file that fails a control is held with the reason. Nothing disappears without a record.',
- NOTE('Show the quarantine list: the file, the control that stopped it, the time. Say that the gateway does not silently drop things: a held file is visible to the people who own the policy. Archive is for the opposite need, keeping a copy of what crossed. The screen on the slide is an illustration; the working session shows the real one.','Held files and archived files are visible in the working session.'));
+ NOTE('Show the quarantine list: the file, the control that stopped it, the time. Say that the gateway does not silently drop things: a held file is visible to the people who own the policy. Archive is for the opposite need, keeping a copy of what crossed. The slide shows sample entries; the working session shows the real screen.','Held files and archived files are visible in the working session.'));
  const names=[];
  s.addShape(pres.ShapeType.roundRect,{x:0.7,y:2.05,w:7.2,h:4.1,fill:{color:'10141A'},line:{color:'2A2F36',width:1.25},rectRadius:0.1,objectName:'win'});
  s.addShape(pres.ShapeType.rect,{x:0.7,y:2.05,w:7.2,h:0.5,fill:{color:'1C2128'},line:{color:'2A2F36',width:1},objectName:'bar'});
- T(s,'Quarantine',{x:0.95,y:2.05,w:3,h:0.5,fontSize:14,bold:true,valign:'middle',objectName:'wt'});T(s,'ILLUSTRATION',{x:5.5,y:2.05,w:2.2,h:0.5,fontSize:12,bold:true,color:GREY,align:'right',valign:'middle',objectName:'ill'});
- names.push(['win','bar','wt','ill']);
+ T(s,'Quarantine',{x:0.95,y:2.05,w:3,h:0.5,fontSize:14,bold:true,valign:'middle',objectName:'wt'});
+
  const H=[['FILE',0.95,2.6],['STOPPED BY',3.65,2.3],['STATE',6.05,1.7]];H.forEach((h,i)=>T(s,h[0],{x:h[1],y:2.7,w:h[2],h:0.3,fontSize:12,bold:true,color:GOLD,charSpacing:2,objectName:'h'+i}));
+ names.push(['win','bar','wt','h0','h1','h2']);
  const R=[['supplier_drawing.pdf','File Type','Held'],['update_pack.zip','Archive Depth','Held'],['report_Q3.xlsx','Sandbox Scan','Held'],['firmware.bin','Password Protection','Held']];
  R.forEach((r,i)=>{const y=3.1+i*0.7;s.addShape(pres.ShapeType.roundRect,{x:0.85,y,w:6.9,h:0.58,fill:{color:CARD},line:{color:'2A2F36',width:1},rectRadius:0.06,objectName:'r'+i});
   T(s,r[0],{x:0.95,y,w:2.6,h:0.58,fontSize:13,valign:'middle',objectName:'rf'+i});T(s,r[1],{x:3.65,y,w:2.3,h:0.58,fontSize:13,color:STEEL,valign:'middle',objectName:'rc'+i});
@@ -214,18 +219,17 @@ const K='DFX UNIDIRECTIONAL GATEWAY  |  ';
 
 // ---- 17 Portal
 {const s=ns(K+'YOUR PORTAL, YOUR BRAND','Your portal, your brand','People upload through a page that looks like your organisation and follows your policy.',
- NOTE('Use this for teams that exchange files with people who are not technical: suppliers, contractors, colleagues. They sign in, drop the file, and see the outcome. It looks like your organisation, not like ours. The picture is an illustration; the working session shows the real page.','The portal is shown in the working session with your own logo and colours.','Is it another system to maintain? -> No. Sign-in uses Active Directory and the files follow the same FlowRule as every other entry.'));
+ NOTE('Use this for teams that exchange files with people who are not technical: suppliers, contractors, colleagues. They sign in, drop the file, and see the outcome. It looks like your organisation, not like ours. The slide shows a sample page; the working session shows the real one.','The portal is shown in the working session with your own logo and colours.','Is it another system to maintain? -> No. Sign-in uses Active Directory and the files follow the same FlowRule as every other entry.'));
  const names=[];
  s.addShape(pres.ShapeType.roundRect,{x:0.7,y:2.05,w:7.2,h:4.5,fill:{color:'10141A'},line:{color:'2A2F36',width:1.25},rectRadius:0.1,objectName:'win'});
  s.addShape(pres.ShapeType.rect,{x:0.7,y:2.05,w:7.2,h:0.5,fill:{color:'1C2128'},line:{color:'2A2F36',width:1},objectName:'bar'});
  [0,1,2].forEach(i=>s.addShape(pres.ShapeType.ellipse,{x:0.95+i*0.26,y:2.22,w:0.16,h:0.16,fill:{color:'3A4350'},line:{color:'3A4350',width:0.5},objectName:'d'+i}));
- T(s,'ILLUSTRATION',{x:5.5,y:2.05,w:2.2,h:0.5,fontSize:12,bold:true,color:GREY,align:'right',valign:'middle',objectName:'ill'});
  s.addShape(pres.ShapeType.roundRect,{x:1.0,y:2.8,w:1.9,h:0.5,fill:{color:'1C2128'},line:{color:GREY,width:1,dashType:'dash'},rectRadius:0.06,objectName:'logo'});T(s,'YOUR LOGO',{x:1.0,y:2.8,w:1.9,h:0.5,fontSize:12,bold:true,color:GREY,align:'center',valign:'middle',objectName:'logoT'});
  T(s,'Secure file transfer',{x:1.0,y:3.5,w:5.5,h:0.5,fontSize:22,bold:true,objectName:'pt'});
  T(s,'Signed in as a colleague through your company account',{x:1.0,y:4.0,w:6.5,h:0.3,fontSize:13,color:MU,objectName:'ps'});
  s.addShape(pres.ShapeType.roundRect,{x:1.0,y:4.5,w:6.6,h:1.2,fill:{type:'none'},line:{color:GOLD,width:1.5,dashType:'dash'},rectRadius:0.1,objectName:'drop'});T(s,'Drop a file here',{x:1.0,y:4.5,w:6.6,h:1.2,fontSize:16,color:STEEL,align:'center',valign:'middle',objectName:'dropT'});
  s.addShape(pres.ShapeType.roundRect,{x:5.7,y:5.85,w:1.9,h:0.5,fill:{color:GOLD},line:{color:GOLD,width:1},rectRadius:0.08,objectName:'btn'});T(s,'Send',{x:5.7,y:5.85,w:1.9,h:0.5,fontSize:14,bold:true,color:'0B0D10',align:'center',valign:'middle',objectName:'btnT'});
- names.push(['win','bar','d0','d1','d2','ill','logo','logoT','pt','ps','drop','dropT','btn','btnT']);
+ names.push(['win','bar','d0','d1','d2','logo','logoT','pt','ps','drop','dropT','btn','btnT']);
  names.push(...rowsR(s,[['Your branding','Your logo and your colours, so people trust the page.'],['Company sign-in','Users sign in with Active Directory.'],['One policy','Uploads follow the same FlowRule as every other entry.']],8.3,2.0,4.5,1.3,'q',14));
  cl(N,names);}
 
@@ -254,13 +258,14 @@ const K='DFX UNIDIRECTIONAL GATEWAY  |  ';
  cl(N,names);}
 // ---- 21 Logging
 {const s=ns(K+'EVIDENCE','Every transfer is logged, and the log goes where you need it','Who sent what, which rule applied, what the verdict was. In the gateway and in your SIEM.',
- NOTE('Open the log after the transfer you just made and read one line: time, entry, file, rule, outcome. That line is the answer to who decided this file could cross. Then say where it goes: Syslog and CEF to your SIEM, so security sees it where they already look. The screen on the slide is an illustration.','The transfer log and the event in the SIEM are both shown in the working session.','Can we send it to our SIEM? -> Yes, in Syslog and CEF.'));
+ NOTE('Open the log after the transfer you just made and read one line: time, entry, file, rule, outcome. That line is the answer to who decided this file could cross. Then say where it goes: Syslog and CEF to your SIEM, so security sees it where they already look. The slide shows sample entries.','The transfer log and the event in the SIEM are both shown in the working session.','Can we send it to our SIEM? -> Yes, in Syslog and CEF.'));
  const names=[];
  s.addShape(pres.ShapeType.roundRect,{x:0.7,y:2.05,w:8.1,h:4.3,fill:{color:'10141A'},line:{color:'2A2F36',width:1.25},rectRadius:0.1,objectName:'win'});
  s.addShape(pres.ShapeType.rect,{x:0.7,y:2.05,w:8.1,h:0.5,fill:{color:'1C2128'},line:{color:'2A2F36',width:1},objectName:'bar'});
- T(s,'Transfer log',{x:0.95,y:2.05,w:3,h:0.5,fontSize:14,bold:true,valign:'middle',objectName:'wt'});T(s,'ILLUSTRATION',{x:6.5,y:2.05,w:2.1,h:0.5,fontSize:12,bold:true,color:GREY,align:'right',valign:'middle',objectName:'ill'});
- names.push(['win','bar','wt','ill']);
+ T(s,'Transfer log',{x:0.95,y:2.05,w:3,h:0.5,fontSize:14,bold:true,valign:'middle',objectName:'wt'});
+
  const H=[['TIME',0.95,1.2],['ENTRY',2.2,1.4],['FILE',3.65,2.1],['RULE',5.8,1.6],['OUTCOME',7.45,1.2]];H.forEach((h,i)=>T(s,h[0],{x:h[1],y:2.7,w:h[2],h:0.3,fontSize:12,bold:true,color:GOLD,charSpacing:2,objectName:'h'+i}));
+ names.push(['win','bar','wt','h0','h1','h2','h3','h4']);
  const R=[['10:42:07','SFTP','drawing_rev4.pdf','Engineering','Allowed',GRN],['10:42:31','Portal','invoice.docx','Partners','Held',RED],['10:43:02','OPC UA','tag values','Plant data','Allowed',GRN],['10:43:40','SFTP','update_pack.zip','OT updates','Suspended',GOLD],['10:44:15','Syslog','site events','Log intake','Allowed',GRN]];
  R.forEach((r,i)=>{const y=3.1+i*0.62;s.addShape(pres.ShapeType.roundRect,{x:0.85,y,w:7.8,h:0.52,fill:{color:CARD},line:{color:'2A2F36',width:1},rectRadius:0.06,objectName:'r'+i});
   [[r[0],0.95,1.2],[r[1],2.2,1.4],[r[2],3.65,2.1],[r[3],5.8,1.6]].forEach((c,j)=>T(s,c[0],{x:c[1],y,w:c[2],h:0.52,fontSize:12,color:j===0?MU:STEEL,valign:'middle',objectName:'rc'+i+j}));
@@ -273,7 +278,7 @@ const K='DFX UNIDIRECTIONAL GATEWAY  |  ';
  NOTE('Name what the gateway connects to and what stays untouched. Directory for users and groups, Radius for access, NTP for time, Syslog and CEF to the SIEM, your firewall and IPS in front. Two gateways in active and passive give high availability, and one central management shows all of them. Nothing here needs a project of its own.','These integrations are on the integration checklist used in the working session.','Does it replace our firewall? -> No. A firewall is software, and software has had vulnerabilities. A Unidirectional Gateway isolates with hardware, on simple laws of physics. It sits next to your firewall and IPS.'));
  const P=scene(s,'gw_estate',0.3,1.95,8.3,4.6);const names=[];
  [['ad','Active Directory'],['radius','Radius'],['ntp','NTP'],['siem','SIEM'],['fw','Firewall and IPS'],['mgmt','Central management'],['ha','High availability']].forEach((q,i)=>{names.push(dot(s,P,q[0],String(i+1),'m'+i,0,-0.2));});
- const cap=['Active Directory','Radius','NTP','SIEM','Firewall and IPS','Central management','High availability'];[['ad',0.3,-0.12],['radius',0.3,-0.12],['ntp',0.3,-0.12],['siem',-1.9,0.3],['fw',-1.9,0.3],['mgmt',-0.9,0.3],['ha',-2.2,0.0]].forEach((q,i)=>{const [x,y]=P(q[0],q[1],q[2]);T(s,cap[i],{x:q[1]<0&&q[0]!=='mgmt'?x-0.0:x+(q[1]<0?0:0.15),y:y-0.15,w:1.9,h:0.3,fontSize:12,bold:true,color:STEEL,align:q[1]<0&&q[0]!=='mgmt'?'right':'left',valign:'middle',objectName:'cp'+i});names[i].push('cp'+i);});
+ const cap=['Active Directory','Radius','NTP','SIEM','Firewall and IPS','Central management','High availability'];[['ad',0.3,-0.12],['radius',0.3,-0.12],['ntp',0.3,-0.12],['siem',0.3,-0.12],['fw',0.3,-0.12],['mgmt',0.3,-0.12],['ha',0.3,0.4]].forEach((q,i)=>{const [x,y]=P(q[0],q[1],q[2]);T(s,cap[i],{x:q[1]<0&&q[0]!=='mgmt'?x-0.0:x+(q[1]<0?0:0.15),y:y-0.15,w:1.9,h:0.3,fontSize:12,bold:true,color:STEEL,align:q[1]<0&&q[0]!=='mgmt'?'right':'left',valign:'middle',objectName:'cp'+i});names[i].push('cp'+i);});
  names.push(...rowsR(s,[['1 to 3  Identity and time','Active Directory for users and groups, Radius for access, NTP for time.'],['4 and 5  Your tools','Syslog and CEF to your SIEM. Your firewall and IPS stay in front.'],['6 and 7  Operations','Central management for every gateway. Active and passive high availability.']],8.9,2.0,3.9,1.55,'r',14));
  cl(N,[['scene'],...names]);}
 
@@ -291,7 +296,7 @@ const K='DFX UNIDIRECTIONAL GATEWAY  |  ';
 
 // ---- 24 Fleet
 {const s=ns(K+'FLEET MANAGEMENT','One place to manage every gateway','Sites grow. The way you manage them does not have to change.',
- NOTE('For customers with more than one site, this is the slide that matters. One central management for every gateway: you see them together, you change them from one place. Say that high availability comes as an active and passive pair. Do not go into numbers of gateways; say that the design workshop sizes it.','Central management is shown in the working session. The picture is an illustration.','How many gateways can it manage? -> The design workshop sizes it for your sites.'));
+ NOTE('For customers with more than one site, this is the slide that matters. One central management for every gateway: you see them together, you change them from one place. Say that high availability comes as an active and passive pair. Do not go into numbers of gateways; say that the design workshop sizes it.','Central management is shown in the working session. The picture is a sample.','How many gateways can it manage? -> The design workshop sizes it for your sites.'));
  const names=[];
  const cmb=box(s,3.0,2.1,3.6,1.0,'Central management','every gateway, one place','cm',{line:GOLD,fill:'1A1608',col:GOLD});
  const G=[['Site A','active',GRN],['Site B','active',GRN],['Site C','active',GRN],['Site D','standby',GREY]];
@@ -300,21 +305,18 @@ const K='DFX UNIDIRECTIONAL GATEWAY  |  ';
   s.addShape(pres.ShapeType.roundRect,{x,y:4.0,w:1.9,h:1.6,fill:{color:CARD},line:{color:'2A2F36',width:1.25},rectRadius:0.1,objectName:'g'+k});
   s.addShape(pres.ShapeType.ellipse,{x:x+0.2,y:4.2,w:0.22,h:0.22,fill:{color:g[2]},line:{color:g[2],width:0.5},objectName:'dt'+k});
   T(s,g[0],{x:x+0.5,y:4.15,w:1.3,h:0.32,fontSize:15,bold:true,valign:'middle',objectName:'gn'+k});T(s,'DFX Unidirectional Gateway',{x:x+0.2,y:4.6,w:1.55,h:0.55,fontSize:12,color:STEEL,valign:'top',objectName:'gt'+k});T(s,g[1],{x:x+0.2,y:5.15,w:1.5,h:0.3,fontSize:12,color:g[2],bold:true,objectName:'gs'+k});names.push(['dr'+k,'g'+k,'dt'+k,'gn'+k,'gt'+k,'gs'+k]);});
- T(s,'ILLUSTRATION',{x:0.7,y:5.8,w:3,h:0.3,fontSize:12,bold:true,color:GREY,objectName:'ill'});names.push(['ill']);
  names.push(...rowsR(s,[['One place','Central management for every gateway in your estate.'],['Pairs stay up','Active and passive high availability.'],['Same feeds','Time from NTP, events to your SIEM.']],9.0,2.0,3.8,1.3,'q',14));
  cl(N,names);}
 // ---- scenarios
 function scen(c){const s=ns('SCENARIO  |  '+c.kick,c.title,c.msg,NOTE(c.talk,c.proof,c.obj),{fs:c.fs||28});const names=[];
- scene(s,c.scene,3.5,2.0,6.3,3.75);
- const card=(x,lbl,txt,col,k)=>{s.addShape(pres.ShapeType.roundRect,{x,y:2.15,w:2.9,h:3.4,fill:{color:CARD},line:{color:col,width:1.5},rectRadius:0.12,objectName:k+'c'});
-  T(s,lbl,{x:x+0.22,y:2.32,w:2.5,h:0.3,fontSize:12,bold:true,color:col,charSpacing:3,objectName:k+'l'});T(s,txt,{x:x+0.22,y:2.75,w:2.5,h:2.7,fontSize:15,valign:'top',objectName:k+'t'});return [k+'c',k+'l',k+'t'];};
+ const P=scene(s,c.scene,3.5,2.0,6.3,3.75);
+ const card=(x,lbl,txt,col,k)=>{s.addShape(pres.ShapeType.roundRect,{x,y:2.15,w:2.9,h:3.6,fill:{color:CARD},line:{color:col,width:1.5},rectRadius:0.12,objectName:k+'c'});
+  T(s,lbl,{x:x+0.22,y:2.32,w:2.5,h:0.3,fontSize:12,bold:true,color:col,charSpacing:3,objectName:k+'l'});T(s,txt,{x:x+0.22,y:2.75,w:2.5,h:2.9,fontSize:15,valign:'top',objectName:k+'t'});return [k+'c',k+'l',k+'t'];};
  names.push(card(0.5,'TODAY',c.before,GREY,'b'));
- const sc=['scene'];
- T(s,c.caps[0][1],{x:3.5,y:5.8,w:3.1,h:0.3,fontSize:13,bold:true,color:c.caps[0][2],charSpacing:2,objectName:'zs'});sc.push('zs');
- T(s,c.caps[1][1],{x:6.4,y:5.8,w:3.4,h:0.3,fontSize:13,bold:true,color:c.caps[1][2],charSpacing:2,align:'right',objectName:'zd'});sc.push('zd');
+ const sc=['scene',...bcap(s,P,'b')];
  names.push(sc);
  names.push(card(9.93,'WITH THE GATEWAY',c.after,GOLD,'a'));
- names.push(strip(s,c.cross,6.3,'q'));
+ names.push(strip(s,c.cross,6.05,'q'));
  cl(N,names);}
 const SC=[
 {kick:'SOFTWARE UPDATES FOR OT',title:'Bring software updates into OT without a USB stick',msg:'Patches reach the plant through a checked, logged and one-way path.',scene:'gw_s25',

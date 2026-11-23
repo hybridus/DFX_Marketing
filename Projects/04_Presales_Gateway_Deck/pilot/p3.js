@@ -1,12 +1,13 @@
 // ---- 16 Archive and quarantine
 {const s=ns(K+'ARCHIVE AND QUARANTINE','Held files and archives stay in your hands','A file that fails a control is held with the reason. Nothing disappears without a record.',
- NOTE('Show the quarantine list: the file, the control that stopped it, the time. Say that the gateway does not silently drop things: a held file is visible to the people who own the policy. Archive is for the opposite need, keeping a copy of what crossed. The screen on the slide is an illustration; the working session shows the real one.','Held files and archived files are visible in the working session.'));
+ NOTE('Show the quarantine list: the file, the control that stopped it, the time. Say that the gateway does not silently drop things: a held file is visible to the people who own the policy. Archive is for the opposite need, keeping a copy of what crossed. The slide shows sample entries; the working session shows the real screen.','Held files and archived files are visible in the working session.'));
  const names=[];
  s.addShape(pres.ShapeType.roundRect,{x:0.7,y:2.05,w:7.2,h:4.1,fill:{color:'10141A'},line:{color:'2A2F36',width:1.25},rectRadius:0.1,objectName:'win'});
  s.addShape(pres.ShapeType.rect,{x:0.7,y:2.05,w:7.2,h:0.5,fill:{color:'1C2128'},line:{color:'2A2F36',width:1},objectName:'bar'});
- T(s,'Quarantine',{x:0.95,y:2.05,w:3,h:0.5,fontSize:14,bold:true,valign:'middle',objectName:'wt'});T(s,'ILLUSTRATION',{x:5.5,y:2.05,w:2.2,h:0.5,fontSize:12,bold:true,color:GREY,align:'right',valign:'middle',objectName:'ill'});
- names.push(['win','bar','wt','ill']);
+ T(s,'Quarantine',{x:0.95,y:2.05,w:3,h:0.5,fontSize:14,bold:true,valign:'middle',objectName:'wt'});
+
  const H=[['FILE',0.95,2.6],['STOPPED BY',3.65,2.3],['STATE',6.05,1.7]];H.forEach((h,i)=>T(s,h[0],{x:h[1],y:2.7,w:h[2],h:0.3,fontSize:12,bold:true,color:GOLD,charSpacing:2,objectName:'h'+i}));
+ names.push(['win','bar','wt','h0','h1','h2']);
  const R=[['supplier_drawing.pdf','File Type','Held'],['update_pack.zip','Archive Depth','Held'],['report_Q3.xlsx','Sandbox Scan','Held'],['firmware.bin','Password Protection','Held']];
  R.forEach((r,i)=>{const y=3.1+i*0.7;s.addShape(pres.ShapeType.roundRect,{x:0.85,y,w:6.9,h:0.58,fill:{color:CARD},line:{color:'2A2F36',width:1},rectRadius:0.06,objectName:'r'+i});
   T(s,r[0],{x:0.95,y,w:2.6,h:0.58,fontSize:13,valign:'middle',objectName:'rf'+i});T(s,r[1],{x:3.65,y,w:2.3,h:0.58,fontSize:13,color:STEEL,valign:'middle',objectName:'rc'+i});
@@ -17,18 +18,17 @@
 
 // ---- 17 Portal
 {const s=ns(K+'YOUR PORTAL, YOUR BRAND','Your portal, your brand','People upload through a page that looks like your organisation and follows your policy.',
- NOTE('Use this for teams that exchange files with people who are not technical: suppliers, contractors, colleagues. They sign in, drop the file, and see the outcome. It looks like your organisation, not like ours. The picture is an illustration; the working session shows the real page.','The portal is shown in the working session with your own logo and colours.','Is it another system to maintain? -> No. Sign-in uses Active Directory and the files follow the same FlowRule as every other entry.'));
+ NOTE('Use this for teams that exchange files with people who are not technical: suppliers, contractors, colleagues. They sign in, drop the file, and see the outcome. It looks like your organisation, not like ours. The slide shows a sample page; the working session shows the real one.','The portal is shown in the working session with your own logo and colours.','Is it another system to maintain? -> No. Sign-in uses Active Directory and the files follow the same FlowRule as every other entry.'));
  const names=[];
  s.addShape(pres.ShapeType.roundRect,{x:0.7,y:2.05,w:7.2,h:4.5,fill:{color:'10141A'},line:{color:'2A2F36',width:1.25},rectRadius:0.1,objectName:'win'});
  s.addShape(pres.ShapeType.rect,{x:0.7,y:2.05,w:7.2,h:0.5,fill:{color:'1C2128'},line:{color:'2A2F36',width:1},objectName:'bar'});
  [0,1,2].forEach(i=>s.addShape(pres.ShapeType.ellipse,{x:0.95+i*0.26,y:2.22,w:0.16,h:0.16,fill:{color:'3A4350'},line:{color:'3A4350',width:0.5},objectName:'d'+i}));
- T(s,'ILLUSTRATION',{x:5.5,y:2.05,w:2.2,h:0.5,fontSize:12,bold:true,color:GREY,align:'right',valign:'middle',objectName:'ill'});
  s.addShape(pres.ShapeType.roundRect,{x:1.0,y:2.8,w:1.9,h:0.5,fill:{color:'1C2128'},line:{color:GREY,width:1,dashType:'dash'},rectRadius:0.06,objectName:'logo'});T(s,'YOUR LOGO',{x:1.0,y:2.8,w:1.9,h:0.5,fontSize:12,bold:true,color:GREY,align:'center',valign:'middle',objectName:'logoT'});
  T(s,'Secure file transfer',{x:1.0,y:3.5,w:5.5,h:0.5,fontSize:22,bold:true,objectName:'pt'});
  T(s,'Signed in as a colleague through your company account',{x:1.0,y:4.0,w:6.5,h:0.3,fontSize:13,color:MU,objectName:'ps'});
  s.addShape(pres.ShapeType.roundRect,{x:1.0,y:4.5,w:6.6,h:1.2,fill:{type:'none'},line:{color:GOLD,width:1.5,dashType:'dash'},rectRadius:0.1,objectName:'drop'});T(s,'Drop a file here',{x:1.0,y:4.5,w:6.6,h:1.2,fontSize:16,color:STEEL,align:'center',valign:'middle',objectName:'dropT'});
  s.addShape(pres.ShapeType.roundRect,{x:5.7,y:5.85,w:1.9,h:0.5,fill:{color:GOLD},line:{color:GOLD,width:1},rectRadius:0.08,objectName:'btn'});T(s,'Send',{x:5.7,y:5.85,w:1.9,h:0.5,fontSize:14,bold:true,color:'0B0D10',align:'center',valign:'middle',objectName:'btnT'});
- names.push(['win','bar','d0','d1','d2','ill','logo','logoT','pt','ps','drop','dropT','btn','btnT']);
+ names.push(['win','bar','d0','d1','d2','logo','logoT','pt','ps','drop','dropT','btn','btnT']);
  names.push(...rowsR(s,[['Your branding','Your logo and your colours, so people trust the page.'],['Company sign-in','Users sign in with Active Directory.'],['One policy','Uploads follow the same FlowRule as every other entry.']],8.3,2.0,4.5,1.3,'q',14));
  cl(N,names);}
 
