@@ -27,7 +27,7 @@
  names.push(strip(s,'First projects: vendor maintenance without a VPN, privileged access to isolated hosts, an internal service answering an external request without a route.',5.7,'f'));cl(N,names);}
 
 // appendix
-{const s=slide('M13',{left:3.3,my:3.3,fs:24});img(s,'sra_all',3.9,0.9,9.0,5.6,'all');T(s,'Shown only when the audience asks about two-way initiation.',{x:0.5,y:5.2,w:3.0,h:1.0,fontSize:13,color:MU,valign:'top',objectName:'app'});}
+{const s=slide('M13',{left:3.3,my:3.3,fs:24});img(s,'sra_all',3.9,0.9,9.0,5.6,'all');}
 
 // ======== ONE PLATFORM, MEDIA TRANSFER STATION, PASS
 {const s=ns('DFX ONE PLATFORM  |  1 OF 4','One portal for every file that crosses','Intake, inspection, approval and delivery in one flow, under one policy.',
@@ -40,7 +40,7 @@
  st.forEach((t,i)=>{const y=2.0+i*1.12;s.addShape(pres.ShapeType.roundRect,{x:3.7,y,w:5.4,h:0.98,fill:{color:CARD},line:{color:i===1?GOLD:'2A2F36',width:i===1?1.75:1},rectRadius:0.1,objectName:'m'+i});
   s.addShape(pres.ShapeType.ellipse,{x:3.9,y:y+0.24,w:0.5,h:0.5,fill:{color:GOLD},line:{color:GOLD,width:0.75},objectName:'mn'+i});T(s,t[0],{x:3.9,y:y+0.24,w:0.5,h:0.5,fontSize:16,bold:true,color:'0B0D10',align:'center',valign:'middle',objectName:'mnt'+i});
   T(s,[{text:t[1],options:{bold:true,fontSize:18,breakLine:true}},{text:t[2],options:{fontSize:13,color:STEEL}}],{x:4.6,y,w:4.4,h:0.98,valign:'middle',objectName:'mt'+i});names.push(['m'+i,'mn'+i,'mnt'+i,'mt'+i]);});
- const rr=rowsR(s,[['Where it fits','Plant gate checks for visitors. Contractor laptops hand over files here instead of plugging in.'],['Why buyers like it','Visible, physical, and easy to explain to a plant manager.']],9.5,2.05,3.3,2.2,'e',14);
+ const rr=rowsR(s,[['Where it fits','Plant gate checks for visitors. Contractor laptops hand over files here instead of plugging in.'],['What you gain','A visible, physical step that plant staff understand at once.']],9.5,2.05,3.3,2.2,'e',14);
  names.push(...rr);cl(N,names);}
 {const s=ns('DFX ONE PLATFORM  |  3 OF 4','DFX PASS: file access for OT that has no network','A handheld for plants where a network connection is not an option.',
  NOTE('Some assets have no network at all, but engineers still need files in and out. DFX PASS is the Portable Access Security System: a handheld that brings the policy to the machine. Describe a day: the engineer arrives, authenticates, works. Show the handheld in the plant. Use the customer words for their machines. All handhelds are managed from the same console as the stations.','Show the device in a real plant. Do not describe internals not confirmed by engineering.','PASS is a conversation opener for plants that dismiss every network product. It reaches buyers the others cannot.','Our OT has no network at all. -> That is the case PASS was made for.'),{th:0.85});

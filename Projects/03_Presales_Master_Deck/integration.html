@@ -13,7 +13,7 @@ function flow(pts,col,w){if(col!=='#F5A800'){se('polyline',{points:pts.map(funct
  ISO.P([I(e[0],e[1],1.2),I(bx+px*W,by+py*W,1.2),I(bx-px*W,by-py*W,1.2)],col,'none',floor);}
 var X0=-200,Y0=-130,X1=800,Y1=580;
 var FULL=true;function draw(){
- if(FULL||LAY==='core'||LAY==='all')fl(X0,Y0,X1,Y1,'#8FA0B3');
+ if(FULL||LAY==='floor'||LAY==='all')fl(X0,Y0,X1,Y1,'#8FA0B3');
  function block(x,y,w,d,h,txt,sub){ISO.box(x,y,0,w,d,h,'#3A444F','#222A32','#161C22',g,'#4A5560',0,0);label(x+w/2,y+d,h/2+3,txt,'#F5F7FA',13);if(sub)label(x+w/2,y+d,h/2-11,sub,'#9AA3AD',10);}
  var est=[[-120,-60,'ACTIVE DIRECTORY','logins and groups'],[200,-60,'RADIUS + NTP','access and time'],[520,-60,'SIEM + SYSLOG','events and logs'],[-120,400,'THIRD-PARTY SANDBOX','your own engines'],[200,400,'CDR ENGINE','optional'],[520,400,'HA PARTNER','active / passive']];
  if(FULL||LAY==='estate'||LAY==='all'){
