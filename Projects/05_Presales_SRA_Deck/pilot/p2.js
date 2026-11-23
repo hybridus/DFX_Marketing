@@ -1,8 +1,8 @@
 // ---- 7 Link map
 {const s=sl({k:'THE LINK MAP',t:'Each module reaches both one-way units on its own side',m:'Two gateways, one per direction. No chain, and no Ethernet between the boxes.',sc:'sra_core',
  marks:[['fo','1'],['fi','2','F5F7FA']],
- note:NOTE('This is the slide people redraw. Never draw SM to unit to unit to CM as a chain. Each module has two connections on its own side: one send, one receive. Trace gateway 1 in gold, then gateway 2 in white.','Two DFX Unidirectional Gateways, one outbound and one inbound. Every link from a module to a unit is a one-way connection.','Is it Ethernet between the boxes? -> No. Every module-to-unit link is a one-way connection.'),
- rows:[['1  Outbound gateway','SM, TX unit, one fibre, RX unit, CM. Carries the request.'],['2  Inbound gateway','CM, TX unit, one fibre, RX unit, SM. Carries the response.'],['On each side','One send link and one receive link per module. Nothing else joins the networks.']],pitch:1.15});}
+ note:NOTE('This is the slide people redraw. Never draw SM to unit to unit to CM as a chain. Each module has two connections on its own side: one send, one receive. Trace gateway 1 in gold, then gateway 2 in white.','Two DFX Unidirectional Gateways, one outbound and one inbound. Every connection between SM or CM and the TX or RX units is physically one way, so TCP/IP cannot continue past the SM or the CM.','Is it Ethernet between the boxes? -> No. Every module-to-unit link is a one-way connection.'),
+ rows:[['1  Outbound gateway','SM, TX unit, one fibre, RX unit, CM. Carries the request.'],['2  Inbound gateway','CM, TX unit, one fibre, RX unit, SM. Carries the response.'],['On each side','One send link and one receive link per module. Every one is physically one way.']],pitch:1.15});}
 // ---- 8 Two paths
 sl({k:'TWO PATHS',t:'Two one-way paths serve one exchange',m:'The request travels on the outbound gateway, the response on the inbound gateway.',sc:'sra_core',marks:[['fo','1'],['fi','2','F5F7FA']],
  note:NOTE('Trace the request on the upper path, then the response on the lower path. One logical exchange, two separate physical paths. Neither is bidirectional.','Direction is enforced in hardware on every link.'),
@@ -25,7 +25,7 @@ sl({k:'TWO PATHS',t:'Two one-way paths serve one exchange',m:'The request travel
  const B=[[0.7,'Original request','from the source application',col[0]],[4.95,'Plain payload','nothing of the original packet remains',col[1]],[9.2,'New request','built by the CM for its predefined target',col[2]]];
  B.forEach((b,i)=>{names.push(box(s,b[0],2.25,3.4,1.4,b[1],b[2],'pk'+i,{line:b[3],lw:2}));});
  [['SM',4.15],['CM',8.4]].forEach((a,i)=>{arrow(s,a[1],2.95,0.75,'pa'+i);T(s,a[0],{x:a[1],y:2.4,w:0.75,h:0.3,fontSize:13,bold:true,color:GOLD,align:'center',objectName:'pal'+i});names.push(['pa'+i,'pal'+i]);});
- names.push(...rowsR(s,[['Ends at the SM','The source connection stops. Only payload moves on.'],['Begins at the CM','The CM builds a new request. The target sees the Client Module, not the user.']],0.7,4.1,11.9,1.0,'r',15));
+ names.push(...rowsR(s,[['Ends at the SM','TCP/IP is broken here. Only payload moves on, through a physical one-way interface.'],['Begins at the CM','The CM builds a new request. The target sees the Client Module, not the user.']],0.7,4.1,11.9,1.0,'r',15));
  names.push(killer(s,'The original connection never reaches the target.',0.7,6.1,11.9,'k'));cl(N,names);}
 // ---- 11 Correlation
 {const s=ns(K+'HOW THE ANSWER FINDS ITS WAY BACK','The SM remembers which response belongs to which request','The transport carries no session. The SM holds it, so your application keeps working.',
