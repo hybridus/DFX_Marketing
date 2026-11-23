@@ -1,0 +1,37 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:transparent}svg{display:block;width:1600px;height:900px}</style></head><body><svg id="s" viewBox="0 0 1600 900"></svg>
+<script src="../../Common/iso/iso-lib.js"></script><script>
+var NAME=new URLSearchParams(location.search).get('s')||'core';
+var s=document.getElementById('s'),se=ISO.se,I=ISO.I;ISO.cam={cx:0,cy:0,s:0.46};ISO.defs(s);
+var floor=se('g',null,undefined,s),g=se('g',null,undefined,s),tops=se('g',null,undefined,s),A={};
+var Z={corp:'#4F8FC9',cls:'#9B6FD8',ot:'#2CC4D9',iso:'#8FA0B3'};
+function fl(x0,y0,x1,y1,col){ISO.P([I(x0,y0,0),I(x1,y0,0),I(x1,y1,0),I(x0,y1,0)],'url(#fl)',col,floor,2.2);}
+function tag(x0,y1,txt,col,size){var o=I(x0+30,y1-34,0),k=ISO.cam.s;se('text',{transform:'matrix('+(0.866*k)+' '+(0.5*k)+' '+(-0.866*k)+' '+(0.5*k)+' '+o[0]+' '+o[1]+')',x:0,y:0,'text-anchor':'start',style:'font:700 '+(size||30)+'px Inter,Arial;fill:'+col+';letter-spacing:.12em'},txt,tops);}
+function line(pts,col,w,dash){var e=se('polyline',{points:pts.map(function(p){var a=I(p[0],p[1],1.2);return a[0].toFixed(1)+','+a[1].toFixed(1);}).join(' '),fill:'none',stroke:col,'stroke-width':w||3,'stroke-linejoin':'round'},undefined,floor);if(dash)e.setAttribute('stroke-dasharray',dash);}
+function head(pts,col){var n=pts.length,e=pts[n-1],q=pts[n-2],dx=e[0]-q[0],dy=e[1]-q[1],L=Math.hypot(dx,dy);dx/=L;dy/=L;var A2=26,W=13,bx=e[0]-dx*A2,by=e[1]-dy*A2,px=-dy,py=dx;ISO.P([I(e[0],e[1],1.2),I(bx+px*W,by+py*W,1.2),I(bx-px*W,by-py*W,1.2)],col,'none',floor);}
+function gold(pts){line(pts,'#F5A800',7);head(pts,'#F5A800');}
+var BL=[];function block(x,y,w,d,h,txt){ISO.box(x,y,0,w,d,h,'#3A444F','#222A32','#161C22',g,'#4A5560',0,0);var a=I(x+w/2,y+d/2,h+6);BL.push([a[0],a[1],txt]);}
+function cap(x,y,z,txt){var a=I(x,y,z);BL.push([a[0],a[1],txt]);}
+function anch(n,x,y,z){var a=I(x,y,z);A[n]=[a[0],a[1]];}
+function sra(c){var zA=c.zA||'corp',zB=c.zB||'cls';
+ fl(-520,-34,-34,400,Z[zA]);fl(1116,-34,1600,400,Z[zB]);
+ ISO.assets.sra(g,0,0,{zoneA:zA,zoneB:zB});
+ tag(-520,400,c.ta,Z[zA]);tag(1116,400,c.tb,Z[zB]);
+ (c.left||[]).forEach(function(b){if(b[0]=='asset')ISO.assets[b[1]](g,b[2],b[3],b[4]||{});else block(b[1],b[2],b[3],b[4],b[5],b[6]);});
+ (c.right||[]).forEach(function(b){if(b[0]=='asset')ISO.assets[b[1]](g,b[2],b[3],b[4]||{});else block(b[1],b[2],b[3],b[4],b[5],b[6]);});
+ gold([[c.lx0||-240,186],[-6,186]]);gold([[1086,186],[c.rx1||1190,186]]);
+ cap(98,186,64,'SERVER MODULE');cap(984,186,64,'CLIENT MODULE');
+ cap(368,56,70,'OUTBOUND GATEWAY');cap(368,316,70,'INBOUND GATEWAY');
+ anch('sm',98,186,64);anch('cm',984,186,64);anch('txo',368,56,64);anch('rxi',368,316,64);anch('rxo',718,56,64);anch('txi',718,316,64);
+ anch('fo',543,56,10);anch('fi',543,316,10);anch('gap',543,186,10);anch('src',-330,186,70);anch('dst',1290,186,70);
+ anch('inL',-120,186,10);anch('outR',1140,186,10);}
+var SC={
+core:{ta:'NETWORK A',tb:'NETWORK B',left:[['b',-440,130,190,112,50,'SOURCE APPLICATION']],right:[['b',1220,130,190,112,50,'TARGET APPLICATION']],lx0:-250,rx1:1210},
+vendor:{zA:'iso',zB:'ot',ta:'VENDOR NETWORK',tb:'PLANT NETWORK',left:[['asset','deskpc',-420,120,{zone:'corp'}],['asset','person2',-340,290,{refined:1,legs2:1}]],right:[['b',1220,130,190,112,50,'PLANT HOST']],lx0:-250,rx1:1210},
+priv:{zA:'corp',zB:'iso',ta:'ADMIN NETWORK',tb:'ISOLATED HOSTS',left:[['asset','deskpc',-420,120,{zone:'corp'}],['asset','person2',-340,290,{refined:1,legs2:1}]],right:[['b',1220,0,190,100,50,'ISOLATED HOST'],['b',1220,130,190,100,50,'ISOLATED HOST']],lx0:-250,rx1:1210},
+api:{zA:'iso',zB:'corp',ta:'EXTERNAL NETWORK',tb:'INTERNAL NETWORK',left:[['b',-440,130,190,112,50,'API CLIENT']],right:[['b',1220,130,190,112,50,'INTERNAL SERVICE']],lx0:-250,rx1:1210}
+};
+sra(SC[NAME]);
+window.__B=BL;var bb=floor.getBBox(),bb2=g.getBBox(),bb3=tops.getBBox();var x0=Math.min(bb.x,bb2.x),y0=Math.min(bb.y,bb2.y),x1=Math.max(bb.x+bb.width,bb2.x+bb2.width),y1=Math.max(bb.y+bb.height,bb2.y+bb2.height);
+var gx=800-(x0+x1)/2,gy=450-(y0+y1)/2;[floor,g,tops].forEach(function(e){e.setAttribute('transform','translate('+gx+' '+gy+')');});
+for(var k in A){A[k]=[A[k][0]+gx,A[k][1]+gy];}window.__B=BL.map(function(b){return [b[0]+gx,b[1]+gy,b[2]];});window.__A=A;window.__ok=1;
+</script></body></html>
