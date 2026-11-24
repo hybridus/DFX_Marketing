@@ -14,27 +14,43 @@ function block(x,y,w,d,h,t){ISO.box(x,y,0,w,d,h,'#3A444F','#222A32','#161C22',g,
 function anch(n,x,y,z){var a=I(x,y,z);A[n]=[a[0],a[1]];}
 function sc(ox,oy,k,fn){var gg=se('g',null,undefined,g),o=I(ox,oy,0);gg.setAttribute('transform','translate('+o[0]+' '+o[1]+') scale('+k+') translate('+(-o[0])+' '+(-o[1])+')');fn(gg);}
 function station(withUsb){ISO.assets.kiosk2(g,60,200);if(withUsb)ISO.assets.usb(g,96,234,{z0:205});cap(60,200,350,'MEDIA TRANSFER STATION');anch('st',60,200,200);}
+
+function cncPass(OX,OY,withPass){ISO.assets.cnc(g,OX,OY,{zone:'ot'});cap(OX+250,OY+170,230,'CNC WORKBENCH');anch('cnc',OX+250,OY+170,230);
+ if(!withPass)return;var gg=g,sx=function(x,y,z){return I(OX+x,OY+y,z);};
+ ISO.box(456,112,0,84,48,66,'#323B46','#1D232A','#141A20',gg,'#46515E',OX,OY);
+ ISO.box(450,108,66,96,56,4,'#3A444F','#222A32','#161C22',gg,'#46515E',OX,OY);
+ var lift=72*ISO.cam.s,po=I(OX+466,OY+128,0),pg=se('g',null,undefined,gg);
+ pg.setAttribute('transform','translate(0 '+(-lift)+') translate('+po[0]+' '+po[1]+') scale(1.8) translate('+(-po[0])+' '+(-po[1])+')');
+ ISO.assets.pass(pg,OX+466,OY+128,{cable:16});
+ var cp=[[420,137,74],[410,141,64],[402,147,70],[398,151,88]].map(function(q){return sx(q[0],q[1],q[2]);}).map(function(q){return q[0]+','+q[1];}).join(' ');
+ se('polyline',{points:cp,fill:'none',stroke:'#46515E','stroke-width':5,'stroke-linecap':'round','stroke-linejoin':'round'},undefined,gg);
+ se('polyline',{points:cp,fill:'none',stroke:'#10141A','stroke-width':3,'stroke-linecap':'round','stroke-linejoin':'round'},undefined,gg);
+ cap(OX+466,OY+128,120,'DFX PASS');anch('pass',OX+466,OY+128,100);}
+function crossing(c){fl(c.lx0||-400,-60,150,540,Z[c.zl]);fl(300,-60,1100,540,Z[c.zr]);tag(c.lx0||-400,540,c.tl,Z[c.zl]);tag(300,540,c.tr,Z[c.zr]);
+ c.left();
+ if(c.zr=='ot')cncPass(660,60,false);else{sc(680,150,1.4,function(gg){ISO.assets.deskpc(gg,680,150,{zone:'corp'});});cap(680,150,230,'CORPORATE PCS');}
+ if(c.dir=='out'){gold([[620,230],[200,230]]);}else if(c.dir=='both'){gold([[120,170],[620,170]]);gold([[620,250],[120,250]]);}else{gold([[120,200],[620,200]]);}
+ anch('st',60,200,200);anch('right',760,200,120);}
+function stationUsb(){station(1);ISO.assets.person2(g,17,318,{refined:1,legs2:1});}
 var SC={
 usb:function(){fl(-200,-200,300,300,Z.iso);sc(40,40,4,function(gg){ISO.assets.usb(gg,40,40,{z0:6.5});});anch('u',40,40,60);},
-station:function(){fl(-300,-100,320,520,Z.iso);tag(-300,520,'SEPARATE PHYSICAL PLACE',Z.iso);station(1);ISO.assets.person2(g,17,318,{refined:1,legs2:1});anch('usb',96,234,215);anch('screen',60,200,220);anch('lamp',60,200,330);},
-platform:function(){fl(-300,-160,520,300,Z.iso);ISO.assets.platformD1(g,60,40,{mods:1});cap(160,96,70,'DFX ONE PLATFORM');ISO.assets.deskpc(g,-240,-60,{zone:'corp'});ISO.assets.deskpc(g,-240,150,{zone:'cls'});anch('p',160,96,70);anch('d1',-165,-20,140);anch('d2',-165,190,140);},
-gate:function(){fl(-400,-60,150,540,Z.iso);fl(300,-60,1100,540,Z.ot);tag(-400,540,'VISITORS AND CONTRACTORS',Z.iso);tag(300,540,'PLANT',Z.ot);
- station(1);ISO.assets.person2(g,17,318,{refined:1,legs2:1});sc(700,120,0.9,function(gg){ISO.assets.cnc(gg,700,120,{zone:'ot'});});
- gold([[120,200],[620,200]]);cap(760,200,120,'PLANT SYSTEMS');anch('st',60,200,200);anch('plant',760,200,120);anch('line',380,200,10);},
-contractor:function(){fl(-520,-60,150,540,Z.corp);fl(300,-60,1100,540,Z.ot);tag(-520,540,'CONTRACTOR',Z.corp);tag(300,540,'PLANT',Z.ot);
- sc(-340,140,1.4,function(gg){ISO.assets.deskpc(gg,-340,140,{zone:'corp'});});cap(-340,140,220,'CONTRACTOR LAPTOP');
- station(0);sc(700,120,0.9,function(gg){ISO.assets.cnc(gg,700,120,{zone:'ot'});});cap(760,200,120,'PLANT SYSTEMS');
- gold([[-200,230],[-40,230]]);gold([[120,200],[620,200]]);anch('lap',-340,140,220);anch('st',60,200,200);anch('plant',760,200,120);},
-pass:function(){fl(-300,-120,900,520,Z.ot);tag(-300,520,'PLANT WITH NO NETWORK ACCESS',Z.ot);sc(520,120,0.9,function(gg){ISO.assets.cnc(gg,520,120,{zone:'ot'});});cap(580,200,120,'OT CABINET');
- sc(120,300,8,function(gg){ISO.assets.pass(gg,120,300,{cable:16});});cap(120,300,150,'DFX PASS');ISO.assets.person2(g,-120,280,{refined:1,legs2:1});anch('pass',120,300,120);anch('cab',580,200,120);},
+station:function(){fl(-300,-100,320,520,Z.iso);tag(-300,520,'SEPARATE PHYSICAL PLACE',Z.iso);station(1);ISO.assets.person2(g,17,318,{refined:1,legs2:1});anch('screen',60,200,220);},
+platform:function(){fl(-300,-160,520,300,Z.iso);ISO.assets.platformD1(g,60,40,{mods:1});cap(160,96,70,'DFX ONE PLATFORM');ISO.assets.deskpc(g,-240,-60,{zone:'corp'});ISO.assets.deskpc(g,-240,150,{zone:'cls'});anch('p',160,96,70);},
+gate:function(){crossing({zl:'iso',zr:'ot',tl:'VISITORS AND CONTRACTORS',tr:'PLANT',left:stationUsb,dir:'in'});},
+cgate:function(){crossing({zl:'iso',zr:'corp',tl:'REMOVABLE MEDIA',tr:'CORPORATE NETWORK',left:stationUsb,dir:'in'});},
+export_ot:function(){crossing({zl:'iso',zr:'ot',tl:'REMOVABLE MEDIA',tr:'PLANT',left:function(){station(0);ISO.assets.usb(g,-110,330,{z0:6.5});cap(-100,340,40,'USB STICK');},dir:'out'});},
+export_corp:function(){crossing({zl:'iso',zr:'corp',tl:'REMOVABLE MEDIA',tr:'CORPORATE NETWORK',left:function(){station(0);ISO.assets.usb(g,-110,330,{z0:6.5});cap(-100,340,40,'USB STICK');},dir:'out'});},
+contractor:function(){crossing({lx0:-520,zl:'corp',zr:'ot',tl:'CONTRACTOR',tr:'PLANT',left:function(){sc(-340,140,1.4,function(gg){ISO.assets.deskpc(gg,-340,140,{zone:'corp'});});cap(-340,140,220,'CONTRACTOR LAPTOP');station(0);gold([[-200,230],[-40,230]]);},dir:'in'});},
+ccontractor:function(){crossing({lx0:-520,zl:'iso',zr:'corp',tl:'CONTRACTOR',tr:'CORPORATE NETWORK',left:function(){sc(-340,140,1.4,function(gg){ISO.assets.deskpc(gg,-340,140,{zone:'iso'});});cap(-340,140,220,'CONTRACTOR LAPTOP');station(0);gold([[-200,230],[-40,230]]);},dir:'in'});},
+pass:function(){fl(-300,-120,1000,520,Z.ot);tag(-300,520,'PLANT WITH NO NETWORK ACCESS',Z.ot);cncPass(240,20,true);ISO.assets.person2(g,60,380,{refined:1,legs2:1});},
 standalone:function(){shape(0);},
 withgw:function(){shape(1);}
 };
-function shape(gw){fl(-420,-40,200,380,Z.iso);fl(300,-40,gw?1080:760,380,gw?Z.ot:Z.corp);tag(-420,380,'INTAKE',Z.iso);tag(300,380,gw?'PLANT':'DELIVERY',gw?Z.ot:Z.corp);
+function shape(gw){fl(-420,-40,200,380,Z.iso);fl(300,-40,gw?1080:760,380,gw?Z.ot:Z.corp);tag(-420,380,'MEDIA IN AND OUT',Z.iso);tag(300,380,gw?'ISOLATED NETWORK':'YOUR NETWORK',gw?Z.ot:Z.corp);
  sc(-260,130,0.75,function(gg){ISO.assets.kiosk2(gg,-260,130);});cap(-260,130,260,'STATION');ISO.assets.platformD1(g,340,120,{mods:1});cap(440,176,70,'DFX ONE PLATFORM');
- gold([[-120,190],[300,190]]);
- if(gw){ISO.assets.gateway(g,640,120,{zone:'ot'});cap(738,176,70,'UNIDIRECTIONAL GATEWAY');gold([[560,176],[640,176]]);gold([[870,176],[960,176]]);block(980,120,130,112,50,'PLANT');}
- else{gold([[560,176],[640,176]]);block(660,120,130,112,50,'DELIVERY');}
+ gold([[-120,160],[300,160]]);gold([[300,235],[-120,235]]);
+ if(gw){ISO.assets.gateway(g,640,120,{zone:'ot'});cap(738,176,70,'UNIDIRECTIONAL GATEWAY');gold([[560,176],[640,176]]);gold([[870,176],[960,176]]);block(980,120,130,112,50,'ISOLATED SYSTEMS');}
+ else{gold([[560,176],[640,176]]);block(660,120,130,112,50,'YOUR SYSTEMS');}
  anch('p',440,176,70);}
 SC[NAME]();
 var bb=floor.getBBox(),bb2=g.getBBox(),bb3=tops.getBBox();var x0=Math.min(bb.x,bb2.x),y0=Math.min(bb.y,bb2.y),x1=Math.max(bb.x+bb.width,bb2.x+bb2.width),y1=Math.max(bb.y+bb.height,bb2.y+bb2.height);

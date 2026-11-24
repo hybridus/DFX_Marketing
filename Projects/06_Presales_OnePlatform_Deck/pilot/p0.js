@@ -5,7 +5,7 @@ const BG='0B0D10',TX='F5F7FA',MU='9AA3AD',GOLD='F5A800',F='Arial',CARD='171A1F',
 const BL={Corp:'4F8FC9',Cls:'9B6FD8',OT:'2CC4D9'};
 const LOGO=path.join(__dirname,'..','..','..','Common','brand','logo-dark-bg.png');
 pres.defineSlideMaster({title:'MASTER',background:{color:BG},objects:[{image:{path:LOGO,x:11.55,y:7.02,w:1.25,h:0.272}}],slideNumber:{x:0.5,y:7.02,w:0.6,h:0.3,color:MU,fontSize:10,fontFace:F}});
-const builds={};let N=0;const KC={};for(let i=9;i<=12;i++)KC[i]='F5F7FA';
+const builds={};let N=0;const KC={};const V=process.env.V||'ot';const OT=V==='ot';const white=()=>{KC[N+1]='F5F7FA';};
 function png(n){const b=fs.readFileSync(path.join(ST,n+'.png'));return [b.readUInt32BE(16),b.readUInt32BE(20)];}
 function img(s,n,x,y,w,h,name){const [pw,ph]=png(n),r=pw/ph;let W=w,H=w/r;if(H>h){H=h;W=h*r;}
  s.addImage({path:path.join(ST,n+'.png'),x:x+(w-W)/2,y:y+(h-H)/2,w:W,h:H,objectName:name||n,altText:n});}
