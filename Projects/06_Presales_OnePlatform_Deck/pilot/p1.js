@@ -9,22 +9,45 @@ function tiles(s,items,x,y,w,h,cols,p){const gap=0.2,tw=(w-(cols-1)*gap)/cols,ro
   T(s,[{text:it[0],options:{bold:true,fontSize:14,breakLine:true}},{text:it[1],options:{fontSize:12,color:STEEL}}],{x:cx+0.5,y:cy+0.08,w:tw-0.6,h:th-0.16,valign:'middle',objectName:q+'t'});out.push([q+'c',q+'l',q+'t']);});return out;}
 function frame(s,x,y,w,h,title,col,p){s.addShape(pres.ShapeType.roundRect,{x,y,w,h,fill:{color:CARD},line:{color:col||'2A2F36',width:1.5},rectRadius:0.1,objectName:p+'f'});
  s.addShape(pres.ShapeType.rect,{x:x+0.02,y:y+0.02,w:w-0.04,h:0.36,fill:{color:'10141A'},line:{color:'10141A',width:0.5},objectName:p+'fb'});T(s,title,{x:x+0.2,y:y+0.02,w:w-0.4,h:0.36,fontSize:12,bold:true,color:col||GOLD,charSpacing:2,valign:'middle',objectName:p+'ft'});return [p+'f',p+'fb',p+'ft'];}
-// ---- 1 Opening question
+function hub(s,X,Y,W,H,p,full){const lw=W*0.26,hw=W*0.40,gap=(W-2*lw-hw)/2,hx=X+lw+gap,rx=hx+hw+gap,names=[];
+ const L=[['Users','inside one network or across'],['Other networks','Internet, corporate, OT, classified'],['Removable media','USB, CD, through the station']],R=[['Users','receive clean files'],['Networks','with or without a gateway'],['Removable media','approved exports only']];
+ const ch=Math.min(0.95,(H-0.4)/3),y0=Y+(H-(3*ch+0.4))/2,fs=full?15:13;
+ const side=(A,x,k,dir)=>A.forEach((r,i)=>{const y=y0+i*(ch+0.2);names.push(box(s,x,y,lw,ch,r[0],full?r[1]:null,p+k+i,{fs}));
+  const ax=dir==='in'?x+lw+0.03:hx+hw+0.03;arrow(s,ax,y+ch/2,gap-0.06,p+'a'+k+i);names.push([p+'a'+k+i]);});
+ side(L,X,'l','in');side(R,rx,'r','out');
+ const hubN=[p+'hub',p+'hubt',p+'hubr'];
+ s.addShape(pres.ShapeType.roundRect,{x:hx,y:Y,w:hw,h:H,fill:{color:'1A1608'},line:{color:GOLD,width:2.5},rectRadius:0.12,objectName:p+'hub'});
+ T(s,'DFX ONE PLATFORM',{x:hx,y:Y+0.12,w:hw,h:0.3,fontSize:12,bold:true,color:GOLD,charSpacing:2,align:'center',objectName:p+'hubt'});
+ const F=['Multi AV','Multi sandbox','File disarm','File type','AD group control','File encryption'],avail=H-0.55-0.5,rh=(avail-0.2)/3,cw=(hw-0.55)/2;
+ F.forEach((f,i)=>{const cx=hx+0.2+(i%2)*(cw+0.15),cy=Y+0.55+Math.floor(i/2)*(rh+0.1);s.addShape(pres.ShapeType.roundRect,{x:cx,y:cy,w:cw,h:rh,fill:{color:'0B0D10'},line:{color:GOLD,width:1},rectRadius:0.06,objectName:p+'c'+i});
+  T(s,f,{x:cx+0.05,y:cy,w:cw-0.1,h:rh,fontSize:12,bold:true,align:'center',valign:'middle',objectName:p+'ct'+i});hubN.push(p+'c'+i,p+'ct'+i);});
+ T(s,'One policy. One record.',{x:hx,y:Y+H-0.42,w:hw,h:0.3,fontSize:12,bold:true,color:STEEL,align:'center',objectName:p+'hubr'});
+ names.unshift(hubN);return names;}
+// ---- 1 Cover
 {N++;const s=pres.addSlide();s.background={color:BG};
  s.addImage({path:LOGO,x:0.7,y:0.7,w:3.2,h:0.696,objectName:'logo',altText:'DataFlowX'});
- T(s,'Control the Flow',{x:0.7,y:1.9,w:6,h:0.9,fontSize:44,bold:true,color:GOLD,valign:'top',objectName:'Title'});
- T(s,'DFX One Platform',{x:0.7,y:2.85,w:6,h:0.6,fontSize:26,bold:true,valign:'top',objectName:'Subtitle'});
- T(s,'Technical Sales Presentation  |  '+(OT?'Plants and industrial sites':'Corporate networks'),{x:0.7,y:3.45,w:6,h:0.4,fontSize:16,color:STEEL,valign:'top',objectName:'Kind'});
- T(s,OT?'How many removable media entered your plants last month?':'How many removable media entered your corporate network last month?',{x:0.7,y:4.3,w:5.6,h:1.3,fontSize:26,bold:true,valign:'top',objectName:'Question'});
- T(s,'Nobody knows the number, in or out, on media or over the network, and every one of them is a crossing.',{x:0.7,y:5.7,w:5.4,h:0.8,fontSize:16,color:MU,valign:'top',objectName:'Line'});
- s.addImage({path:path.join(ST,'op_usb.png'),x:6.8,y:1.5,w:6.0,h:3.3,objectName:'usb',altText:'USB stick'});
- T(s,'?',{x:8.3,y:4.2,w:3.0,h:2.2,fontSize:120,bold:true,color:GOLD,align:'center',valign:'middle',objectName:'q'});
+ T(s,'Control the Flow',{x:0.7,y:1.9,w:5.5,h:0.9,fontSize:44,bold:true,color:GOLD,valign:'top',objectName:'Title'});
+ T(s,'DFX One Platform',{x:0.7,y:2.85,w:5.5,h:0.6,fontSize:26,bold:true,valign:'top',objectName:'Subtitle'});
+ T(s,'Technical Sales Presentation  |  '+(OT?'Plants and industry':'Corporate and IT'),{x:0.7,y:3.45,w:5.5,h:0.4,fontSize:16,color:STEEL,valign:'top',objectName:'Kind'});
+ T(s,'Every file that moves, checked and on record.',{x:0.7,y:4.3,w:5.4,h:1.3,fontSize:26,bold:true,valign:'top',objectName:'Pitch'});
+ T(s,'Between users, between networks and on removable media. One platform, with a gateway or without.',{x:0.7,y:5.65,w:5.4,h:0.95,fontSize:16,color:MU,valign:'top',objectName:'Line'});
+ hub(s,6.3,1.75,6.5,4.0,'cv',false);
  T(s,'Presenter  |  Company  |  Date',{x:0.7,y:6.8,w:8,h:0.3,fontSize:12,color:MU,objectName:'meta'});
- s.addNotes(NOTE('Ask the room, then stay quiet for five seconds. Most organisations have a policy and no count. Write the first number you hear on the slide. Then ask the second question: how many left carrying data. Do not supply a statistic; the point is that the room does not know.','A question, not a claim.','We ban USB. -> Then every file on a stick is a policy exception, in and out. The count shows how many exceptions you run.'));}
-// ---- 2 MFT
-sl({k:'MANAGED FILE TRANSFER',t:'Managed file transfer, in and out',m:'Intake, inspection, approval, delivery and export control in one flow.',sc:'op_platform',
- note:NOTE('Say the five words in order: intake, inspection, approval, delivery, export. It is one flow with one portal, not five tools. Data comes in under control and goes out under control. Hold the screens back until the next slide.','One flow, one policy, one record.','Is this just a file share? -> A file share stores. This flow inspects, asks the right approver, delivers one way and controls what goes out.'),
- rows:[['Intake','Files arrive through one portal or one station.'],['Inspection','Every file is checked under one policy.'],['Approval','The right approver releases what the policy holds.'],['Delivery','Cleared files go on, one way.'],['Export control','Data leaving to media or to another network is controlled and recorded.']],pitch:0.67,rfs:12,kill:'One flow. One policy. One record.'});
+ s.addNotes(NOTE('Open with the pitch: every file that moves, checked and on record. Then say where files move: between users, between networks and on removable media. One platform handles all three. Ask the room how many of those movements they could account for today. Do not supply a statistic; the point is that nobody knows.','The picture shows the platform: users, networks and media on one side, six checks in the middle, delivery and a record on the other.','We already scan email. -> Email is one path. Files also move on shares, on media and between networks.'));}
+// ---- 2 Platform
+{const s=ns(K+'THE PLATFORM','One platform for every file that moves','Inside one network, between networks or on removable media: one policy, one record. A gateway is optional.',
+ NOTE('Read the picture left to right. Files come from users, from other networks and from removable media. In the middle the policy applies up to six checks. Out the other side the right receiver gets a clean file, and every movement is on record. It works inside one network, between networks and with media. A gateway is optional: add one where a network must stay isolated.','One platform, one policy, one record, with or without a gateway.','Is this just for isolated networks? -> No. It works inside a single network too. The gateway is added where a network must stay isolated.'));
+ const names=hub(s,0.7,2.05,11.9,3.35,'h',true);names.push(strip(s,'Record: what file, when, by whom, how, on which device, to where, approved by whom.',5.5,'q',GOLD));
+ names.push(killer(s,'One platform. One policy. One record.',0.7,6.2,11.9,'k',0.7));cl(N,names);}
+// ---- One network is enough
+{const s=ns(K+'ONE NETWORK IS ENOUGH','Share files inside one network, safely','Users send files to each other through the portal. The policy scans and sanitizes each one.',
+ NOTE('No diode, no second network. A company with one network uses the portal for sharing files between people. User A uploads, names the receiver; the policy scans the file with several engines and a sandbox, removes active content, and only then does User B get it. The send and the delivery are on record. This is the entry point for customers who think they need nothing more than a file share.','Sharing inside one network runs through the same policy.','We already have a file share. -> A file share stores files. This checks, sanitizes and records every file before the receiver opens it.'));
+ const names=[];names.push(frame(s,0.7,2.05,11.9,2.45,'ONE NETWORK, NO GATEWAY',BL.Corp,'f'));
+ names.push(box(s,1.0,2.7,2.4,1.5,'User A','sends a file','ua',{fs:18}));arrow(s,3.45,3.45,0.9,'a1');names.push(['a1']);
+ names.push(box(s,4.4,2.55,4.5,1.8,'DFX One portal','Multi AV  |  Multi sandbox  |  File disarm  |  File type','po',{line:GOLD,lw:2,fs:20}));arrow(s,8.95,3.45,0.9,'a2');names.push(['a2']);
+ names.push(box(s,9.9,2.7,2.4,1.5,'User B','receives a clean file','ub',{fs:18}));
+ names.push(...cards(s,[{t:'Share',d:'A user uploads a file and names the receiver.'},{t:'Check and sanitize',d:'The policy scans the file and removes active content.',hi:1},{t:'Record',d:'Who sent what to whom, and when, is on record.'}],{x:0.7,y:4.65,w:11.9,h:1.4,p:'w',cols:3,tf:17,df:14}));
+ names.push(killer(s,'No diode needed. Every shared file is checked.',0.7,6.15,11.9,'k',0.7));cl(N,names);}
 // ---- 3 Portal
 const TG=OT?'Plant':'Isolated network';
 {const s=ns(K+'THE PORTAL','The portal your users see','Upload a file, pick the target network, follow its status. Approvers are decided by group.',
@@ -34,11 +57,11 @@ const TG=OT?'Plant':'Isolated network';
  [['plan.docx  (export)','Waiting for you'],['update.zip  to '+TG,'Waiting for you']].forEach((r,i)=>{const y=2.6+i*0.8;s.addShape(pres.ShapeType.roundRect,{x:7.05,y,w:3.9,h:0.62,fill:{color:'10141A'},line:{color:'2A2F36',width:1},rectRadius:0.05,objectName:'ar'+i});T(s,[{text:r[0]+'   ',options:{bold:true}},{text:r[1],options:{color:STEEL}}],{x:7.2,y,w:3.7,h:0.62,fontSize:13,valign:'middle',objectName:'art'+i});s.addShape(pres.ShapeType.roundRect,{x:11.1,y:y+0.1,w:1.25,h:0.42,fill:{color:GOLD},line:{color:GOLD,width:1},rectRadius:0.06,objectName:'ab'+i});T(s,'Approve',{x:11.1,y:y+0.1,w:1.25,h:0.42,fontSize:13,bold:true,color:'0B0D10',align:'center',valign:'middle',objectName:'abt'+i});});
  T(s,'Approvers are the members of the Active Directory group the policy names.',{x:7.05,y:4.35,w:5.3,h:0.7,fontSize:14,color:STEEL,valign:'top',objectName:'adn'});
  killer(s,'Users see status. Approvers see their queue.',0.7,5.95,11.9,'k');cl(N,[]);}
-// ---- Three ways
-{const s=ns(K+'THREE WAYS TO MOVE A FILE','Three ways to move a file, one platform','Media, portal and export all run under the same policy and the same record.',
- NOTE('Three ways, one platform. Media: a stick goes into the station. Portal: a user uploads a file from any network, for example one downloaded from the Internet, and picks the target network. Export: data going out needs a request and an approver. Whichever way the file arrives, DFX One is there: same checks, same approvers, same record.','One platform behind the station and the portal.','Do we need media at all? -> If files only move between networks, the portal is enough. The station covers media.'));
- const names=[];names.push(...cards(s,[{t:'Media Transfer Station',d:'Insert a USB stick, CD or other medium. Cleared files go to the network you choose.'},{t:'Portal',d:'Upload a file from any network, for example one downloaded from the Internet, and select the target network.',hi:1},{t:'Export',d:'Data going out to media or to another network needs a request and an approver.'}],{x:0.7,y:2.1,w:11.9,h:3.3,p:'w',cols:3,tf:20,df:16}));
- names.push(killer(s,'Same policy and same record, whichever way the file arrives.',0.7,5.8,11.9,'k',0.8));cl(N,names);}
+// ---- Four ways
+{const s=ns(K+'FOUR WAYS TO MOVE A FILE','Four ways to move a file, one platform','Between users, between networks, on media and out. One policy, one record.',
+ NOTE('Four ways, one platform. Between users: a file shared inside one network. Between networks: an upload at the portal with a target network. Removable media: a stick goes into the station. Export: data going out needs a request and an approver. Whichever way the file moves, DFX One is there: same checks, same approvers, same record.','One platform behind the portal and the station.','Do we need media at all? -> If files only move over the network, the portal is enough. The station covers media.'));
+ const names=[];names.push(...cards(s,[{t:'Between users',d:'Share a file inside one network. It is scanned and sanitized first.'},{t:'Between networks',d:'Upload at the portal and select the target network, with or without a gateway.',hi:1},{t:'Removable media',d:'USB, CD or other media go in at the station. Cleared files go on.'},{t:'Export',d:'Data going out to media or another network needs a request and an approver.'}],{x:0.7,y:2.1,w:11.9,h:3.3,p:'w',cols:4,tf:19,df:15}));
+ names.push(killer(s,'Same policy and same record, whichever way the file moves.',0.7,5.8,11.9,'k',0.8));cl(N,names);}
 // ---- 4 Central management
 {const s=ns(K+'CENTRAL MANAGEMENT','Central management of every Media Transfer Station','One console governs all stations.',
  NOTE('One console for all stations: status lamps, policy push, last seen. Pick one station, push a policy change, show it applied. The IT manager sees a fleet he can run, not a pile of boxes. The tiles are sample entries.','Status, policy and last contact are visible per station.','What if a station is offline? -> We go through that with you in the trial.'));
@@ -69,8 +92,8 @@ sl({k:'DFX MEDIA TRANSFER STATION',t:'Removable media never touch your network',
   T(s,l[5],{x:0.7,y:y+1.25,w:11.9,h:0.35,fontSize:14,color:STEEL,valign:'top',objectName:'ld'+i});});
  names.push(killer(s,'Nothing moves in or out without the policy.',0.7,6.0,11.9,'k'));cl(N,names);}
 // ---- Gateways
-{const s=ns(K+'ONE PLATFORM, SEVERAL GATEWAYS','One platform, one or more gateways','Each DFX Unidirectional Gateway targets a network. DFX One knows each of them.',
- NOTE('DFX One is configured with one or more DFX Unidirectional Gateways. Each one targets a network. Two can target the same network as a backup, active-passive or active-active. DFX One knows every gateway, so the user only picks the target network and the platform does the rest. Where the target is isolated, the gateway makes the last hop one way.','One platform knows all of its gateways.','What if a gateway fails? -> Two gateways can serve the same network, as backup or active-active. We go through the setup with you in the trial.'));
+{const s=ns(K+'ONE PLATFORM, SEVERAL GATEWAYS','One platform, with or without a gateway','A gateway is optional. Each DFX Unidirectional Gateway targets a network, and DFX One knows each of them.',
+ NOTE('DFX One works with or without a gateway. Add one where a network must stay isolated. DFX One is configured with one or more DFX Unidirectional Gateways. Each one targets a network. Two can target the same network as a backup, active-passive or active-active. DFX One knows every gateway, so the user only picks the target network and the platform does the rest. Where the target is isolated, the gateway makes the last hop one way.','One platform knows all of its gateways.','What if a gateway fails? -> Two gateways can serve the same network, as backup or active-active. We go through the setup with you in the trial.'));
  const names=[];names.push(box(s,0.7,2.05,2.6,3.6,'DFX One','policy, approvals, record','pl',{line:GOLD,lw:2,fs:22}));
  const R=OT?[['Gateway','to the OT network','OT network'],['Gateway','to the Classified network','Classified network'],['Two gateways','to the same network, as backup or active-active','Same network']]:[['Gateway','to an isolated network','Isolated network A'],['Gateway','to a second isolated network','Isolated network B'],['Two gateways','to the same network, as backup or active-active','Same network']];
  R.forEach((r,i)=>{const y=2.05+i*1.3;arrow(s,3.35,y+0.5,1.55,'ga'+i);names.push(['ga'+i]);names.push(box(s,4.95,y,3.6,1.0,r[0],r[1]+'  |  DFX Unidirectional Gateway','g'+i,{line:GOLD,lw:1.5,fs:16}));arrow(s,8.6,y+0.5,1.1,'gb'+i);names.push(['gb'+i]);names.push(box(s,9.75,y,2.85,1.0,r[2],null,'n'+i,{fs:15}));});
