@@ -28,7 +28,7 @@ function cncPass(OX,OY,withPass){ISO.assets.cnc(g,OX,OY,{zone:'ot'});cap(OX+250,
  cap(OX+466,OY+128,120,'DFX PASS');anch('pass',OX+466,OY+128,100);}
 function crossing(c){fl(c.lx0||-400,-60,150,540,Z[c.zl]);fl(300,-60,1100,540,Z[c.zr]);tag(c.lx0||-400,540,c.tl,Z[c.zl]);tag(300,540,c.tr,Z[c.zr]);
  c.left();
- if(c.zr=='ot')cncPass(660,60,false);else{sc(680,150,1.4,function(gg){ISO.assets.deskpc(gg,680,150,{zone:'corp'});});cap(680,150,230,'CORPORATE PCS');}
+ if(c.zr=='ot')cncPass(660,60,false);else{sc(680,150,1.4,function(gg){ISO.assets.deskpc(gg,680,150,{zone:c.zr});});cap(680,150,230,c.rc||'CORPORATE PCS');}
  if(c.dir=='out'){gold([[620,230],[200,230]]);}else if(c.dir=='both'){gold([[120,170],[620,170]]);gold([[620,250],[120,250]]);}else{gold([[120,200],[620,200]]);}
  anch('st',60,200,200);anch('right',760,200,120);}
 function stationUsb(){station(1);ISO.assets.person2(g,17,318,{refined:1,legs2:1});}
@@ -41,6 +41,8 @@ cgate:function(){crossing({zl:'iso',zr:'corp',tl:'REMOVABLE MEDIA',tr:'CORPORATE
 export_ot:function(){crossing({zl:'iso',zr:'ot',tl:'REMOVABLE MEDIA',tr:'PLANT',left:function(){station(0);ISO.assets.usb(g,-110,330,{z0:6.5});cap(-100,340,40,'USB STICK');},dir:'out'});},
 export_corp:function(){crossing({zl:'iso',zr:'corp',tl:'REMOVABLE MEDIA',tr:'CORPORATE NETWORK',left:function(){station(0);ISO.assets.usb(g,-110,330,{z0:6.5});cap(-100,340,40,'USB STICK');},dir:'out'});},
 contractor:function(){crossing({lx0:-520,zl:'corp',zr:'ot',tl:'CONTRACTOR',tr:'PLANT',left:function(){sc(-340,140,1.4,function(gg){ISO.assets.deskpc(gg,-340,140,{zone:'corp'});});cap(-340,140,220,'CONTRACTOR LAPTOP');station(0);gold([[-200,230],[-40,230]]);},dir:'in'});},
+zone_ot:function(){crossing({lx0:-520,zl:'corp',zr:'ot',tl:'INTERNET OR CORPORATE ZONE',tr:'PLANT',left:function(){sc(-340,140,1.4,function(gg){ISO.assets.deskpc(gg,-340,140,{zone:'corp'});});cap(-340,140,220,'USER AT THE PORTAL');},dir:'in'});},
+zone_iso:function(){crossing({lx0:-520,zl:'corp',zr:'iso',tl:'INTERNET OR CORPORATE ZONE',tr:'ISOLATED NETWORK',rc:'ISOLATED PCS',left:function(){sc(-340,140,1.4,function(gg){ISO.assets.deskpc(gg,-340,140,{zone:'corp'});});cap(-340,140,220,'USER AT THE PORTAL');},dir:'in'});},
 ccontractor:function(){crossing({lx0:-520,zl:'iso',zr:'corp',tl:'CONTRACTOR',tr:'CORPORATE NETWORK',left:function(){sc(-340,140,1.4,function(gg){ISO.assets.deskpc(gg,-340,140,{zone:'iso'});});cap(-340,140,220,'CONTRACTOR LAPTOP');station(0);gold([[-200,230],[-40,230]]);},dir:'in'});},
 pass:function(){fl(-300,-120,1000,520,Z.ot);tag(-300,520,'PLANT WITH NO NETWORK ACCESS',Z.ot);cncPass(240,20,true);ISO.assets.person2(g,60,380,{refined:1,legs2:1});},
 standalone:function(){shape(0);},
