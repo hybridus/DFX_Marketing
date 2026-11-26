@@ -18,6 +18,6 @@ ins = []; fc = []; lab = ''
 for i, k in enumerate(order):
     ms = int(round(st[k] * 1000)); ins += ['-i', 'vo/%s.mp3' % k]
     fc.append('[%d:a]adelay=%d|%d,afade=t=in:d=0.02[a%d]' % (i + 1, ms, ms, i)); lab += '[a%d]' % i
-fc.append(lab + 'amix=inputs=%d:normalize=0:duration=longest,loudnorm=I=-16:TP=-1.5:LRA=9[mix]' % len(order))
-subprocess.run(['ffmpeg','-y','-hide_banner','-loglevel','error','-i',SIL]+ins+['-filter_complex',';'.join(fc),'-map','0:v','-map','[mix]','-c:v','copy','-c:a','aac','-b:a','192k','-shortest','-movflags','+faststart',OUT],check=True)
+fc.append(lab + 'amix=inputs=%d:normalize=0:duration=longest,loudnorm=I=-16:TP=-1.5:LRA=9,apad=whole_dur=%.3f[mix]' % (len(order), d['END']))
+subprocess.run(['ffmpeg','-y','-hide_banner','-loglevel','error','-i',SIL]+ins+['-filter_complex',';'.join(fc),'-map','0:v','-map','[mix]','-c:v','copy','-c:a','aac','-b:a','192k','-t','%.3f' % d['END'],'-movflags','+faststart',OUT],check=True)
 print('wrote', OUT)
