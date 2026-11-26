@@ -140,7 +140,7 @@ var P_OT=[[526,60],[720,60],[720,-570],[960,-570]],P_CNC=[[960,-570],[1190,-570]
 var LID=[380,432],KIOSK=[175,330],SBX=[255,520],QF=[352,520];
 var STATE=['cln','san','san','mal','san','san','cln','mal','san','san'];
 function chip(g,p,col,ring,seal,op){var r=7;var gg=el('g',{opacity:op==null?1:op},g);if(ring)el('circle',{cx:p[0],cy:p[1],r:r+4,fill:'none',stroke:col,'stroke-width':1.6},gg);el('rect',{x:p[0]-r,y:p[1]-r,width:2*r,height:2*r,rx:3,fill:col,stroke:seal?'#F5A800':'#0B0D10','stroke-width':seal?2.5:1},gg);}
-function folder(g,c,op){var gg=el('g',{opacity:op},g),x=c[0]-30,y=c[1]-24;el('path',{d:'M'+x+' '+(y+8)+'h20l6 6h34v34h-60z',fill:'#C8505A',stroke:'#0B0D10','stroke-width':1.5,'stroke-linejoin':'round'},gg);el('path',{d:'M'+x+' '+(y+18)+'h60v30h-60z',fill:'#E4838B'},gg);el('text',{x:c[0],y:c[1]+40,'text-anchor':'middle',style:'font:800 9px Inter;fill:#FF9AA1;letter-spacing:.1em'},gg,'QUARANTINE');}
+function folder(g,c,op){var gg=el('g',{opacity:op},g),x=c[0]-30,y=c[1]-24;el('path',{d:'M'+x+' '+(y+8)+'h20l6 6h34v34h-60z',fill:'#C8505A',stroke:'#0B0D10','stroke-width':1.5,'stroke-linejoin':'round'},gg);el('path',{d:'M'+x+' '+(y+18)+'h60v30h-60z',fill:'#E4838B'},gg);el('text',{x:c[0],y:c[1]+40,'text-anchor':'middle',style:'font:800 9px Inter;fill:#FF9AA1;letter-spacing:.1em'},gg,'KARANTİNA');}
 function lerp2(a,b,u){return [lerp(a[0],b[0],u),lerp(a[1],b[1],u)];}
 function glow(g,c,t,col){var r=9+Math.sin(t*6)*3;el('circle',{cx:c[0],cy:c[1],r:r+8,fill:col,opacity:.18},g);el('circle',{cx:c[0],cy:c[1],r:r,fill:col,opacity:.5},g);el('circle',{cx:c[0],cy:c[1],r:5,fill:'#fff',opacity:.9},g);}
 function drawChips(t){chipG.innerHTML='';
