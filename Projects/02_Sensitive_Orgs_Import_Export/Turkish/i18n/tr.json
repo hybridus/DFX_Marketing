@@ -1,0 +1,787 @@
+{
+"_note": "Exact-literal replacements applied to COPIES of ../../engine.js and ../../environment.html by build_tr.py: [old,new,expected_count], applied in order. Turkish apostrophes are U+2019. Product names stay English.",
+"engine": [
+[
+"'DataFlowX','Controlled file transfer for sensitive organizations'",
+"'DataFlowX','Hassas kurumlar için kontrollü dosya aktarımı'",
+1
+],
+[
+"'PUBLIC NETWORK','Everyday IT: staff, partners, the internet side'",
+"'AÇIK AĞ','Günlük BT: personel, ortaklar, internet tarafı'",
+1
+],
+[
+"'CLASSIFIED NETWORK','Air-gapped. Sensitive data, no direct connection in'",
+"'GİZLİ AĞ','Hava boşluklu. Hassas veri, dışarıdan doğrudan bağlantı yok'",
+1
+],
+[
+"'Public side','One transfer station. One DFX One platform. One gateway each way.'",
+"'Açık ağ tarafı','Tek istasyon. Tek DFX One platformu. Her yön için bir ağ geçidi.'",
+1
+],
+[
+"'DFX Media Transfer Station','Identity verified, USB media from partners, files and destination chosen on the station'",
+"'DFX Media Transfer Station','Kimlik doğrulanır; ortak USB’si, dosyalar ve hedef istasyonda seçilir'",
+1
+],
+[
+"'Files from the internet','A right-click, Send To Classified Network. No USB needed.'",
+"'İnternetten gelen dosyalar','Sağ tık, Gönder, Gizli Ağ. USB gerekmez.'",
+1
+],
+[
+"'Policy decides first','Is this user allowed? Which destination? Which file types?'",
+"'Önce politika karar verir','Bu kullanıcıya izin var mı? Hangi hedef? Hangi dosya türleri?'",
+1
+],
+[
+"'DFX One inspection','Multi AV engines, DFX TruCDR and the Malware Mitigation Sandbox'",
+"'DFX One incelemesi','Çoklu AV motoru, DFX TruCDR ve Malware Mitigation Sandbox'",
+1
+],
+[
+"'Quarantine','Malicious files stay in DFX One. The security admin gets the reports.'",
+"'Karantina','Zararlı dosyalar DFX One’da kalır. Raporlar güvenlik yöneticisine gider.'",
+1
+],
+[
+"'Sealed and stored','Approved files are signed, tamper-evident, stored in DFX One.'",
+"'Mühürlendi ve saklandı','Onaylı dosyalar imzalanır, kurcalama tespit edilir, DFX One’da saklanır.'",
+1
+],
+[
+"'DFX Unidirectional Gateway (inbound)','Seal verified. Audit record logged. One way only.'",
+"'DFX Unidirectional Gateway (içeri)','Mühür doğrulandı. Denetim kaydı alındı. Yalnızca tek yön.'",
+1
+],
+[
+"'Delivered inside Classified','Seal verified. Chain of custody intact.'",
+"'Gizli ağın içinde teslim edildi','Mühür doğrulandı. Gözetim zinciri bozulmadı.'",
+1
+],
+[
+"'DFX One portal, inside Classified','Verify identity, select files, choose the public network, encrypt for partner delivery'",
+"'DFX One portalı, Gizli ağın içinde','Kimlik doğrula, dosyaları seç, açık ağı seç, ortak teslimi için şifrele'",
+1
+],
+[
+"'Inspection, plus DLP and classification','Markings and content checked, not just file types'",
+"'İnceleme, ayrıca DLP ve sınıflandırma','İşaretler ve içerik kontrol edilir, yalnızca dosya türü değil'",
+1
+],
+[
+"'Approval by the data owner','Inside Classified, before anything leaves'",
+"'Veri sahibinin onayı','Gizli ağın içinde, hiçbir şey çıkmadan önce'",
+1
+],
+[
+"'Sealed and stored','Approved files wait inside Classified.'",
+"'Mühürlendi ve saklandı','Onaylı dosyalar Gizli ağın içinde bekler.'",
+1
+],
+[
+"'DFX Unidirectional Gateway (outbound)','Classified files encrypted. One way only. Audit record logged.'",
+"'DFX Unidirectional Gateway (dışarı)','Sınıflandırılmış dosyalar şifrelenir. Tek yön. Denetim kaydı alındı.'",
+1
+],
+[
+"'Delivery on the public side','USB from the station, or download from the DFX One portal'",
+"'Açık ağ tarafında teslim','İstasyondan USB ya da DFX One portalından indirme'",
+1
+],
+[
+"'Delivery to the Cooperation Partner Organization','The encrypted files stay unreadable if the USB is lost or stolen'",
+"'İş birliği yapılan kuruma teslim','USB kaybolsa ya da çalınsa şifreli dosyalar okunamaz kalır'",
+1
+],
+[
+"'CHAPTER 1','Into Classified'",
+"'BÖLÜM 1','Gizli ağa giriş'",
+1
+],
+[
+"'CHAPTER 2','Out of Classified'",
+"'BÖLÜM 2','Gizli ağdan çıkış'",
+1
+],
+[
+"'One bad file is enough to compromise a whole network.'",
+"'Tek bir kötü dosya, bütün bir ağı tehlikeye atmaya yeter.'",
+1
+],
+[
+"'COOPERATION PARTNER ORGANIZATION'",
+"'İŞ BİRLİĞİ YAPILAN KURUM'",
+1
+],
+[
+"['No Manual Transfer.','No Human Error.','No Wait.','Full Control.']",
+"['Elle Aktarım Yok.','İnsan Hatası Yok.','Bekleme Yok.','Tam Kontrol.']",
+1
+],
+[
+"'Nothing crosses unseen.'",
+"'Hiçbir şey görülmeden geçmez.'",
+1
+],
+[
+"'Nothing crosses unrecorded.'",
+"'Hiçbir şey kaydedilmeden geçmez.'",
+1
+],
+[
+"href:'../../Common/brand/logo-dark-bg.png'",
+"href:'../../../Common/brand/logo-dark-bg.png'",
+2
+],
+[
+"txt||'QUARANTINE'",
+"txt||'KARANTİNA'",
+1
+],
+[
+"'BLOCKED');",
+"'ENGELLENDİ');",
+1
+],
+[
+"'case_file_2291.pdf'",
+"'vaka_dosyasi_2291.pdf'",
+1
+],
+[
+"'witness_statement.docx'",
+"'tanik_ifadesi.docx'",
+1
+],
+[
+"'evidence_log_A7.xlsx'",
+"'delil_kaydi_A7.xlsx'",
+1
+],
+[
+"'partner_update.xlsm'",
+"'ortak_guncelleme.xlsm'",
+3
+],
+[
+"'intel_summary_Q3.pdf'",
+"'istihbarat_ozeti_Q3.pdf'",
+1
+],
+[
+"'surveillance_photos.zip'",
+"'gozetleme_fotograflari.zip'",
+1
+],
+[
+"'chain_of_custody.pdf'",
+"'gozetim_zinciri.pdf'",
+2
+],
+[
+"'field_report_0412.docx'",
+"'saha_raporu_0412.docx'",
+1
+],
+[
+"'suspect_profile_osint.pdf'",
+"'supheli_profili_osint.pdf'",
+4
+],
+[
+"'open_source_report.docx'",
+"'acik_kaynak_raporu.docx'",
+2
+],
+[
+"'briefing_public.pdf'",
+"'kamuya_brifing.pdf'",
+1
+],
+[
+"'case_summary_TS.docx'",
+"'vaka_ozeti_TS.docx'",
+2
+],
+[
+"'joint_op_plan.docx'",
+"'ortak_op_plani.docx'",
+2
+],
+[
+"'press_release.docx'",
+"'basin_bulteni.docx'",
+1
+],
+[
+"'training_manual.pdf'",
+"'egitim_kilavuzu.pdf'",
+1
+],
+[
+"'source_list_SECRET.xlsx'",
+"'kaynak_listesi_GIZLI.xlsx'",
+2
+],
+[
+"'evidence_extract.zip'",
+"'delil_ozeti.zip'",
+1
+],
+[
+"'liaison_note.pdf'",
+"'irtibat_notu.pdf'",
+1
+],
+[
+"'witness_report_red.pdf'",
+"'tanik_raporu_kirmizi.pdf'",
+1
+],
+[
+"'annual_stats.xlsx'",
+"'yillik_istatistik.xlsx'",
+1
+],
+[
+"'IDENTITY VERIFICATION','Station'",
+"'KİMLİK DOĞRULAMA','İstasyon'",
+1
+],
+[
+"'Authorization credentials'",
+"'Yetki bilgileri'",
+2
+],
+[
+"'Identity verified, policy checked'",
+"'Kimlik doğrulandı, politika kontrol edildi'",
+2
+],
+[
+"'SELECT FILES','USB drive · 8 files'",
+"'DOSYA SEÇ','USB bellek · 8 dosya'",
+1
+],
+[
+"'+ 4 more files selected'",
+"'+ 4 dosya daha seçildi'",
+1
+],
+[
+"'8 of 8 selected'",
+"'8 / 8 seçildi'",
+1
+],
+[
+"'Selecting...'",
+"'Seçiliyor...'",
+2
+],
+[
+",90,'Next'",
+",90,'İleri'",
+1
+],
+[
+"'SEND TO','Choose destination'",
+"'GÖNDERİM HEDEFİ','Hedef seç'",
+1
+],
+[
+"['Public network','Standard network','#4F8FC9']",
+"['Açık ağ','Standart ağ','#4F8FC9']",
+2
+],
+[
+"['Classified network','Air-gapped','#9B6FD8']",
+"['Gizli ağ','Hava boşluklu','#9B6FD8']",
+1
+],
+[
+",100,'Submit',",
+",100,'Gönder',",
+1
+],
+[
+"'Submitted':'Submit'",
+"'Gönderildi':'Gönder'",
+1
+],
+[
+"'SUBMITTED'",
+"'GÖNDERİLDİ'",
+1
+],
+[
+"'Nothing has touched the network yet'",
+"'Henüz hiçbir şey ağa dokunmadı'",
+1
+],
+[
+"'STANDARD USER PC','Downloads'",
+"'STANDART KULLANICI PC’Sİ','İndirilenler'",
+1
+],
+[
+"['Open','Copy','Rename']",
+"['Aç','Kopyala','Yeniden adlandır']",
+1
+],
+[
+"'Send To  ▸'",
+"'Gönder  ▸'",
+1
+],
+[
+"'Classified Network'",
+"'Gizli Ağ'",
+1
+],
+[
+"'DFX End-User client'",
+"'DFX End-User istemcisi'",
+1
+],
+[
+"'2 files sent to DFX One'",
+"'2 dosya DFX One’a gönderildi'",
+1
+],
+[
+"'POLICY ENGINE','DFX One'",
+"'POLİTİKA MOTORU','DFX One'",
+1
+],
+[
+"'Is this user allowed?','Station + client'",
+"'Kullanıcı yetkili mi?','İstasyon + istemci'",
+1
+],
+[
+"'Destination: Classified','Rule: allow'",
+"'Hedef: Gizli ağ','Kural: izin ver'",
+1
+],
+[
+"'File types permitted?','10 of 10'",
+"'Dosya türleri uygun mu?','10 / 10'",
+1
+],
+[
+"'Policy passed. One queue, 10 files.'",
+"'Politika geçti. Tek kuyruk, 10 dosya.'",
+1
+],
+[
+"'Checking...'",
+"'Kontrol ediliyor...'",
+2
+],
+[
+"'INSPECTION','all at once · 10 files'",
+"'İNCELEME','hepsi aynı anda · 10 dosya'",
+1
+],
+[
+"'INSPECTION + DLP','all at once · 10 files'",
+"'İNCELEME + DLP','hepsi aynı anda · 10 dosya'",
+1
+],
+[
+"'AV engine 1'",
+"'AV motoru 1'",
+1
+],
+[
+"'AV engine 2'",
+"'AV motoru 2'",
+1
+],
+[
+"'AV engine 3'",
+"'AV motoru 3'",
+1
+],
+[
+"'AV engine 4'",
+"'AV motoru 4'",
+1
+],
+[
+"'Markings and DLP scan'",
+"'İşaret ve DLP taraması'",
+1
+],
+[
+"'Classification check'",
+"'Sınıflandırma kontrolü'",
+1
+],
+[
+"[['Quarantined','2','#E06A74'],['Sanitized by CDR','6','#3DDC84'],['Already clean','2','#3DDC84']],'VERDICT'",
+"[['Karantinada','2','#E06A74'],['CDR ile arındırıldı','6','#3DDC84'],['Zaten temiz','2','#3DDC84']],'SONUÇ'",
+1
+],
+[
+"[['Blocked: secret markings','2','#E06A74'],['Classified: encrypt','3','#B58CF0'],['Unclassified: as is','5','#3DDC84']],'VERDICT + DLP'",
+"[['Engellendi: gizli işaretler','2','#E06A74'],['Sınıflandırılmış: şifrele','3','#B58CF0'],['Sınıflandırılmamış: olduğu gibi','5','#3DDC84']],'SONUÇ + DLP'",
+1
+],
+[
+"'QUARANTINE','DFX One'",
+"'KARANTİNA','DFX One'",
+1
+],
+[
+"'2 files quarantined'",
+"'2 dosya karantinada'",
+1
+],
+[
+"'Sent to the security admin'",
+"'Güvenlik yöneticisine gönderildi'",
+1
+],
+[
+"'BLOCKED','DLP'",
+"'ENGELLENDİ','DLP'",
+1
+],
+[
+"'2 files blocked: secret markings'",
+"'2 dosya engellendi: gizli işaret'",
+1
+],
+[
+"'Quarantined inside Classified'",
+"'Gizli ağın içinde karantinada'",
+1
+],
+[
+"'SECURITY ADMIN (SOC)','Audit console'",
+"'GÜVENLİK YÖNETİCİSİ','SOC konsolu'",
+1
+],
+[
+"'Macro, startup key'",
+"'Makro, başlangıç anahtarı'",
+1
+],
+[
+"'JavaScript, C2 contact'",
+"'JavaScript, C2 bağlantısı'",
+1
+],
+[
+"'Detail report'",
+"'Rapor'",
+1
+],
+[
+",110,'Analyze',",
+",110,'Analiz et',",
+1
+],
+[
+",100,'Release',",
+",100,'Serbest',",
+1
+],
+[
+"'SEALED','DFX One'",
+"'MÜHÜRLENDİ','DFX One'",
+1
+],
+[
+"'SEALED','DFX One · Classified'",
+"'MÜHÜRLENDİ','DFX One · Gizli ağ'",
+1
+],
+[
+"'8 approved files signed','Tamper-evident'",
+"'8 onaylı dosya imzalandı','Kurcalama tespitli'",
+2
+],
+[
+"'Stored in DFX One','Encrypted'",
+"'DFX One’da saklandı','Şifreli'",
+1
+],
+[
+"'Stored inside Classified','Encrypted'",
+"'Gizli ağın içinde saklandı','Şifreli'",
+1
+],
+[
+"'Next: inbound gateway to Classified'",
+"'Sonraki: Gizli ağa giden ağ geçidi'",
+1
+],
+[
+"'GATEWAY','Inbound'",
+"'AĞ GEÇİDİ','İçeri'",
+1
+],
+[
+"'GATEWAY','Outbound'",
+"'AĞ GEÇİDİ','Dışarı'",
+1
+],
+[
+"'One-way transfer'",
+"'Tek yönlü aktarım'",
+2
+],
+[
+"'Seal verified'",
+"'Mühür doğrulandı'",
+3
+],
+[
+"'Audit record logged'",
+"'Denetim kaydı alındı'",
+2
+],
+[
+"'Hardware enforced'",
+"'Donanımla zorunlu'",
+1
+],
+[
+"'Physically separated'",
+"'Fiziksel olarak ayrı'",
+1
+],
+[
+"'Isolation ensured'",
+"'İzolasyon sağlandı'",
+1
+],
+[
+"'Classified files: encrypt (3)'",
+"'Sınıflandırılmış: şifrele (3)'",
+1
+],
+[
+"'Unclassified: as is (5)'",
+"'Sınıflandırılmamış: olduğu gibi (5)'",
+1
+],
+[
+"'CLASSIFIED PC','Analyst'",
+"'GİZLİ AĞ PC’Sİ','Analist'",
+1
+],
+[
+"'8 files received','Sealed'",
+"'8 dosya alındı','Mühürlü'",
+1
+],
+[
+"'Chain of custody intact'",
+"'Gözetim zinciri bozulmadı'",
+1
+],
+[
+"'DFX ONE PORTAL',['Identity verification','Select files','Destination','Options','Options']",
+"'DFX ONE PORTALI',['Kimlik doğrulama','Dosya seç','Hedef','Seçenekler','Seçenekler']",
+1
+],
+[
+"'+ 5 more files'",
+"'+ 5 dosya daha'",
+1
+],
+[
+"'10 of 10 selected'",
+"'10 / 10 seçildi'",
+1
+],
+[
+"'Encrypt for partner delivery'",
+"'Ortak teslimi için şifrele'",
+1
+],
+[
+"'Approver can force or remove'",
+"'Onaylayan zorunlu kılabilir ya da kaldırabilir'",
+1
+],
+[
+"'DATA OWNER · APPROVER','Classified'",
+"'VERİ SAHİBİ · ONAYLAYAN','Gizli ağ'",
+1
+],
+[
+"'Verdict reviewed','10 files'",
+"'Karar incelendi','10 dosya'",
+1
+],
+[
+"'DLP findings: 2 blocked','Quarantined'",
+"'DLP bulguları: 2 engellendi','Karantinada'",
+1
+],
+[
+"'Encryption: 3 files','Forced on'",
+"'Şifreleme: 3 dosya','Zorunlu'",
+1
+],
+[
+"'Can force or remove encryption'",
+"'Şifreleme zorunlu kılınabilir ya da kaldırılabilir'",
+1
+],
+[
+"'Approved':'Approve'",
+"'Onaylandı':'Onayla'",
+1
+],
+[
+"'WRITE TO USB','Station'",
+"'USB’YE YAZ','İstasyon'",
+1
+],
+[
+"'3 classified files encrypted'",
+"'3 sınıflandırılmış dosya şifrelendi'",
+1
+],
+[
+"'5 unclassified files, plain'",
+"'5 sınıflandırılmamış dosya, düz'",
+1
+],
+[
+"'USB ready. Hand over.'",
+"'USB hazır. Teslim edin.'",
+1
+],
+[
+"'Writing...'",
+"'Yazılıyor...'",
+1
+],
+[
+"'DFX ONE PORTAL','Download'",
+"'DFX ONE PORTALI','İndirme'",
+1
+],
+[
+"'8 files ready to download'",
+"'8 dosya indirilmeye hazır'",
+1
+],
+[
+"'Loading...'",
+"'Yükleniyor...'",
+1
+],
+[
+"'ENCRYPTED USB','Cooperation partner'",
+"'ŞİFRELİ USB','İş birliği yapılan kurum'",
+1
+],
+[
+"'Unreadable without the key'",
+"'Anahtar olmadan okunamaz'",
+1
+],
+[
+"'Lost, stolen or intercepted: no data loss'",
+"'Kaybolsa ya da çalınsa: veri sızmaz'",
+1
+],
+[
+"'AUDIT LOG','SOC'",
+"'DENETİM KAYDI','SOC'",
+1
+],
+[
+"'running: '",
+"'çalışır: '",
+1
+],
+[
+"['macro runs','writes startup key','outbound connection']",
+"['makro çalışır','başlangıç anahtarı yazar','dış bağlantı']",
+1
+],
+[
+"['JavaScript runs','drops payload','contacts C2 server']",
+"['JavaScript çalışır','yük bırakır','C2 sunucusuna bağlanır']",
+1
+],
+[
+"['opens document','no child process','no network calls']",
+"['belge açılır','alt işlem yok','ağ çağrısı yok']",
+2
+],
+[
+"['opens document','reads markings','SECRET found']",
+"['belge açılır','işaretleri okur','SECRET bulundu']",
+1
+],
+[
+"['opens workbook','reads markings','SECRET found']",
+"['çalışma kitabı açılır','işaretleri okur','SECRET bulundu']",
+1
+],
+[
+"(S.exp?'Secret markings':'Malicious behavior'):'Behavior: clean'",
+"(S.exp?'Gizli işaretler':'Zararlı davranış'):'Davranış: temiz'",
+1
+]
+],
+"env": [
+[
+"'PUBLIC NETWORK'",
+"'AÇIK AĞ'",
+1
+],
+[
+"'CLASSIFIED (AIR-GAPPED)'",
+"'GİZLİ (HAVA BOŞLUKLU)'",
+1
+],
+[
+"'IMPORT · ONE WAY →'",
+"'İÇERİ · TEK YÖN →'",
+1
+],
+[
+"'← EXPORT · ONE WAY'",
+"'← DIŞARI · TEK YÖN'",
+1
+],
+[
+"'SOC · AUDIT CONSOLE'",
+"'SOC · DENETİM KONSOLU'",
+1
+],
+[
+"'STANDARD USER PC'",
+"'STANDART KULLANICI PC’Sİ'",
+1
+],
+[
+"'DATA OWNER · APPROVER'",
+"'VERİ SAHİBİ · ONAYLAYAN'",
+1
+],
+[
+"'CLASSIFIED USER'",
+"'GİZLİ AĞ KULLANICISI'",
+1
+],
+[
+"'INTERNET'",
+"'İNTERNET'",
+1
+]
+]
+}

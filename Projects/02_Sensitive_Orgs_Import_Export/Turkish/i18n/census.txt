@@ -1,0 +1,238 @@
+0.25	AÇIK AĞ
+0.25	GİZLİ (HAVA BOŞLUKLU)
+0.25	İÇERİ · TEK YÖN →
+0.25	← DIŞARI · TEK YÖN
+0.25	MEDIA TRANSFER STATION
+0.25	SOC · DENETİM KONSOLU
+0.25	STANDART KULLANICI PC’Sİ
+0.25	VERİ SAHİBİ · ONAYLAYAN
+0.25	GİZLİ AĞ KULLANICISI
+0.25	DFX UNIDIRECTIONAL
+0.25	GATEWAY
+0.25	DFX ONE PLATFORM
+0.25	DFX MALWARE
+0.25	MITIGATION SANDBOX
+0.25	İNTERNET
+0.25	İŞ BİRLİĞİ YAPILAN KURUM
+0.25	Elle Aktarım Yok.
+0.25	İnsan Hatası Yok.
+0.25	Bekleme Yok.
+0.25	Tam Kontrol.
+0.25	dataflowx.com
+0.25	Hiçbir şey görülmeden geçmez.
+0.25	Hiçbir şey kaydedilmeden geçmez.
+0.50	DataFlowX
+0.50	Hassas kurumlar için kontrollü dosya aktarımı
+5.25	Günlük BT: personel, ortaklar, internet tarafı
+7.25	GİZLİ AĞ
+7.25	Hava boşluklu. Hassas veri, dışarıdan doğrudan bağlantı yok
+13.25	Tek bir kötü dosya, bütün bir ağı tehlikeye atmaya yeter.
+17.75	BÖLÜM 1
+17.75	Gizli ağa giriş
+21.25	Açık ağ tarafı
+21.25	Tek istasyon. Tek DFX One platformu. Her yön için bir ağ geçidi.
+31.75	DFX Media Transfer Station
+31.75	Kimlik doğrulanır; ortak USB’si, dosyalar ve hedef istasyonda seçilir
+38.25	KİMLİK DOĞRULAMA
+38.25	İstasyon
+38.25	Yetki bilgileri
+38.25	Kimlik doğrulandı, politika kontrol edildi
+40.75	DOSYA SEÇ
+40.75	USB bellek · 8 dosya
+40.75	PDF
+40.75	vaka_dosyasi_2291.pdf
+40.75	DOC
+40.75	tanik_ifadesi.docx
+40.75	XLS
+40.75	delil_kaydi_A7.xlsx
+40.75	ortak_guncelleme.xlsm
+40.75	+ 4 dosya daha seçildi
+40.75	Seçiliyor...
+40.75	İleri
+41.75	8 / 8 seçildi
+42.00	GÖNDERİM HEDEFİ
+42.00	Hedef seç
+42.00	Açık ağ
+42.00	Standart ağ
+42.00	Gizli ağ
+42.00	Hava boşluklu
+42.00	Gönder
+44.00	GÖNDERİLDİ
+44.00	Henüz hiçbir şey ağa dokunmadı
+50.50	İnternetten gelen dosyalar
+50.50	Sağ tık, Gönder, Gizli Ağ. USB gerekmez.
+50.50	İndirilenler
+50.50	supheli_profili_osint.pdf
+50.50	2.4 MB
+50.50	acik_kaynak_raporu.docx
+50.50	860 KB
+56.75	Aç
+56.75	Kopyala
+56.75	Yeniden adlandır
+56.75	Gönder  ▸
+57.50	Gizli Ağ
+59.50	DFX End-User istemcisi
+59.50	2 dosya DFX One’a gönderildi
+66.50	Önce politika karar verir
+66.50	Bu kullanıcıya izin var mı? Hangi hedef? Hangi dosya türleri?
+67.25	POLİTİKA MOTORU
+67.25	DFX One
+67.25	Kullanıcı yetkili mi?
+67.25	İstasyon + istemci
+67.25	Hedef: Gizli ağ
+67.25	Kural: izin ver
+67.25	Dosya türleri uygun mu?
+67.25	10 / 10
+67.25	Kontrol ediliyor...
+72.50	Politika geçti. Tek kuyruk, 10 dosya.
+75.50	İNCELEME
+75.50	hepsi aynı anda · 10 dosya
+75.50	AV motoru 1
+75.50	AV motoru 2
+75.50	AV motoru 3
+75.50	AV motoru 4
+75.50	DFX TruCDR
+75.50	Malware Mitigation Sandbox
+76.00	DFX One incelemesi
+76.00	Çoklu AV motoru, DFX TruCDR ve Malware Mitigation Sandbox
+84.25	Sandbox
+84.25	VM 1 · Win 11 · Office
+84.25	çalışır: ortak_guncelleme.xlsm
+85.00	VM 2 · Win 10 · PDF
+85.00	çalışır: supheli_profili_osint.
+85.25	> makro çalışır
+86.00	VM 3 · Win 11 · PDF
+86.00	çalışır: gozetim_zinciri.pdf
+86.25	> JavaScript çalışır
+86.50	> başlangıç anahtarı yazar
+87.00	> belge açılır
+87.25	> yük bırakır
+87.50	> dış bağlantı
+88.00	Zararlı davranış
+88.00	> alt işlem yok
+88.50	> C2 sunucusuna bağlanır
+89.25	> ağ çağrısı yok
+89.50	Davranış: temiz
+91.25	SONUÇ
+91.25	Karantinada
+91.25	CDR ile arındırıldı
+91.25	Zaten temiz
+92.50	2
+93.75	6
+98.00	KARANTİNA
+98.00	2 dosya karantinada
+98.00	Güvenlik yöneticisine gönderildi
+98.50	Karantina
+98.50	Zararlı dosyalar DFX One’da kalır. Raporlar güvenlik yöneticisine gider.
+103.50	GÜVENLİK YÖNETİCİSİ
+103.50	SOC konsolu
+103.50	Makro, başlangıç anahtarı
+103.50	Rapor
+103.50	JavaScript, C2 bağlantısı
+103.50	Analiz et
+103.50	Serbest
+109.00	MÜHÜRLENDİ
+109.00	8 onaylı dosya imzalandı
+109.00	Kurcalama tespitli
+109.00	DFX One’da saklandı
+109.00	Şifreli
+109.00	Sonraki: Gizli ağa giden ağ geçidi
+109.50	Mühürlendi ve saklandı
+109.50	Onaylı dosyalar imzalanır, kurcalama tespit edilir, DFX One’da saklanır.
+118.75	DFX Unidirectional Gateway (içeri)
+118.75	Mühür doğrulandı. Denetim kaydı alındı. Yalnızca tek yön.
+118.75	AĞ GEÇİDİ
+118.75	İçeri
+118.75	Tek yönlü aktarım
+118.75	Mühür doğrulandı
+118.75	Denetim kaydı alındı
+118.75	Donanımla zorunlu
+118.75	Fiziksel olarak ayrı
+118.75	İzolasyon sağlandı
+135.25	Gizli ağın içinde teslim edildi
+135.25	Mühür doğrulandı. Gözetim zinciri bozulmadı.
+136.50	GİZLİ AĞ PC’Sİ
+136.50	Analist
+136.50	8 dosya alındı
+136.50	Mühürlü
+136.50	Gözetim zinciri bozulmadı
+143.00	BÖLÜM 2
+143.00	Gizli ağdan çıkış
+146.00	DFX ONE PORTALI
+146.00	Kimlik doğrulama
+146.25	DFX One portalı, Gizli ağın içinde
+146.25	Kimlik doğrula, dosyaları seç, açık ağı seç, ortak teslimi için şifrele
+151.25	Dosya seç
+151.25	kamuya_brifing.pdf
+151.25	vaka_ozeti_TS.docx
+151.25	ortak_op_plani.docx
+151.25	basin_bulteni.docx
+151.25	egitim_kilavuzu.pdf
+151.25	+ 5 dosya daha
+152.00	10 / 10 seçildi
+152.25	Hedef
+154.25	Seçenekler
+154.25	Ortak teslimi için şifrele
+154.25	Onaylayan zorunlu kılabilir ya da kaldırabilir
+158.50	Gönderildi
+161.50	İNCELEME + DLP
+161.50	İşaret ve DLP taraması
+161.50	Sınıflandırma kontrolü
+161.75	İnceleme, ayrıca DLP ve sınıflandırma
+161.75	İşaretler ve içerik kontrol edilir, yalnızca dosya türü değil
+166.50	çalışır: vaka_ozeti_TS.docx
+167.25	VM 2 · Win 10 · Office
+167.25	çalışır: kaynak_listesi_GIZLI.x
+167.75	VM 3 · Win 11 · Office
+167.75	çalışır: ortak_op_plani.docx
+168.25	> çalışma kitabı açılır
+168.50	> işaretleri okur
+169.50	> SECRET bulundu
+170.00	Gizli işaretler
+172.75	SONUÇ + DLP
+172.75	Engellendi: gizli işaretler
+172.75	Sınıflandırılmış: şifrele
+172.75	Sınıflandırılmamış: olduğu gibi
+176.75	3
+178.50	5
+181.00	ENGELLENDİ
+181.50	DLP
+181.50	2 dosya engellendi: gizli işaret
+181.50	Gizli ağın içinde karantinada
+185.75	Karar incelendi
+185.75	10 dosya
+185.75	DLP bulguları: 2 engellendi
+185.75	Şifreleme: 3 dosya
+185.75	Zorunlu
+185.75	Şifreleme zorunlu kılınabilir ya da kaldırılabilir
+185.75	Onayla
+186.00	Veri sahibinin onayı
+186.00	Gizli ağın içinde, hiçbir şey çıkmadan önce
+188.50	Onaylandı
+197.00	DFX One · Gizli ağ
+197.00	Gizli ağın içinde saklandı
+197.25	Onaylı dosyalar Gizli ağın içinde bekler.
+204.50	DFX Unidirectional Gateway (dışarı)
+204.50	Sınıflandırılmış dosyalar şifrelenir. Tek yön. Denetim kaydı alındı.
+204.50	Dışarı
+204.50	Sınıflandırılmış: şifrele (3)
+204.50	Sınıflandırılmamış: olduğu gibi (5)
+222.25	Açık ağ tarafında teslim
+222.25	İstasyondan USB ya da DFX One portalından indirme
+223.25	USB’YE YAZ
+223.25	3 sınıflandırılmış dosya şifrelendi
+223.25	5 sınıflandırılmamış dosya, düz
+223.25	Yazılıyor...
+228.00	USB hazır. Teslim edin.
+230.50	İndirme
+230.50	ZIP
+230.50	delil_ozeti.zip
+230.50	tanik_raporu_kirmizi.pdf
+230.50	Yükleniyor...
+232.50	8 dosya indirilmeye hazır
+236.25	İş birliği yapılan kuruma teslim
+236.25	USB kaybolsa ya da çalınsa şifreli dosyalar okunamaz kalır
+239.25	ŞİFRELİ USB
+239.25	İş birliği yapılan kurum
+239.25	Anahtar olmadan okunamaz
+239.25	Kaybolsa ya da çalınsa: veri sızmaz
